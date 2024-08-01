@@ -3,15 +3,15 @@ package com.aston.secondTask.infrastructure.configuration;
 import java.sql.Connection;
 
 public interface SessionManager extends AutoCloseable {
-    void beginSession();
+        void beginSession();
 
-    void commitSession();
+        void commitSession();
 
-    void rollbackSession();
+        void rollbackSession();
 
-    void close();
+        void close();
 
-    Connection getCurrentSession();
+        Connection getCurrentSession();
 
+    }
 
-}

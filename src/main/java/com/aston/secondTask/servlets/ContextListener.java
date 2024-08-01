@@ -1,6 +1,5 @@
 package com.aston.secondTask.servlets;
 
-import com.aston.secondTask.infrastructure.configuration.JDBCConfiguration;
 import com.aston.secondTask.infrastructure.configuration.SessionManager;
 import com.aston.secondTask.infrastructure.configuration.SessionManagerJDBC;
 import com.aston.secondTask.infrastructure.repository.CoordinatorRepository;
@@ -21,40 +20,27 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
-import javax.sql.DataSource;
 
 @WebListener
 public class ContextListener implements ServletContextListener {
 
-        private Authentication authentication;
-        private Registration registration;
-        private CoordinatorDAO coordinatorRepository;
-        private StudentDAO studentRepository;
-        private CourseDAO courseRepository;
-        private RestApiHandler getRestHandler;
-        private RestApiHandler postRestHandler;
-        private RestApiHandler putRestHandler;
-        private RestApiHandler deleteRestHandler;
-
-        @Override
+    @Override
         public void contextInitialized(ServletContextEvent servletContextEvent) {
 
             final ServletContext servletContext =
                     servletContextEvent.getServletContext();
+        SessionManager sessionManager = new SessionManagerJDBC();
+        UserDAO userDaoJDBC = new UserRepository(sessionManager);
+        CourseDAO courseRepository = new CourseRepository(sessionManager);
+        CoordinatorDAO coordinatorRepository = new CoordinatorRepository(sessionManager);
+        StudentDAO studentRepository = new StudentRepository(sessionManager);
+        Authentication authentication = new UserAuthenticationService(userDaoJDBC);
+        Registration registration = new UserRegistrationService(userDaoJDBC);
 
-            DataSource dataSource = JDBCConfiguration.getHikariDataSource();
-            SessionManager sessionManager = new SessionManagerJDBC(dataSource);
-            UserDAO userDaoJDBC = new UserRepository(sessionManager);
-            this.courseRepository = new CourseRepository(sessionManager);
-            this.coordinatorRepository = new CoordinatorRepository(sessionManager);
-            this.studentRepository = new StudentRepository(sessionManager);
-            authentication = new UserAuthenticationService(userDaoJDBC);
-            registration = new UserRegistrationService(userDaoJDBC);
-
-            getRestHandler = new GetRestHandler(coordinatorRepository, studentRepository,courseRepository);
-            postRestHandler = new PostRestHandler(coordinatorRepository, studentRepository,courseRepository);
-            putRestHandler = new PutRestHandler(coordinatorRepository, studentRepository,courseRepository);
-            deleteRestHandler = new DeleteRestHandler(coordinatorRepository, studentRepository,courseRepository);
+        RestApiHandler getRestHandler = new GetRestHandler(coordinatorRepository, studentRepository, courseRepository);
+        RestApiHandler postRestHandler = new PostRestHandler(coordinatorRepository, studentRepository, courseRepository);
+        RestApiHandler putRestHandler = new PutRestHandler(coordinatorRepository, studentRepository, courseRepository);
+        RestApiHandler deleteRestHandler = new DeleteRestHandler(coordinatorRepository, studentRepository, courseRepository);
 
             servletContext.setAttribute("authentication", authentication);
             servletContext.setAttribute("registration", registration);
@@ -67,9 +53,5 @@ public class ContextListener implements ServletContextListener {
             servletContext.setAttribute("deleteRestHandler", deleteRestHandler);
         }
 
-        @Override
-        public void contextDestroyed(ServletContextEvent sce) {
-
-        }
-    }
+}
 

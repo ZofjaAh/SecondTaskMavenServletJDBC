@@ -1,5 +1,4 @@
 package com.aston.secondTask.infrastructure.security.securityRepositories;
-
 import com.aston.secondTask.infrastructure.configuration.SessionManager;
 import com.aston.secondTask.infrastructure.security.securityService.dao.UserDAO;
 import lombok.AllArgsConstructor;
@@ -18,41 +17,41 @@ public class UserRepository implements UserDAO {
     private final SessionManager sessionManager;
     @Override
     public Optional<UserEntity> findByEmail(String email) throws SQLException {
-        UserEntity dbUser = null;
+        UserEntity userEntity = null;
         sessionManager.beginSession();
 
         try (Connection connection = sessionManager.getCurrentSession();
-             PreparedStatement statement = connection.prepareStatement(GET_USER_BY_EMAIL)) {
+           PreparedStatement statement =  connection.prepareStatement(GET_USER_BY_EMAIL)) {
             statement.setString(1, email);
 
             try (ResultSet result = statement.executeQuery()) {
 
                 if (result.next()) {
-                    dbUser = new UserEntity();
-                    dbUser.setUserId(Integer.parseInt(result.getString("user_id")));
-                    dbUser.setUserName(result.getString("user_name"));
-                    dbUser.setEmail(result.getString("email"));
-                    dbUser.setPassword(result.getString("password"));
+                    userEntity = new UserEntity();
+                    userEntity.setUserId(Integer.parseInt(result.getString("userEntity_id")));
+                    userEntity.setUserName(result.getString("userEntity_name"));
+                    userEntity.setEmail(result.getString("email"));
+                    userEntity.setPassword(result.getString("password"));
                 }
             }
         } catch (SQLException ex) {
-            log.error(ex.getMessage(), ex);
+            log.error("SQLException with searching by email: [{}] - [{}]", email, ex.getMessage());
             sessionManager.rollbackSession();
             throw ex;
         }
 
-        return Optional.ofNullable(dbUser);
+        return Optional.ofNullable(userEntity);
     }
 
     @Override
-    public int insertUser(UserEntity user) throws SQLException {
+    public int insertUser(UserEntity userEntity) throws SQLException {
         sessionManager.beginSession();
 
         try (Connection connection = sessionManager.getCurrentSession();
              PreparedStatement statement = connection.prepareStatement(INSERT_USER, Statement.RETURN_GENERATED_KEYS)) {
-            statement.setString(1, user.getUserName());
-            statement.setString(2, user.getPassword());
-            statement.setString(3, user.getEmail());
+            statement.setString(1, userEntity.getUserName());
+            statement.setString(2, userEntity.getPassword());
+            statement.setString(3, userEntity.getEmail());
 
             statement.executeUpdate();
             try (ResultSet result = statement.getGeneratedKeys()) {
@@ -63,7 +62,7 @@ public class UserRepository implements UserDAO {
             }
 
         } catch (SQLException ex) {
-            log.error(ex.getMessage(), ex);
+            log.error("SQLException with user creation [{}]", ex.getMessage());
             sessionManager.rollbackSession();
             throw ex;
         }

@@ -1,4 +1,4 @@
-package com.aston.secondTask.infrastructure.configuration;
+package com.aston.secondTask.service.exeptions;
 
 public class SessionManagerException extends RuntimeException {
   public SessionManagerException(String msg) {
