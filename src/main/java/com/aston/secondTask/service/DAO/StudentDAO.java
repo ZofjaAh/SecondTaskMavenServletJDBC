@@ -15,4 +15,6 @@ public interface StudentDAO {
     int createStudentWithCoordinatorAndCourse(StudentEntity student);
 
     int updateCoordinatorName(int studentId, String name);
+
+    int createStudentWithCoordinator(StudentEntity studentEntity, String coordinatorName);
 }

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
@@ -16,6 +17,6 @@ public class StudentEntity {
     private String name;
     private CoordinatorEntity coordinator;
     private Set<CourseEntity> courses;
-    private UserEntity user;
+
 
 }

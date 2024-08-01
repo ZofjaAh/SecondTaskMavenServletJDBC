@@ -1,11 +1,10 @@
-package com.aston.secondTask.servlets.RestHandlers;
+package com.aston.secondTask.servlets;
 
-import com.aston.secondTask.service.DAO.CoordinatorDAO;
-import com.aston.secondTask.service.DAO.CourseDAO;
-import com.aston.secondTask.service.DAO.StudentDAO;
+import com.aston.secondTask.service.CoordinatorService;
+import com.aston.secondTask.service.CourseService;
+import com.aston.secondTask.service.StudentService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.AllArgsConstructor;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -14,14 +13,14 @@ import java.util.Optional;
 
 public abstract class RestApiHandler {
      ObjectMapper objectMapper = new ObjectMapper();
-     CoordinatorDAO coordinatorDAO;
-     StudentDAO studentDAO;
-    CourseDAO courseDAO;
+     CoordinatorService coordinatorService;
+     StudentService studentService;
+    CourseService courseService;
 
-    protected RestApiHandler(CoordinatorDAO coordinatorDAO, StudentDAO studentDAO, CourseDAO courseDAO) {
-        this.coordinatorDAO = coordinatorDAO;
-        this.studentDAO = studentDAO;
-        this.courseDAO = courseDAO;
+    protected RestApiHandler(CoordinatorService coordinatorService, StudentService studentService, CourseService courseService) {
+        this.coordinatorService = coordinatorService;
+        this.studentService = studentService;
+        this.courseService = courseService;
     }
 
     abstract Optional<String> handleRestRequest(String requestPath)

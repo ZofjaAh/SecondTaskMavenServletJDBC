@@ -1,6 +1,5 @@
-package com.aston.secondTask.servlets.RestHandlers;
+package com.aston.secondTask.servlets;
 
-import com.aston.secondTask.service.DAO.CourseDAO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
 
@@ -13,7 +12,8 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 
 @Slf4j
-public class RestCourseServlet extends HttpServlet {
+@WebServlet(urlPatterns = "/rest/*")
+public class RestApiServlet extends HttpServlet {
 
     private static final String COORSTUDENT_NOT_FOUND= "Sorry, coordinator hasn't found";
     private static final String COURSE_NOT_FOUND= "Sorry, course hasn't found";

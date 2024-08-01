@@ -1,12 +1,17 @@
-package com.aston.secondTask.servlets.RestHandlers;
+package com.aston.secondTask.servlets;
 
 import com.aston.secondTask.entities.CoordinatorEntity;
 import com.aston.secondTask.entities.CourseEntity;
 import com.aston.secondTask.entities.StudentEntity;
+import com.aston.secondTask.service.CoordinatorService;
+import com.aston.secondTask.service.CourseService;
 import com.aston.secondTask.service.DAO.CoordinatorDAO;
 import com.aston.secondTask.service.DAO.CourseDAO;
 import com.aston.secondTask.service.DAO.StudentDAO;
-import lombok.AllArgsConstructor;
+import com.aston.secondTask.service.StudentService;
+import com.aston.secondTask.servlets.DTO.CoordinatorDTO;
+import com.aston.secondTask.servlets.DTO.CourseDTO;
+import com.aston.secondTask.servlets.DTO.StudentDTO;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -16,8 +21,8 @@ import java.util.stream.Collectors;
 
 public class PostRestHandler extends RestApiHandler{
 
-    public PostRestHandler(CoordinatorDAO coordinatorDAO, StudentDAO studentDAO, CourseDAO courseDAO) {
-        super(coordinatorDAO, studentDAO, courseDAO);
+    public PostRestHandler(CoordinatorService coordinatorService, StudentService studentService, CourseService courseService) {
+        super(coordinatorService, studentService, courseService);
     }
 
     @Override
@@ -30,17 +35,17 @@ public class PostRestHandler extends RestApiHandler{
             int generated_id = 0;
             if (requestPath.matches("^/course/$")) {
                 String bodyParams = req.getReader().lines().collect(Collectors.joining());
-                CourseEntity course = objectMapper.readValue(bodyParams, CourseEntity.class);
-                generated_id = courseDAO.createCourse(course);
+                CourseDTO course = objectMapper.readValue(bodyParams, CourseDTO.class);
+                generated_id = courseService.createCourse(course);
 
             } else if (requestPath.matches("^/coordinator/$")) {
                 String bodyParams = req.getReader().lines().collect(Collectors.joining());
-                CoordinatorEntity coordinator = objectMapper.readValue(bodyParams, CoordinatorEntity.class);
-                generated_id = coordinatorDAO.createCoordinator(coordinator);
+                CoordinatorDTO coordinator = objectMapper.readValue(bodyParams, CoordinatorDTO.class);
+                generated_id = coordinatorService.createCoordinator(coordinator);
             } else if (requestPath.matches("^/student/$")) {
                 String bodyParams = req.getReader().lines().collect(Collectors.joining());
-                StudentEntity student = objectMapper.readValue(bodyParams, StudentEntity.class);
-                generated_id = studentDAO.createStudentWithCoordinatorAndCourse(student);
+                StudentDTO student = objectMapper.readValue(bodyParams, StudentDTO.class);
+                generated_id = studentService.createStudentWithCoordinator(student, student.getCoordinatorName());
             }
 
             return generated_id;

@@ -40,7 +40,7 @@
    </servlet-mapping>
     <servlet>
         <servlet-name>AddCourseServlet</servlet-name>
-        <servlet-class>com.aston.secondTask.servlets.AddCourseServlet</servlet-class>
+        <servlet-class>com.aston.secondTask.servlets.CourseServlet</servlet-class>
     </servlet>
     <servlet-mapping>
        <servlet-name>AddCoordinatorServlet</servlet-name>
@@ -48,7 +48,7 @@
    </servlet-mapping>
     <servlet>
         <servlet-name>AddCoordinatorServlet</servlet-name>
-        <servlet-class>com.aston.secondTask.servlets.AddCoordinatorServlet</servlet-class>
+        <servlet-class>com.aston.secondTask.servlets.CoordinatorServlet</servlet-class>
     </servlet>
     <servlet-mapping>
        <servlet-name>AddStudentServlet</servlet-name>
@@ -56,7 +56,7 @@
    </servlet-mapping>
     <servlet>
         <servlet-name>AddStudentServlet</servlet-name>
-        <servlet-class>com.aston.secondTask.servlets.AddStudentServlet</servlet-class>
+        <servlet-class>com.aston.secondTask.servlets.StudentServlet</servlet-class>
     </servlet>
     <servlet-mapping>
        <servlet-name>DeleteCourseServlet</servlet-name>

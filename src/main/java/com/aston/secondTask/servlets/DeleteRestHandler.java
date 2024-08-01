@@ -1,9 +1,9 @@
-package com.aston.secondTask.servlets.RestHandlers;
+package com.aston.secondTask.servlets;
 
-import com.aston.secondTask.service.DAO.CoordinatorDAO;
-import com.aston.secondTask.service.DAO.CourseDAO;
-import com.aston.secondTask.service.DAO.StudentDAO;
-import lombok.AllArgsConstructor;
+import com.aston.secondTask.service.CoordinatorService;
+import com.aston.secondTask.service.CourseService;
+
+import com.aston.secondTask.service.StudentService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
@@ -11,8 +11,8 @@ import java.util.Optional;
 
 public class DeleteRestHandler extends RestApiHandler {
 
-    public DeleteRestHandler(CoordinatorDAO coordinatorDAO, StudentDAO studentDAO, CourseDAO courseDAO) {
-        super(coordinatorDAO, studentDAO, courseDAO);
+    public DeleteRestHandler(CoordinatorService coordinatorService, StudentService studentService, CourseService courseService) {
+        super(coordinatorService, studentService, courseService);
     }
 
     @Override
@@ -25,16 +25,16 @@ public class DeleteRestHandler extends RestApiHandler {
         int updated_rows = 0;
         if (requestPath.matches("^/coordinator/\\d+$")) {
             int coordinatorId = getCurrentId(requestPath);
-            updated_rows = coordinatorDAO.deleteById(coordinatorId);
+            updated_rows = coordinatorService.deleteById(coordinatorId);
 
         } else if (requestPath.matches("^/course/\\d+$"))
         {
             int courseId = getCurrentId(requestPath);
-            updated_rows = courseDAO.deleteCourse(courseId);
+            updated_rows = courseService.deleteCourse(courseId);
         } else if (requestPath.matches("^/student/\\d+$"))
         {
             int studentId = getCurrentId(requestPath);
-            updated_rows = studentDAO.deleteStudent(studentId);
+            updated_rows = studentService.deleteStudent(studentId);
         }
 
 
