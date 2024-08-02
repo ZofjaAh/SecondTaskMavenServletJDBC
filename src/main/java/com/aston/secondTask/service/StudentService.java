@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
+import java.sql.SQLException;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -18,7 +19,7 @@ import java.util.stream.Collectors;
 public class StudentService {
     private  final StudentDAO studentDAO;
 
-    public  StudentDTO findStudentWithCoursesByID(int studentId) {
+    public  StudentDTO findStudentWithCoursesByID(int studentId) throws SQLException {
         Optional<StudentEntity> studentOptional = studentDAO.findById(studentId);
         if(studentOptional.isPresent()) {
             StudentEntity studentEntity = studentOptional.get();
@@ -33,14 +34,15 @@ public class StudentService {
 
     }
 
-       public int createStudentWithCoordinator(StudentDTO student, String coordinatorName) {
+       public int createStudentWithCoordinator(StudentDTO student, int coordinatorId) throws SQLException {
         StudentEntity studentEntity = StudentEntity.builder()
                 .name(student.getName()).build();
-      return   studentDAO.createStudentWithCoordinator(studentEntity, coordinatorName);
+      return studentDAO.createStudentWithCoordinator(studentEntity, coordinatorId);
 
     }
 
     public int deleteStudent(int studentId) {
+
         return 0;
     }
 

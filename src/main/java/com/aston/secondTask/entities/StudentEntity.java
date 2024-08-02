@@ -1,16 +1,14 @@
 package com.aston.secondTask.entities;
 
-import com.aston.secondTask.infrastructure.security.securityRepositories.UserEntity;
 import lombok.*;
-
-import java.util.List;
 import java.util.Set;
 
 @Data
 @Builder
+@With
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = "id")
+@EqualsAndHashCode(of = {"id", "name"})
 @ToString(of = {"id", "name"})
 public class StudentEntity {
     private int id;

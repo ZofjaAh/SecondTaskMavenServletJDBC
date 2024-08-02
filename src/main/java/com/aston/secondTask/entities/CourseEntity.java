@@ -8,7 +8,7 @@ import java.util.Set;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = "id")
+@EqualsAndHashCode(of = {"id", "name"})
 @ToString(of = {"id", "name"})
 public class CourseEntity {
     private int id;

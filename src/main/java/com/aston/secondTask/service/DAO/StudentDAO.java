@@ -2,19 +2,20 @@ package com.aston.secondTask.service.DAO;
 
 import com.aston.secondTask.entities.StudentEntity;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
 public interface StudentDAO {
-    int deleteStudent(int studentId);
+    int createStudentWithCoordinator(StudentEntity studentEntity, int coordinatorId) throws SQLException;
 
-    List<StudentEntity> findAll();
+    int deleteStudent(int studentId) throws SQLException;
 
-    Optional<StudentEntity> findById(int studentId);
+    int updateCoordinator(int studentId, int coordinatorId) throws SQLException;
 
-    int createStudentWithCoordinatorAndCourse(StudentEntity student);
+    int addCourse(int studentId, int courseId) throws SQLException;
 
-    int updateCoordinatorName(int studentId, String name);
+    Optional<StudentEntity> findById(int studentId) throws SQLException;
 
-    int createStudentWithCoordinator(StudentEntity studentEntity, String coordinatorName);
+
 }

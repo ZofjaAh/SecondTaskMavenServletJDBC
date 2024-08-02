@@ -6,6 +6,7 @@ import java.util.Set;
 
 @Data
 @Builder
+@With
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")

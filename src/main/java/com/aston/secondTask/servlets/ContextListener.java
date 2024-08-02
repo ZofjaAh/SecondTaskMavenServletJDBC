@@ -5,6 +5,7 @@ import com.aston.secondTask.infrastructure.configuration.SessionManagerJDBC;
 import com.aston.secondTask.infrastructure.repository.CoordinatorRepository;
 import com.aston.secondTask.infrastructure.repository.CourseRepository;
 import com.aston.secondTask.infrastructure.repository.StudentRepository;
+import com.aston.secondTask.infrastructure.repository.mapper.ResultSetMapper;
 import com.aston.secondTask.service.CoordinatorService;
 import com.aston.secondTask.service.CourseService;
 import com.aston.secondTask.service.DAO.CoordinatorDAO;
@@ -26,9 +27,10 @@ public class ContextListener implements ServletContextListener {
         final ServletContext servletContext =
                 servletContextEvent.getServletContext();
         SessionManager sessionManager = new SessionManagerJDBC();
-        CourseDAO courseRepository = new CourseRepository(sessionManager);
-        CoordinatorDAO coordinatorRepository = new CoordinatorRepository(sessionManager);
-        StudentDAO studentRepository = new StudentRepository(sessionManager);
+        ResultSetMapper resultSetMapper = new ResultSetMapper();
+        CourseDAO courseRepository = new CourseRepository(sessionManager,resultSetMapper);
+        CoordinatorDAO coordinatorRepository = new CoordinatorRepository(sessionManager,resultSetMapper);
+        StudentDAO studentRepository = new StudentRepository(sessionManager,resultSetMapper);
         CoordinatorService coordinatorService = new CoordinatorService(coordinatorRepository);
         StudentService studentService = new StudentService(studentRepository);
         CourseService courseService = new CourseService(courseRepository);

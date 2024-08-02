@@ -9,24 +9,13 @@ public enum SQLInitQuery {
             SELECT  'CREATE DATABASE maven_servlet_jdbc'
             WHERE  NOT  EXISTS ( SELECT  FROM pg_database WHERE datname = 'maven_servlet_jdbc' )\\gexec;
             """),
-    CREATE_USER_TABLE("""
-            CREATE TABLE maven_servlet_jdbc_user (
-            user_id SERIAL NOT NULL,
-            user_name VARCHAR(32) NOT NULL,
-            email VARCHAR(32) NOT NULL,
-            password VARCHAR(128) NOT NULL,
-            PRIMARY KEY (user_id));
-            """),
+
     CREATE_COORDINATOR_TABLE("""
             CREATE TABLE coordinator (
             coordinator_id  SERIAL NOT NULL,
             name VARCHAR(32) NOT NULL,
-            user_id INT NOT NULL,
             PRIMARY KEY (coordinator_id),
-            UNIQUE (name),
-            CONSTRAINT fk_coordinator_user
-                      FOREIGN KEY (user_id)
-                            REFERENCES maven_servlet_jdbc_user (user_id));
+            UNIQUE (name));
             """),
     CREATE_COURSE_TABLE("""
             CREATE TABLE course (
@@ -39,13 +28,9 @@ public enum SQLInitQuery {
             CREATE TABLE student (
             student_id SERIAL NOT NULL,
             name VARCHAR(32) NOT NULL,
-            user_id  INT NOT NULL,
             coordinator_id INT NOT NULL,
             PRIMARY KEY (student_id),
             UNIQUE (name),
-            CONSTRAINT fk_student_user
-                 FOREIGN KEY (user_id)
-                     REFERENCES maven_servlet_jdbc_user (user_id),
             CONSTRAINT fk_student_coordinator
                 FOREIGN KEY (coordinator_id)
                      REFERENCES coordinator (coordinator_id));

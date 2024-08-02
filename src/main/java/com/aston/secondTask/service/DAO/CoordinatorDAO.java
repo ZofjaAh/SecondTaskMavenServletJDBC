@@ -7,13 +7,13 @@ import java.util.List;
 import java.util.Optional;
 
 public interface CoordinatorDAO {
-    int deleteById(int coordinatorId);
+    int deleteById(int coordinatorId) throws SQLException;
 
-    List<CoordinatorEntity> findAll();
-
-    Optional<CoordinatorEntity> findById(int coordinatorId);
+    List<CoordinatorEntity> findAll() throws SQLException;
 
     int createCoordinator(CoordinatorEntity coordinator) throws SQLException;
 
-    int updateCoordinatorName(int coordinatorId, String name);
+    int updateCoordinatorName(int coordinatorId, String name) throws SQLException;
+
+    Optional<CoordinatorEntity> findCoordinatorWithStudentsByID(int coordinatorId) throws SQLException;
 }
