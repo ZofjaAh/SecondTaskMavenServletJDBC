@@ -16,12 +16,12 @@ public enum StudentSQLQuery {
              DELETE from coordinator where id=(?)\\gexec;
             """),
     GET_STUDENT_WITH_COURSES_BY_ID(""" 
-                           select student.id, student.name, student.coordinator_id,
-                           course.id AS course_id, course.name as course_name
-                           from student LEFT OUTER JOIN student_course ON student.id = student_course.student_id
-                           LEFT OUTER JOIN course ON course.id = student_course.course_id
-                           WHERE student.id = (?);
-                           """),
+            select student.id, student.name, student.coordinator_id,
+            course.id AS course_id, course.name as course_name
+            from student LEFT OUTER JOIN student_course ON student.id = student_course.student_id
+            LEFT OUTER JOIN course ON course.id = student_course.course_id
+            WHERE student.id = (?);
+            """),
     UPDATE_COORDINATOR_BY_ID("""
             UPDATE student set coordinator_id=(?) where id=(?);
             """),

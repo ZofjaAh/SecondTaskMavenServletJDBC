@@ -4,7 +4,6 @@ import com.aston.secondTask.entities.CoordinatorEntity;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Optional;
 
 public interface CoordinatorDAO {
     int deleteById(int coordinatorId) throws SQLException;

@@ -3,8 +3,6 @@ package com.aston.secondTask.service.DAO;
 import com.aston.secondTask.entities.CourseEntity;
 
 import java.sql.SQLException;
-import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 public interface CourseDAO {

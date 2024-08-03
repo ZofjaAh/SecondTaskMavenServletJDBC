@@ -12,21 +12,7 @@ import java.util.Set;
 
 @NoArgsConstructor
 public class ResultSetMapper {
-    public CoordinatorEntity parseCoordinatorFromResultSet(ResultSet result) throws SQLException {
-        CoordinatorEntity coordinator = new CoordinatorEntity();
-        coordinator.setId(Integer.parseInt(result.getString("id")));
-        coordinator.setName(result.getString("name"));
-        String studentId = result.getString("student_id");
-        if (studentId != null) {
-            StudentEntity student = new StudentEntity();
-            student.setId(Integer.parseInt(studentId));
-            student.setName(result.getString("student_name"));
-            Set<StudentEntity> studentEntitySet = new HashSet<>();
-            studentEntitySet.add(student);
-            coordinator.setStudents(new HashSet<>(studentEntitySet));
-        }
-        return coordinator;
-    }
+
 
     public StudentEntity parseStudentFromResultSet(ResultSet result) throws SQLException {
         StudentEntity student = new StudentEntity();
@@ -39,7 +25,7 @@ public class ResultSetMapper {
             coordinator.setId(Integer.parseInt(coordinatorId));
             student.setCoordinator(coordinator);
         }
-        if (courseId != null){
+        if (courseId != null) {
             Set<CourseEntity> courseEntitySet = new HashSet<>();
             CourseEntity course = new CourseEntity();
             course.setId(Integer.parseInt(courseId));

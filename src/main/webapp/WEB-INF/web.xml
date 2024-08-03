@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app  xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
-          version="4.0">
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
     <servlet-mapping>
         <servlet-name>GetStartPageServlet</servlet-name>
         <url-pattern>/start_menu</url-pattern>
@@ -11,97 +11,98 @@
         <servlet-name>GetStartPageServlet</servlet-name>
         <servlet-class>com.aston.secondTask.servlets.GetStartPageServlet</servlet-class>
     </servlet>
-   <servlet-mapping>
-       <servlet-name>GetCourseServlet</servlet-name>
-       <url-pattern>/get_course</url-pattern>
-   </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetCourseServlet</servlet-name>
+        <url-pattern>/get_course</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>GetCourseServlet</servlet-name>
         <servlet-class>com.aston.secondTask.servlets.GetCourseServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-       <servlet-name>GetCoordinatorServlet</servlet-name>
-       <url-pattern>/get_coordinator</url-pattern>
-   </servlet-mapping>
+        <servlet-name>GetCoordinatorServlet</servlet-name>
+        <url-pattern>/get_coordinator</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>GetCoordinatorServlet</servlet-name>
         <servlet-class>com.aston.secondTask.servlets.DTO.GetCoordinatorServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-       <servlet-name>GetStudentServlet</servlet-name>
-       <url-pattern>/get_student</url-pattern>
-   </servlet-mapping>
+        <servlet-name>GetStudentServlet</servlet-name>
+        <url-pattern>/get_student</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>GetStudentServlet</servlet-name>
         <servlet-class>com.aston.secondTask.servlets.DTO.GetStudentServlet</servlet-class>
-    </servlet> <servlet-mapping>
-       <servlet-name>AddCourseServlet</servlet-name>
-       <url-pattern>/add_course</url-pattern>
-   </servlet-mapping>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddCourseServlet</servlet-name>
+        <url-pattern>/add_course</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>AddCourseServlet</servlet-name>
         <servlet-class>com.aston.secondTask.servlets.CourseServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-       <servlet-name>AddCoordinatorServlet</servlet-name>
-       <url-pattern>/add_coordinator</url-pattern>
-   </servlet-mapping>
+        <servlet-name>AddCoordinatorServlet</servlet-name>
+        <url-pattern>/add_coordinator</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>AddCoordinatorServlet</servlet-name>
         <servlet-class>com.aston.secondTask.servlets.CoordinatorServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-       <servlet-name>AddStudentServlet</servlet-name>
-       <url-pattern>/add_student</url-pattern>
-   </servlet-mapping>
+        <servlet-name>AddStudentServlet</servlet-name>
+        <url-pattern>/add_student</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>AddStudentServlet</servlet-name>
         <servlet-class>com.aston.secondTask.servlets.StudentServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-       <servlet-name>DeleteCourseServlet</servlet-name>
-       <url-pattern>/delete_course</url-pattern>
-   </servlet-mapping>
+        <servlet-name>DeleteCourseServlet</servlet-name>
+        <url-pattern>/delete_course</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>DeleteCourseServlet</servlet-name>
         <servlet-class>com.aston.secondTask.servlets.DeleteCourseServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-       <servlet-name>DeleteCoordinatorServlet</servlet-name>
-       <url-pattern>/delete_coordinator</url-pattern>
-   </servlet-mapping>
+        <servlet-name>DeleteCoordinatorServlet</servlet-name>
+        <url-pattern>/delete_coordinator</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>DeleteCoordinatorServlet</servlet-name>
         <servlet-class>com.aston.secondTask.servlets.DTO.DeleteCoordinatorServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-       <servlet-name>DeleteStudentServlet</servlet-name>
-       <url-pattern>/delete_student</url-pattern>
-   </servlet-mapping>
+        <servlet-name>DeleteStudentServlet</servlet-name>
+        <url-pattern>/delete_student</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>DeleteStudentServlet</servlet-name>
         <servlet-class>com.aston.secondTask.servlets.DTO.DeleteStudentServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-       <servlet-name>UpdateCourseServlet</servlet-name>
-       <url-pattern>/update_course</url-pattern>
-   </servlet-mapping>
+        <servlet-name>UpdateCourseServlet</servlet-name>
+        <url-pattern>/update_course</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>UpdateCourseServlet</servlet-name>
         <servlet-class>com.aston.secondTask.servlets.UpdateCourseServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-       <servlet-name>UpdateCoordinatorServlet</servlet-name>
-       <url-pattern>/update_coordinator</url-pattern>
-   </servlet-mapping>
+        <servlet-name>UpdateCoordinatorServlet</servlet-name>
+        <url-pattern>/update_coordinator</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>UpdateCoordinatorServlet</servlet-name>
         <servlet-class>com.aston.secondTask.servlets.DTO.UpdateCoordinatorServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-       <servlet-name>UpdateStudentServlet</servlet-name>
-       <url-pattern>/update_student</url-pattern>
-   </servlet-mapping>
+        <servlet-name>UpdateStudentServlet</servlet-name>
+        <url-pattern>/update_student</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>UpdateStudentServlet</servlet-name>
         <servlet-class>com.aston.secondTask.servlets.DTO.UpdateStudentServlet</servlet-class>

@@ -12,9 +12,9 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 public abstract class RestApiHandler {
-     ObjectMapper objectMapper = new ObjectMapper();
-     CoordinatorService coordinatorService;
-     StudentService studentService;
+    ObjectMapper objectMapper = new ObjectMapper();
+    CoordinatorService coordinatorService;
+    StudentService studentService;
     CourseService courseService;
 
     protected RestApiHandler(CoordinatorService coordinatorService, StudentService studentService, CourseService courseService) {
@@ -24,10 +24,10 @@ public abstract class RestApiHandler {
     }
 
     abstract Optional<String> handleRestRequest(String requestPath)
-                throws SQLException, JsonProcessingException;
+            throws SQLException, JsonProcessingException;
 
-        abstract int handleRestRequest(String requestPath, HttpServletRequest request)
-                throws SQLException, IOException;
+    abstract int handleRestRequest(String requestPath, HttpServletRequest request)
+            throws SQLException, IOException;
 
-    }
+}
 

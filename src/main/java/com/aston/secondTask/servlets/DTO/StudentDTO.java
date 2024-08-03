@@ -1,6 +1,5 @@
 package com.aston.secondTask.servlets.DTO;
 
-import com.aston.secondTask.entities.CourseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

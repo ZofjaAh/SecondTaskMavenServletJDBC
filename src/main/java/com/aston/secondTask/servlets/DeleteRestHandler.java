@@ -2,7 +2,6 @@ package com.aston.secondTask.servlets;
 
 import com.aston.secondTask.service.CoordinatorService;
 import com.aston.secondTask.service.CourseService;
-
 import com.aston.secondTask.service.StudentService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,12 +26,10 @@ public class DeleteRestHandler extends RestApiHandler {
             int coordinatorId = getCurrentId(requestPath);
             updated_rows = coordinatorService.deleteById(coordinatorId);
 
-        } else if (requestPath.matches("^/course/\\d+$"))
-        {
+        } else if (requestPath.matches("^/course/\\d+$")) {
             int courseId = getCurrentId(requestPath);
             updated_rows = courseService.deleteCourse(courseId);
-        } else if (requestPath.matches("^/student/\\d+$"))
-        {
+        } else if (requestPath.matches("^/student/\\d+$")) {
             int studentId = getCurrentId(requestPath);
             updated_rows = studentService.deleteStudent(studentId);
         }

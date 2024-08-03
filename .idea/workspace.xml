@@ -4,57 +4,47 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6c91a1b6-c8a7-4f7d-b529-f2905c000ee9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/entities/CoordinatorEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/entities/CourseEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/entities/StudentEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/security/configuration/DBConector.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/security/configuration/PostgreSLQConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/security/configuration/SessionManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/security/configuration/SessionManagerJDBC.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/security/securityFilters/AuthenticationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/security/securityRepositories/UserEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/security/securityRepositories/UserRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/security/securityService/Authentication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/security/securityService/Registration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/security/securityService/UserAuthenticationService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/security/securityService/UserRegistrationService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/security/securityService/dao/UserDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/DAO/CoordinatorDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/DAO/CourseDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/DAO/StudentDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/exeptions/AuthorisationException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/exeptions/NotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/exeptions/ProcessingException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/DTO/AddCoordinatorServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/DTO/AddCourseServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/DTO/AddStudentServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/DTO/ContextListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/DTO/validation/LoginServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/DTO/validation/LogoutServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/DTO/validation/RegistrationServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/db.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/db/V0_1__init_maven_servlet_jdbc_if_not_exist.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/db/V1_1__init maven_servlet_jdbc_user.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/db/V2_1__init_maven_servlet_jdbc_coordinator.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/db/V2_2__init_maven_servlet_jdbc_course.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/db/V2_3__init_maven_servlet_jdbc_student.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/db/V2_4__init_maven_servlet_jdbc_student_course.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/logback.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/css/conf.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/images/courses.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/courses.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/registration.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+    <list default="true" id="6c91a1b6-c8a7-4f7d-b529-f2905c000ee9" name="Changes" comment="4 commit">
+      <change afterPath="$PROJECT_DIR$/src/test/java/DAOTests/CoordinatorRepositoryTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/DAOTests/DataBaseSQLContainer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/util/DTOFixtures.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/util/EntityFixtures.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/TEST_DB.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/db.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/entities/StudentEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/entities/StudentEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/configuration/DatabaseConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/configuration/DatabaseConnector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/configuration/DateBaseConnectionCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/configuration/DateBaseConnectionCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/configuration/SessionManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/configuration/SessionManagerJDBC.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/repository/CoordinatorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/repository/CoordinatorRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/repository/CourseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/repository/CourseRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/repository/StudentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/repository/StudentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/repository/mapper/ResultSetMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/repository/mapper/ResultSetMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/repository/queries/StudentSQLQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/repository/queries/StudentSQLQuery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/CoordinatorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/CoordinatorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/CourseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/CourseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/DAO/CoordinatorDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/DAO/CoordinatorDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/DAO/CourseDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/DAO/CourseDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/DAO/StudentDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/DAO/StudentDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/StudentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/StudentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/exeptions/DatabaseConnectorException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/exeptions/DatabaseConnectorException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/exeptions/NotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/exeptions/NotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/exeptions/ProcessingException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/exeptions/ProcessingException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/exeptions/SessionManagerException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/exeptions/SessionManagerException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/ContextListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/ContextListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/DTO/StudentDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/DTO/StudentDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/DeleteRestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/DeleteRestHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/GetRestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/GetRestHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/PostRestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/PostRestHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/PutRestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/PutRestHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/RestApiHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/RestApiHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/RestApiServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/RestApiServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/registration.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/registration.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,13 +54,22 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/RestApiServlet.java" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 3
@@ -83,30 +82,66 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "JUnit.CoordinatorRepositoryTest.getAllCoordinators.executor": "Debug",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Java стажировка/SecondTaskMavenServletJDBC/src/main/java/com/aston/secondTask/service/exeptions",
+    "last_opened_file_path": "D:/Java стажировка/SecondTaskMavenServletJDBC/src/test/resources",
+    "onboarding.tips.debug.path": "D:/Закруженные/IdeaProjects/untitled3/src/Main.java",
     "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.importing"
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.aston.secondTask.infrastructure.repository.queies" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Java стажировка\SecondTaskMavenServletJDBC\src\test\resources" />
+      <recent name="D:\Java стажировка\SecondTaskMavenServletJDBC\src\main\java\com\aston\secondTask\servlets\DTO" />
+      <recent name="D:\Java стажировка\SecondTaskMavenServletJDBC\src\main\java\com\aston\secondTask\service\DAO" />
       <recent name="D:\Java стажировка\SecondTaskMavenServletJDBC\src\main\java\com\aston\secondTask\service\exeptions" />
       <recent name="D:\Java стажировка\SecondTaskMavenServletJDBC\src\main\webapp\WEB-INF\images" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Java стажировка\SecondTaskMavenServletJDBC\src\main\resources" />
-      <recent name="D:\Java стажировка\SecondTaskMavenServletJDBC\src\main\webapp" />
-      <recent name="D:\Java стажировка\SecondTaskMavenServletJDBC" />
+      <recent name="D:\Java стажировка\SecondTaskMavenServletJDBC\src\main\resources\flyway" />
+      <recent name="D:\Java стажировка\SecondTaskMavenServletJDBC\src\main\resources\flyway\migrations" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.aston.secondTask.service.DAO" />
-      <recent name="com.aston.secondTask.infrastructure.security.securityService" />
+      <recent name="com.aston.secondTask.infrastructure.repository.queries" />
+      <recent name="com.aston.secondTask.servlets" />
+      <recent name="com.aston.secondTask.servlets.validation" />
+      <recent name="com.aston.secondTask.service" />
       <recent name="com.aston.secondTask.service.exeptions" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="CoordinatorRepositoryTest.getAllCoordinators" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SecondTaskMavenServletJDBC" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="DAOTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="DAOTests" />
+      <option name="MAIN_CLASS_NAME" value="DAOTests.CoordinatorRepositoryTest" />
+      <option name="METHOD_NAME" value="getAllCoordinators" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.CoordinatorRepositoryTest.getAllCoordinators" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -117,6 +152,93 @@
       <option name="presentableId" value="Default" />
       <updated>1722318579576</updated>
     </task>
+    <task id="LOCAL-00001" summary="1 commit">
+      <option name="closed" value="true" />
+      <created>1722434355705</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1722434355705</updated>
+    </task>
+    <task id="LOCAL-00002" summary="1 commit">
+      <option name="closed" value="true" />
+      <created>1722510558622</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1722510558623</updated>
+    </task>
+    <task id="LOCAL-00003" summary="2 commit">
+      <option name="closed" value="true" />
+      <created>1722545224050</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1722545224050</updated>
+    </task>
+    <task id="LOCAL-00004" summary="3 commit">
+      <option name="closed" value="true" />
+      <created>1722628997429</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1722628997429</updated>
+    </task>
+    <task id="LOCAL-00005" summary="4 commit">
+      <option name="closed" value="true" />
+      <created>1722680533979</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1722680533979</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="NewRestBranch" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="1 commit" />
+    <MESSAGE value="2 commit" />
+    <MESSAGE value="3 commit" />
+    <MESSAGE value="4 commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="4 commit" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/../../Закруженные/IdeaProjects/untitled3/src/Main.java</url>
+          <line>13</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/DAOTests/DataBaseSQLContainer.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

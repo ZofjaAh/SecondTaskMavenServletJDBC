@@ -2,11 +2,12 @@ package com.aston.secondTask.infrastructure.repository;
 
 import com.aston.secondTask.entities.CoordinatorEntity;
 import com.aston.secondTask.entities.StudentEntity;
-import com.aston.secondTask.infrastructure.configuration.SessionManager;
+import com.aston.secondTask.infrastructure.configuration.DateBaseConnectionCreator;
 import com.aston.secondTask.infrastructure.repository.mapper.ResultSetMapper;
 import com.aston.secondTask.infrastructure.repository.queries.CoordinatorSQLQuery;
 import com.aston.secondTask.service.DAO.CoordinatorDAO;
 import com.aston.secondTask.service.exeptions.NotFoundException;
+import com.aston.secondTask.service.exeptions.ProcessingException;
 import lombok.AllArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -18,121 +19,107 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @Slf4j
 @Setter
-public class CoordinatorRepository implements CoordinatorDAO {
-    private final SessionManager sessionManager;
-    private final ResultSetMapper resultSetMapper;
+public class CoordinatorRepository extends DateBaseConnectionCreator implements CoordinatorDAO {
+
+
 
 
     @Override
-    public List<CoordinatorEntity> findAll() throws SQLException {
-            List<CoordinatorEntity> coordinatorEntityList = new ArrayList<>();
-            sessionManager.beginSession();
-            try (Connection connection = sessionManager.getCurrentSession();
-                 PreparedStatement statement = connection.prepareStatement(
-                         CoordinatorSQLQuery.GET_ALL_COORDINATORS.getQUERY())) {
-                try (ResultSet result = statement.executeQuery()) {
-                    while (result.next()) {
-                        CoordinatorEntity coordinator = resultSetMapper.parseCoordinatorFromResultSet(result);
-                        coordinatorEntityList.add(coordinator);
-                    }
+    public List<CoordinatorEntity> findAll() {
+        List<CoordinatorEntity> coordinatorEntityList = new ArrayList<>();
+        try (
+             PreparedStatement statement = getConnection().prepareStatement(
+                     CoordinatorSQLQuery.GET_ALL_COORDINATORS.getQUERY())) {
+            try (ResultSet result = statement.executeQuery()) {
+                while (result.next()) {
+                    CoordinatorEntity coordinator = parseCoordinatorFromResultSet(result);
+                    coordinatorEntityList.add(coordinator);
                 }
-            } catch (SQLException e) {
-                log.error("SQLException with loading all coordinators [{}]", e.getMessage());;
-                sessionManager.rollbackSession();
-                throw e;
             }
-            return  coordinatorEntityList;
+        } catch (SQLException e) {
+            log.error("SQLException with loading all coordinators [{}]", e.getMessage());
+            throw new ProcessingException(e.getMessage());
+        }
+        return coordinatorEntityList;
     }
 
     @Override
-    public int createCoordinator(CoordinatorEntity coordinator) throws SQLException {
-        sessionManager.beginSession();
-        try (Connection connection = sessionManager.getCurrentSession();
-             PreparedStatement statement = connection.prepareStatement(
+    public int createCoordinator(CoordinatorEntity coordinator)  {
+        try (PreparedStatement statement = getConnection().prepareStatement(
                      CoordinatorSQLQuery.CREATE_COORDINATOR.getQUERY(),
-                     Statement.RETURN_GENERATED_KEYS)){
+                     Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, coordinator.getName());
             statement.executeUpdate();
             try (ResultSet result = statement.getGeneratedKeys()) {
                 result.next();
                 int id = result.getInt(1);
-                sessionManager.commitSession();
                 return id;
             }
         } catch (SQLException e) {
             log.error("SQLException with creation coordinator with name: [{}] - [{}]",
                     coordinator.getName(), e.getMessage());
-            sessionManager.rollbackSession();
-            throw e;
+            throw new ProcessingException(e.getMessage());
         }
     }
 
 
     @Override
-    public int deleteById(int coordinatorId) throws SQLException {
+    public int deleteById(int coordinatorId) {
         int updated_rows;
 
-        sessionManager.beginSession();
-        try (Connection connection = sessionManager.getCurrentSession();
-             PreparedStatement statement = connection.prepareStatement(
+        try (PreparedStatement statement = getConnection().prepareStatement(
                      CoordinatorSQLQuery.DELETE_COORDINATOR_BY_ID.getQUERY())) {
             statement.setLong(1, coordinatorId);
             updated_rows = statement.executeUpdate();
-            sessionManager.commitSession();
 
         } catch (SQLException e) {
             log.error("SQLException with deleting coordinator with Id: [{}] - [{}]",
-                   coordinatorId, e.getMessage());;
-            sessionManager.rollbackSession();
-            throw e;
+                    coordinatorId, e.getMessage());
+
+            throw new ProcessingException(e.getMessage());
         }
         return updated_rows;
     }
 
 
     @Override
-    public int updateCoordinatorName(int coordinatorId, String coordinatorName) throws SQLException {
+    public int updateCoordinatorName(int coordinatorId, String coordinatorName)  {
         int rowsUpdated = 0;
-        sessionManager.beginSession();
 
-        try (Connection connection = sessionManager.getCurrentSession();
-             PreparedStatement statement = connection.prepareStatement(
-                    CoordinatorSQLQuery.UPDATE_COORDINATOR_NAME_BY_ID.getQUERY())) {
+        try (PreparedStatement statement = getConnection().prepareStatement(
+                     CoordinatorSQLQuery.UPDATE_COORDINATOR_NAME_BY_ID.getQUERY())) {
             statement.setString(1, coordinatorName);
             statement.setInt(2, coordinatorId);
             rowsUpdated = statement.executeUpdate();
-            sessionManager.commitSession();
 
         } catch (SQLException e) {
             log.error("SQLException with changing coordinator's name with Id: [{}] - [{}]",
                     coordinatorId, e.getMessage());
-            throw e;
+            throw new ProcessingException(e.getMessage());
         }
         return rowsUpdated;
     }
+
     @Override
-    public CoordinatorEntity findCoordinatorWithStudentsByID(int coordinatorId) throws SQLException {
-      List<CoordinatorEntity> coordinatorEntityList = new ArrayList<>();
-      CoordinatorEntity coordinatorEntity = null;
-        sessionManager.beginSession();
-        try (Connection connection = sessionManager.getCurrentSession();
-             PreparedStatement statement = connection.prepareStatement(
+    public CoordinatorEntity findCoordinatorWithStudentsByID(int coordinatorId) {
+        List<CoordinatorEntity> coordinatorEntityList = new ArrayList<>();
+        CoordinatorEntity coordinatorEntity = null;
+        try (PreparedStatement statement = getConnection().prepareStatement(
                      CoordinatorSQLQuery.GET_COORDINATOR_WITH_STUDENTS_BY_ID.getQUERY())) {
             statement.setInt(1, coordinatorId);
 
             try (ResultSet result = statement.executeQuery()) {
                 while (result.next()) {
-                    CoordinatorEntity coordinator = resultSetMapper.parseCoordinatorFromResultSet(result);
-                   coordinatorEntityList.add(coordinator);
+                    CoordinatorEntity coordinator = parseCoordinatorFromResultSet(result);
+                    coordinatorEntityList.add(coordinator);
                 }
             }
             coordinatorEntity = createCoordinatorEntityFromListCoordinators(coordinatorEntityList);
         } catch (SQLException e) {
-            log.error("SQLException with loading coordinator by Id: [{}] - [{}]",coordinatorId, e.getMessage());;
-            sessionManager.rollbackSession();
-            throw e;
+            log.error("SQLException with loading coordinator by Id: [{}] - [{}]", coordinatorId, e.getMessage());
+            throw new ProcessingException(e.getMessage());
         }
-        if(Objects.nonNull(coordinatorEntity)){
+        if (Objects.nonNull(coordinatorEntity)) {
             return coordinatorEntity;
         } else {
             log.error("Coordinator with such Id: [{}] doesn't exist", coordinatorId);
@@ -145,5 +132,20 @@ public class CoordinatorRepository implements CoordinatorDAO {
                 .flatMap((CoordinatorEntity coordinator) -> coordinator.getStudents().stream())
                 .collect(Collectors.toSet());
         return coordinators.get(0).withStudents(studentEntitySet);
+    }
+    public CoordinatorEntity parseCoordinatorFromResultSet(ResultSet result) throws SQLException {
+        CoordinatorEntity coordinator = new CoordinatorEntity();
+        coordinator.setId(Integer.parseInt(result.getString("id")));
+        coordinator.setName(result.getString("name"));
+        String studentId = result.getString("student_id");
+        if (studentId != null) {
+            StudentEntity student = new StudentEntity();
+            student.setId(Integer.parseInt(studentId));
+            student.setName(result.getString("student_name"));
+            Set<StudentEntity> studentEntitySet = new HashSet<>();
+            studentEntitySet.add(student);
+            coordinator.setStudents(new HashSet<>(studentEntitySet));
+        }
+        return coordinator;
     }
 }
