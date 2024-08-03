@@ -134,7 +134,7 @@ public class StudentRepository implements StudentDAO {
     }
 
     @Override
-    public Optional<StudentEntity> findById(int studentId) throws SQLException {
+    public StudentEntity findById(int studentId) throws SQLException {
         List<StudentEntity> studentEntityList = new ArrayList<>();
         StudentEntity studentEntity = null;
         sessionManager.beginSession();
@@ -154,8 +154,12 @@ public class StudentRepository implements StudentDAO {
             sessionManager.rollbackSession();
             throw e;
         }
-
-        return Optional.ofNullable(studentEntity);
+        if(Objects.nonNull(studentEntity)){
+            return studentEntity;
+        } else {
+            log.error("Student with such Id: [{}] doesn't exist", studentId);
+        throw new NotFoundException("Sorry, coordinator with such Id: [{}] doesn't exist");
+        }
     }
 
     private StudentEntity createStudentEntityFromListStudents(List<StudentEntity> students) {

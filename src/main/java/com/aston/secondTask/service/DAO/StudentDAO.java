@@ -15,7 +15,7 @@ public interface StudentDAO {
 
     int addCourse(int studentId, int courseId) throws SQLException;
 
-    Optional<StudentEntity> findById(int studentId) throws SQLException;
+    StudentEntity findById(int studentId) throws SQLException;
 
 
 }

@@ -1,6 +1,7 @@
 package com.aston.secondTask.service;
 
 import com.aston.secondTask.entities.CoordinatorEntity;
+import com.aston.secondTask.entities.CourseEntity;
 import com.aston.secondTask.entities.StudentEntity;
 import com.aston.secondTask.service.DAO.StudentDAO;
 import com.aston.secondTask.service.exeptions.NotFoundException;
@@ -20,41 +21,40 @@ public class StudentService {
     private  final StudentDAO studentDAO;
 
     public  StudentDTO findStudentWithCoursesByID(int studentId) throws SQLException {
-        Optional<StudentEntity> studentOptional = studentDAO.findById(studentId);
-        if(studentOptional.isPresent()) {
-            StudentEntity studentEntity = studentOptional.get();
-            return StudentDTO.builder()
+        StudentEntity studentEntity = studentDAO.findById(studentId);
+        return StudentDTO.builder()
                     .id(studentEntity.getId())
                     .name(studentEntity.getName())
                     .courses(studentEntity.getCourses().stream()
-                            .map(course -> CourseDTO.builder().id(course.getId())
-                                    .name(course.getName()).build()).collect(Collectors.toSet()))
+                            .map(this::getCourseDTO)
+                            .collect(Collectors.toSet()))
                             .build();
-        } else throw new NotFoundException("Student with such Id not exist");
+
 
     }
 
-       public int createStudentWithCoordinator(StudentDTO student, int coordinatorId) throws SQLException {
+    public int createStudentWithCoordinator(StudentDTO student, int coordinatorId) throws SQLException {
         StudentEntity studentEntity = StudentEntity.builder()
                 .name(student.getName()).build();
       return studentDAO.createStudentWithCoordinator(studentEntity, coordinatorId);
 
     }
 
-    public int deleteStudent(int studentId) {
-
-        return 0;
+    public int deleteStudent(int studentId) throws SQLException {
+      return  studentDAO.deleteStudent(studentId);
     }
 
-    public int updateCoordinatorName(int studentId, String name) {
-        return 0;
+    public int updateCoordinatorName(int studentId, int coordinatorId) throws SQLException {
+        return studentDAO.updateCoordinator(studentId,coordinatorId);
+    }
+    public int addStudentCourse ( int studentId, int courseId) throws SQLException {
+        return studentDAO.addCourse(studentId, courseId);
     }
 
-    public Optional<StudentDTO> findById(int studentId) {
-        return null;
-    }
-
-    public Set<StudentDTO> findAll() {
-        return null;
+    private CourseDTO getCourseDTO(CourseEntity course) {
+        return CourseDTO.builder()
+                .id(course.getId())
+                .name(course.getName())
+                .build();
     }
 }

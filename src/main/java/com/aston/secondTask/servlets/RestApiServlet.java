@@ -15,24 +15,24 @@ import java.sql.SQLException;
 @WebServlet(urlPatterns = "/rest/*")
 public class RestApiServlet extends HttpServlet {
 
-    private static final String COORSTUDENT_NOT_FOUND= "Sorry, coordinator hasn't found";
-    private static final String COURSE_NOT_FOUND= "Sorry, course hasn't found";
-    private static final String STUDENT_NOT_FOUND= "Sorry, student hasn't found";
-    private static final String COORDINATORS_NOT_FOUND = "Sorry, coordinators hasn't found";
+    private static final String COORDINATOR_NOT_FOUND= "Sorry, coordinator hasn't found";
+    private static   final String STUDENT_NOT_FOUND= "Sorry, student hasn't found";
+    private static   final String COORDINATORS_NOT_FOUND = "Sorry, coordinators hasn't found";
     private static final String COURSES_NOT_FOUND = "Sorry, courses hasn't found";
-    private static final String STUDENTS_NOT_FOUND = "Sorry, students hasn't found";
-    private static final String COORDINATOR_NOT_CREATED = "Sorry, coordinator hasn't created";
+   private static final String COORDINATOR_NOT_CREATED = "Sorry, coordinator hasn't created";
     private static final String COURSE_NOT_CREATED = "Sorry, course hasn't created";
     private static final String STUDENT_NOT_CREATED = "Sorry, student hasn't created";
     private static final String COORDINATOR_NOT_DELETED = "Sorry, coordinator hasn't deleted";
     private static final String COURSE_NOT_DELETED = "Sorry, course hasn't deleted";
     private static final String STUDENT_NOT_DELETED = "Sorry, student hasn't deleted";
-    private static final String COORDINATOR_NOT_UPDATED = ""Sorry, coordinator hasn't updated";
-    private static final String COURSE_NOT_UPDATED = ""Sorry, course hasn't updated";
-    private static final String STUDENT_NOT_UPDATED = ""Sorry, student hasn't updated";
+    private static final String STUDENT_COURSE_NOT_DELETED = "Sorry, student's course hasn't deleted";
+    private static final String COORDINATOR_NOT_UPDATED = "Sorry, coordinator hasn't updated";
+    private static final String COURSE_NOT_UPDATED = "Sorry, course hasn't updated";
+    private static final String STUDENT_NOT_UPDATED = "Sorry, student hasn't updated";
     private static final String COURSE_CREATED_SUCCESS_JSON = "{ \"course_id\" : \"%d\" }";
     private static final String COORDINATOR_CREATED_SUCCESS_JSON = "{ \"coordinator_id\" : \"%d\" }";
     private static final String STUDENT_CREATED_SUCCESS_JSON = "{ \"student_id\" : \"%d\" }";
+    private static final String STUDENT_COURSE_CREATED_SUCCESS_JSON = "{ \"student_course_id\" : \"%d\" }";
     private RestApiHandler getRestHandler;
     private RestApiHandler postRestHandler;
     private RestApiHandler putRestHandler;
@@ -73,17 +73,12 @@ public class RestApiServlet extends HttpServlet {
             PrintWriter out = resp.getWriter();
             if (pathInfo.contains("coordinator")) {
                 resp.getWriter().write(COORDINATOR_NOT_FOUND + e.getMessage());
-            } else if (pathInfo.contains("course")) {
-                resp.getWriter().write(COURSE_NOT_FOUND + e.getMessage());
             }else if (pathInfo.contains("student")) {
                 resp.getWriter().write(STUDENT_NOT_FOUND + e.getMessage());
-            }
-            if (pathInfo.contains("coordinators/")) {
+            }else  if (pathInfo.contains("coordinators/")) {
                 resp.getWriter().write(COORDINATORS_NOT_FOUND + e.getMessage());
             } else if (pathInfo.contains("courses/")) {
                 resp.getWriter().write(COURSES_NOT_FOUND + e.getMessage());
-            }else if (pathInfo.contains("students/")) {
-                resp.getWriter().write(STUDENTS_NOT_FOUND + e.getMessage());
             }
             resp.setStatus(404);
 
@@ -111,6 +106,8 @@ public class RestApiServlet extends HttpServlet {
                 resp.getWriter().write(String.format(COURSE_CREATED_SUCCESS_JSON, generated_id));
             }else if (pathInfo.contains("student")) {
                 resp.getWriter().write(String.format(STUDENT_CREATED_SUCCESS_JSON, generated_id));
+            }else if (pathInfo.contains("student_course")) {
+                resp.getWriter().write(String.format(STUDENT_COURSE_CREATED_SUCCESS_JSON, generated_id));
             }
             resp.setStatus(201);
         } catch (SQLException e) {
@@ -123,6 +120,8 @@ public class RestApiServlet extends HttpServlet {
                 resp.getWriter().write(COURSE_NOT_CREATED + e.getMessage());
             }else if (pathInfo.contains("student")) {
                 resp.getWriter().write(STUDENT_NOT_CREATED + e.getMessage());
+            }else if (pathInfo.contains("student_course")) {
+                resp.getWriter().write(STUDENT_COURSE_NOT_CREATED + e.getMessage());
             }
             resp.setStatus(400);
         }

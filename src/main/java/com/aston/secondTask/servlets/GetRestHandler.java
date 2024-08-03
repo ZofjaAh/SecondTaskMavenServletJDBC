@@ -27,21 +27,15 @@ public class GetRestHandler extends RestApiHandler {
 
     @Override
     public Optional<String> handleRestRequest(String requestPath) throws SQLException, JsonProcessingException {
-        if (requestPath.matches("^/course/\\d+$")) {
-            int courseId = getCurrentId(requestPath);
-            CourseDTO course =  courseService.findById(courseId).orElseThrow(SQLException::new);
-            final String jsonCourse = objectMapper.writeValueAsString(course);
-            return Optional.ofNullable(jsonCourse);
-
-        } else if (requestPath.matches("^/student/\\d+$")) {
+       if (requestPath.matches("^/student/\\d+$")) {
             int studentId = getCurrentId(requestPath);
-            StudentDTO student = studentService.findById(studentId).orElseThrow(SQLException::new);
+            StudentDTO student = studentService.findStudentWithCoursesByID(studentId);
             final String jsonStudent = objectMapper.writeValueAsString(student);
             return Optional.ofNullable(jsonStudent);
 
         } else if (requestPath.matches("^/coordinator/\\d+$")) {
             int coordinatorId = getCurrentId(requestPath);
-            CoordinatorDTO coordinator =  coordinatorService.findById(coordinatorId).orElseThrow(SQLException::new);
+            CoordinatorDTO coordinator =  coordinatorService.findById(coordinatorId);
             final String jsonCoordinator = objectMapper.writeValueAsString(coordinator);
             return Optional.ofNullable(jsonCoordinator);
 
@@ -50,10 +44,7 @@ public class GetRestHandler extends RestApiHandler {
             final Set<CourseDTO> allCourses = courseService.findAll();
             return Optional.ofNullable(objectMapper.writeValueAsString(allCourses));
 
-        } else if (requestPath.matches("^/students/$")) {
-            final Set<StudentDTO> allStudents = studentService.findAll();
-            return Optional.ofNullable(objectMapper.writeValueAsString(allStudents));
-        }else if (requestPath.matches("^/coordinators/$")) {
+        } else if (requestPath.matches("^/coordinators/$")) {
             final Set<CoordinatorDTO> allCoordinators = coordinatorService.findAll();
             return Optional.ofNullable(objectMapper.writeValueAsString(allCoordinators));
 
@@ -67,7 +58,7 @@ public class GetRestHandler extends RestApiHandler {
         throw new UnsupportedOperationException();
     }
     
-    private static int getCurrentId(String requestPath) {
+    private int getCurrentId(String requestPath) {
         String[] parts = requestPath.split("/");
         return Integer.parseInt(parts[2]);
 

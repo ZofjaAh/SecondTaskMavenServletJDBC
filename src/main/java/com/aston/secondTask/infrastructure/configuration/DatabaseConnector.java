@@ -46,7 +46,6 @@ public class DatabaseConnector {
                         s.executeUpdate(String.valueOf(CREATE_DATABASE));
                         s.executeUpdate(dbProperties.getProperty("username") + "=# \\c"
                                         + dbProperties.getProperty("database_name") + ";");
-                        s.executeUpdate(String.valueOf(CREATE_USER_TABLE));
                         s.executeUpdate(String.valueOf(CREATE_COORDINATOR_TABLE));
                         s.executeUpdate(String.valueOf(CREATE_COURSE_TABLE));
                         s.executeUpdate(String.valueOf(CREATE_STUDENT_TABLE));

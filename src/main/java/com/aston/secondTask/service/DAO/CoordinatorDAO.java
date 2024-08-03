@@ -15,5 +15,5 @@ public interface CoordinatorDAO {
 
     int updateCoordinatorName(int coordinatorId, String name) throws SQLException;
 
-    Optional<CoordinatorEntity> findCoordinatorWithStudentsByID(int coordinatorId) throws SQLException;
+    CoordinatorEntity findCoordinatorWithStudentsByID(int coordinatorId) throws SQLException;
 }

@@ -37,9 +37,10 @@ public enum SQLInitQuery {
             """),
     CREATE_STUDENT_COURSE_TABLE("""
             CREATE TABLE student_course (
+            id SERIAL NOT NULL,
             student_id INT NOT NULL,
             course_id INT NOT NULL,
-            PRIMARY KEY (student_id, course_id),
+            PRIMARY KEY (id),
             CONSTRAINT fk_student_course_student
                 FOREIGN KEY (student_id)
                     REFERENCES student (student_id),

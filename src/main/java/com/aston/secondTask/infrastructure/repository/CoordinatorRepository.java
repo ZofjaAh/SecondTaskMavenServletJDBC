@@ -6,6 +6,7 @@ import com.aston.secondTask.infrastructure.configuration.SessionManager;
 import com.aston.secondTask.infrastructure.repository.mapper.ResultSetMapper;
 import com.aston.secondTask.infrastructure.repository.queries.CoordinatorSQLQuery;
 import com.aston.secondTask.service.DAO.CoordinatorDAO;
+import com.aston.secondTask.service.exeptions.NotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -110,7 +111,7 @@ public class CoordinatorRepository implements CoordinatorDAO {
         return rowsUpdated;
     }
     @Override
-    public Optional<CoordinatorEntity> findCoordinatorWithStudentsByID(int coordinatorId) throws SQLException {
+    public CoordinatorEntity findCoordinatorWithStudentsByID(int coordinatorId) throws SQLException {
       List<CoordinatorEntity> coordinatorEntityList = new ArrayList<>();
       CoordinatorEntity coordinatorEntity = null;
         sessionManager.beginSession();
@@ -131,8 +132,12 @@ public class CoordinatorRepository implements CoordinatorDAO {
             sessionManager.rollbackSession();
             throw e;
         }
-
-        return Optional.ofNullable(coordinatorEntity);
+        if(Objects.nonNull(coordinatorEntity)){
+            return coordinatorEntity;
+        } else {
+            log.error("Coordinator with such Id: [{}] doesn't exist", coordinatorId);
+            throw new NotFoundException("Sorry, coordinator with such Id: [{}] doesn't exist");
+        }
     }
 
     private CoordinatorEntity createCoordinatorEntityFromListCoordinators(List<CoordinatorEntity> coordinators) {

@@ -48,7 +48,7 @@ public class PutRestHandler extends RestApiHandler{
             String bodyParams = req.getReader().lines().collect(Collectors.joining());
             Map<String, String> map = objectMapper.readValue(bodyParams, new TypeReference<Map<String, String>>() {
             });
-            return studentService.updateCoordinatorName(student_id, map.get("name"));
+            return studentService.updateCoordinatorName(student_id, Integer.parseInt(map.get("coordinatorId")));
         }
 
        return update_rows;
