@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6c91a1b6-c8a7-4f7d-b529-f2905c000ee9" name="Changes" comment="6 commit">
-      <change afterPath="$PROJECT_DIR$/src/test/java/DAOTests/StudentRepositoryTest.java" afterDir="false" />
+    <list default="true" id="6c91a1b6-c8a7-4f7d-b529-f2905c000ee9" name="Changes" comment="7 commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/configuration/JDBCBasicDataSource.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/repository/StudentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/repository/StudentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/repository/queries/StudentSQLQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/repository/queries/StudentSQLQuery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/DAOTests/StudentRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/DAOTests/StudentRepositoryTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/util/EntityFixtures.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/util/EntityFixtures.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/db.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,10 +54,12 @@
     "JUnit.CoordinatorRepositoryTest.getAllCoordinators.executor": "Run",
     "JUnit.CoordinatorRepositoryTest.getCoordinatorWithStudentsById.executor": "Debug",
     "JUnit.CoordinatorRepositoryTest.updateCoordinatorName.executor": "Run",
+    "JUnit.CourseRepositoryTest.createCourseSuccessful.executor": "Run",
     "JUnit.CourseRepositoryTest.deleteCoordinatorById.executor": "Run",
     "JUnit.CourseRepositoryTest.deleteCourseById.executor": "Run",
     "JUnit.CourseRepositoryTest.executor": "Run",
     "JUnit.CourseRepositoryTest.getAllCourses.executor": "Run",
+    "JUnit.StudentRepositoryTest.createStudentWithCoordinatorSuccessful.executor": "Run",
     "JUnit.StudentRepositoryTest.executor": "Run",
     "JUnit.StudentRepositoryTest.getStudentWithCoursesById.executor": "Run",
     "JUnit.StudentRepositoryTest.updateCoordinatorName.executor": "Run",
@@ -102,7 +103,7 @@
       <recent name="com.aston.secondTask.service" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CourseRepositoryTest.getAllCourses">
+  <component name="RunManager" selected="JUnit.DAOTests in task-Rest-JDBCT">
     <configuration name="CourseRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="task-Rest-JDBCT" />
       <extension name="coverage">
@@ -118,18 +119,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CourseRepositoryTest.getAllCourses" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="DAOTests in task-Rest-JDBCT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="task-Rest-JDBCT" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="DAOTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="DAOTests" />
-      <option name="MAIN_CLASS_NAME" value="DAOTests.CourseRepositoryTest" />
-      <option name="METHOD_NAME" value="getAllCourses" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/src/test/java/DAOTests" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -145,6 +138,22 @@
       <option name="PACKAGE_NAME" value="DAOTests" />
       <option name="MAIN_CLASS_NAME" value="DAOTests.StudentRepositoryTest" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StudentRepositoryTest.createStudentWithCoordinatorSuccessful" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="task-Rest-JDBCT" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="DAOTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="DAOTests" />
+      <option name="MAIN_CLASS_NAME" value="DAOTests.StudentRepositoryTest" />
+      <option name="METHOD_NAME" value="createStudentWithCoordinatorSuccessful" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -165,22 +174,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StudentRepositoryTest.updateCoordinatorName" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="task-Rest-JDBCT" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="DAOTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="DAOTests" />
-      <option name="MAIN_CLASS_NAME" value="DAOTests.StudentRepositoryTest" />
-      <option name="METHOD_NAME" value="updateCoordinatorName" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Unnamed" type="com.poratu.idea.plugins.tomcat" nameIsGenerated="true">
       <predefined_log_file enabled="true" id="Tomcat Localhost Log" />
       <predefined_log_file enabled="true" id="Tomcat Access Log" />
@@ -190,9 +183,6 @@
       <option name="catalinaBase" value="C:\Users\USER\.SmartTomcat\SecondTaskMavenServletJDBC\task-Rest-JDBCT" />
       <option name="contextPath" value="/task-Rest-JDBCT" />
       <option name="docBase" value="$PROJECT_DIR$/src/main/webapp" />
-      <option name="envOptions">
-        <map />
-      </option>
       <option name="extraClassPath" value="" />
       <option name="tomcatInfo">
         <TomcatInfo>
@@ -208,19 +198,19 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="JUnit.DAOTests in task-Rest-JDBCT" />
+      <item itemvalue="JUnit.StudentRepositoryTest.createStudentWithCoordinatorSuccessful" />
       <item itemvalue="JUnit.CourseRepositoryTest" />
-      <item itemvalue="JUnit.CourseRepositoryTest.getAllCourses" />
       <item itemvalue="JUnit.StudentRepositoryTest" />
       <item itemvalue="JUnit.StudentRepositoryTest.getStudentWithCoursesById" />
-      <item itemvalue="JUnit.StudentRepositoryTest.updateCoordinatorName" />
       <item itemvalue="Smart Tomcat.Unnamed" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.CourseRepositoryTest.getAllCourses" />
-        <item itemvalue="JUnit.StudentRepositoryTest.updateCoordinatorName" />
-        <item itemvalue="JUnit.StudentRepositoryTest" />
+        <item itemvalue="JUnit.DAOTests in task-Rest-JDBCT" />
         <item itemvalue="JUnit.StudentRepositoryTest.getStudentWithCoursesById" />
+        <item itemvalue="JUnit.StudentRepositoryTest.createStudentWithCoordinatorSuccessful" />
+        <item itemvalue="JUnit.StudentRepositoryTest" />
         <item itemvalue="JUnit.CourseRepositoryTest" />
       </list>
     </recent_temporary>
@@ -298,7 +288,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722790257886</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="7 commit">
+      <option name="closed" value="true" />
+      <created>1722801023679</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1722801023679</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -331,7 +329,8 @@
     <MESSAGE value="4 commit" />
     <MESSAGE value="5 commit" />
     <MESSAGE value="6 commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="6 commit" />
+    <MESSAGE value="7 commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="7 commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

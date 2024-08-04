@@ -67,7 +67,6 @@ public class EntityFixtures {
                 .name("Ivan Goodhear")
                 .coordinator(CoordinatorEntity.builder()
                         .id(2)
-                        .name("Mocart")
                         .build())
                 .courses(Set.of(course_2_1(), course_2()))
                 .build();

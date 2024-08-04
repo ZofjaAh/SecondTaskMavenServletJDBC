@@ -159,10 +159,10 @@ public class StudentRepository extends DateBaseConnectionCreator implements Stud
 
     public StudentEntity parseStudentFromResultSet(ResultSet result) throws SQLException {
         StudentEntity student = new StudentEntity();
-        student.setId(Integer.parseInt(result.getString("id")));
+        student.setId(Integer.parseInt(result.getString("student_id")));
         student.setName(result.getString("name"));
         String coordinatorId = result.getString("coordinator_id");
-        String courseId = result.getString("curse_id");
+        String courseId = result.getString("course_id");
         if (coordinatorId != null) {
             CoordinatorEntity coordinator = new CoordinatorEntity();
             coordinator.setId(Integer.parseInt(coordinatorId));

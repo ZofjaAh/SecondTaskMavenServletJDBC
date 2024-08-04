@@ -67,7 +67,7 @@ public class StudentRepositoryTest extends DataBaseSQLContainer {
         StudentEntity result = studentRepository.findById(studentId);
         assertEquals(student.getId(), result.getId());
         assertEquals(student.getName(), result.getName());
-        assertEquals(student.getCoordinator().getName(), result.getCoordinator().getName());
+        assertEquals(student.getCoordinator().getId(), result.getCoordinator().getId());
         assertEquals(student.getCourses().size(), result.getCourses().size());
 
     }
@@ -81,7 +81,7 @@ public class StudentRepositoryTest extends DataBaseSQLContainer {
                 .thenReturn(DriverManager.getConnection(postgreSQLContainer.getJdbcUrl(),
                         postgreSQLContainer.getUsername(), postgreSQLContainer.getPassword()));
         int result = studentRepository.createStudentWithCoordinator(studentEntity, 2);
-        assertEquals(coordinatorId, result);
+        assertEquals(studentId, result);
 
     }
 
