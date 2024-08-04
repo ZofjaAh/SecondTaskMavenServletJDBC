@@ -2,7 +2,6 @@ package com.aston.secondTask.infrastructure.repository;
 
 import com.aston.secondTask.entities.CourseEntity;
 import com.aston.secondTask.infrastructure.configuration.DateBaseConnectionCreator;
-import com.aston.secondTask.infrastructure.repository.mapper.ResultSetMapper;
 import com.aston.secondTask.infrastructure.repository.queries.CourseSQLQuery;
 import com.aston.secondTask.service.DAO.CourseDAO;
 import lombok.AllArgsConstructor;
@@ -18,11 +17,13 @@ import java.util.Set;
 @Setter
 public class CourseRepository extends DateBaseConnectionCreator implements CourseDAO {
 
+    DateBaseConnectionCreator dateBaseConnectionCreator;
 
     @Override
     public Set<CourseEntity> findAll() throws SQLException {
         Set<CourseEntity> courseEntitySet = new HashSet<>();
-        try (PreparedStatement statement = getConnection().prepareStatement(
+        try (Connection connection = dateBaseConnectionCreator.getConnection();
+             PreparedStatement statement = connection.prepareStatement(
                      CourseSQLQuery.GET_ALL_COURSES.getQUERY())) {
             try (ResultSet result = statement.executeQuery()) {
                 while (result.next()) {
@@ -40,9 +41,10 @@ public class CourseRepository extends DateBaseConnectionCreator implements Cours
 
     @Override
     public int createCourse(CourseEntity course) throws SQLException {
-        try (PreparedStatement statement = getConnection().prepareStatement(
-                     CourseSQLQuery.CREATE_COURSE.getQUERY(),
-                     Statement.RETURN_GENERATED_KEYS)) {
+        try (Connection connection = dateBaseConnectionCreator.getConnection();
+             PreparedStatement statement = connection.prepareStatement(
+                CourseSQLQuery.CREATE_COURSE.getQUERY(),
+                Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, course.getName());
             statement.executeUpdate();
             try (ResultSet result = statement.getGeneratedKeys()) {
@@ -60,9 +62,9 @@ public class CourseRepository extends DateBaseConnectionCreator implements Cours
     @Override
     public int updateCourseName(int courseId, String courseName) throws SQLException {
         int rowsUpdated = 0;
-
-        try (PreparedStatement statement = getConnection().prepareStatement(
-                     CourseSQLQuery.UPDATE_COURSE_NAME_BY_ID.getQUERY())) {
+        try (Connection connection = dateBaseConnectionCreator.getConnection();
+             PreparedStatement statement = connection.prepareStatement(
+                CourseSQLQuery.UPDATE_COURSE_NAME_BY_ID.getQUERY())) {
             statement.setString(1, courseName);
             statement.setInt(2, courseId);
             rowsUpdated = statement.executeUpdate();
@@ -79,8 +81,9 @@ public class CourseRepository extends DateBaseConnectionCreator implements Cours
     public int deleteCourse(int courseId) throws SQLException {
         int updated_rows;
 
-        try (PreparedStatement statement = getConnection().prepareStatement(
-                     CourseSQLQuery.DELETE_COURSE_BY_ID.getQUERY())) {
+        try  (Connection connection = dateBaseConnectionCreator.getConnection();
+             PreparedStatement statement = connection.prepareStatement(
+                CourseSQLQuery.DELETE_COURSE_BY_ID.getQUERY())) {
             statement.setLong(1, courseId);
             statement.setLong(2, courseId);
             updated_rows = statement.executeUpdate();
@@ -93,6 +96,7 @@ public class CourseRepository extends DateBaseConnectionCreator implements Cours
         }
         return updated_rows;
     }
+
     public CourseEntity parseCourseFromResultSet(ResultSet result) throws SQLException {
         CourseEntity course = new CourseEntity();
         course.setId(Integer.parseInt(result.getString("id")));

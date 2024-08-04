@@ -3,7 +3,6 @@ package com.aston.secondTask.infrastructure.repository;
 import com.aston.secondTask.entities.CoordinatorEntity;
 import com.aston.secondTask.entities.StudentEntity;
 import com.aston.secondTask.infrastructure.configuration.DateBaseConnectionCreator;
-import com.aston.secondTask.infrastructure.repository.mapper.ResultSetMapper;
 import com.aston.secondTask.infrastructure.repository.queries.CoordinatorSQLQuery;
 import com.aston.secondTask.service.DAO.CoordinatorDAO;
 import com.aston.secondTask.service.exeptions.NotFoundException;
@@ -19,20 +18,20 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @Slf4j
 @Setter
-public class CoordinatorRepository extends DateBaseConnectionCreator implements CoordinatorDAO {
+public class CoordinatorRepository  implements CoordinatorDAO {
 
 
-
+DateBaseConnectionCreator dateBaseConnectionCreator;
 
     @Override
-    public List<CoordinatorEntity> findAll() {
+    public List<CoordinatorEntity> findAll() throws SQLException {
         List<CoordinatorEntity> coordinatorEntityList = new ArrayList<>();
-        try (
-             PreparedStatement statement = getConnection().prepareStatement(
+        Connection connection = dateBaseConnectionCreator.getConnection();
+        try (PreparedStatement statement = connection.prepareStatement(
                      CoordinatorSQLQuery.GET_ALL_COORDINATORS.getQUERY())) {
             try (ResultSet result = statement.executeQuery()) {
                 while (result.next()) {
-                    CoordinatorEntity coordinator = parseCoordinatorFromResultSet(result);
+                    CoordinatorEntity coordinator = parseCoordinatorWithoutStudentsFromResultSet(result);
                     coordinatorEntityList.add(coordinator);
                 }
             }
@@ -40,12 +39,14 @@ public class CoordinatorRepository extends DateBaseConnectionCreator implements 
             log.error("SQLException with loading all coordinators [{}]", e.getMessage());
             throw new ProcessingException(e.getMessage());
         }
+        dateBaseConnectionCreator.closeConnection();
         return coordinatorEntityList;
     }
 
     @Override
     public int createCoordinator(CoordinatorEntity coordinator)  {
-        try (PreparedStatement statement = getConnection().prepareStatement(
+        try (Connection connection = dateBaseConnectionCreator.getConnection();
+             PreparedStatement statement = connection.prepareStatement(
                      CoordinatorSQLQuery.CREATE_COORDINATOR.getQUERY(),
                      Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, coordinator.getName());
@@ -66,8 +67,8 @@ public class CoordinatorRepository extends DateBaseConnectionCreator implements 
     @Override
     public int deleteById(int coordinatorId) {
         int updated_rows;
-
-        try (PreparedStatement statement = getConnection().prepareStatement(
+        try (Connection connection = dateBaseConnectionCreator.getConnection();
+             PreparedStatement statement = connection.prepareStatement(
                      CoordinatorSQLQuery.DELETE_COORDINATOR_BY_ID.getQUERY())) {
             statement.setLong(1, coordinatorId);
             updated_rows = statement.executeUpdate();
@@ -85,8 +86,8 @@ public class CoordinatorRepository extends DateBaseConnectionCreator implements 
     @Override
     public int updateCoordinatorName(int coordinatorId, String coordinatorName)  {
         int rowsUpdated = 0;
-
-        try (PreparedStatement statement = getConnection().prepareStatement(
+        try (Connection connection = dateBaseConnectionCreator.getConnection();
+             PreparedStatement statement = connection.prepareStatement(
                      CoordinatorSQLQuery.UPDATE_COORDINATOR_NAME_BY_ID.getQUERY())) {
             statement.setString(1, coordinatorName);
             statement.setInt(2, coordinatorId);
@@ -104,7 +105,8 @@ public class CoordinatorRepository extends DateBaseConnectionCreator implements 
     public CoordinatorEntity findCoordinatorWithStudentsByID(int coordinatorId) {
         List<CoordinatorEntity> coordinatorEntityList = new ArrayList<>();
         CoordinatorEntity coordinatorEntity = null;
-        try (PreparedStatement statement = getConnection().prepareStatement(
+        try (Connection connection = dateBaseConnectionCreator.getConnection();
+             PreparedStatement statement = connection.prepareStatement(
                      CoordinatorSQLQuery.GET_COORDINATOR_WITH_STUDENTS_BY_ID.getQUERY())) {
             statement.setInt(1, coordinatorId);
 
@@ -134,11 +136,12 @@ public class CoordinatorRepository extends DateBaseConnectionCreator implements 
         return coordinators.get(0).withStudents(studentEntitySet);
     }
     public CoordinatorEntity parseCoordinatorFromResultSet(ResultSet result) throws SQLException {
+
         CoordinatorEntity coordinator = new CoordinatorEntity();
-        coordinator.setId(Integer.parseInt(result.getString("id")));
+        coordinator.setId(Integer.parseInt(result.getString("coordinator_id")));
         coordinator.setName(result.getString("name"));
         String studentId = result.getString("student_id");
-        if (studentId != null) {
+        if(studentId != null) {
             StudentEntity student = new StudentEntity();
             student.setId(Integer.parseInt(studentId));
             student.setName(result.getString("student_name"));
@@ -146,6 +149,13 @@ public class CoordinatorRepository extends DateBaseConnectionCreator implements 
             studentEntitySet.add(student);
             coordinator.setStudents(new HashSet<>(studentEntitySet));
         }
+        return coordinator;
+    }
+    public CoordinatorEntity parseCoordinatorWithoutStudentsFromResultSet(ResultSet result)
+            throws SQLException {
+        CoordinatorEntity coordinator = new CoordinatorEntity();
+        coordinator.setId(Integer.parseInt(result.getString("coordinator_id")));
+        coordinator.setName(result.getString("name"));
         return coordinator;
     }
 }

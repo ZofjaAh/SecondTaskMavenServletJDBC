@@ -1,9 +1,9 @@
 package com.aston.secondTask.servlets;
 
+import com.aston.secondTask.infrastructure.configuration.DateBaseConnectionCreator;
 import com.aston.secondTask.infrastructure.repository.CoordinatorRepository;
 import com.aston.secondTask.infrastructure.repository.CourseRepository;
 import com.aston.secondTask.infrastructure.repository.StudentRepository;
-import com.aston.secondTask.infrastructure.repository.mapper.ResultSetMapper;
 import com.aston.secondTask.service.CoordinatorService;
 import com.aston.secondTask.service.CourseService;
 import com.aston.secondTask.service.DAO.CoordinatorDAO;
@@ -25,9 +25,10 @@ public class ContextListener implements ServletContextListener {
         final ServletContext servletContext =
                 servletContextEvent.getServletContext();
 
-        CourseDAO courseRepository = new CourseRepository();
-        CoordinatorDAO coordinatorRepository = new CoordinatorRepository();
-        StudentDAO studentRepository = new StudentRepository();
+        DateBaseConnectionCreator dateBaseConnectionCreator = new DateBaseConnectionCreator();
+        CourseDAO courseRepository = new CourseRepository(dateBaseConnectionCreator);
+        CoordinatorDAO coordinatorRepository = new CoordinatorRepository(dateBaseConnectionCreator);
+        StudentDAO studentRepository = new StudentRepository(dateBaseConnectionCreator);
         CoordinatorService coordinatorService = new CoordinatorService(coordinatorRepository);
         StudentService studentService = new StudentService(studentRepository);
         CourseService courseService = new CourseService(courseRepository);

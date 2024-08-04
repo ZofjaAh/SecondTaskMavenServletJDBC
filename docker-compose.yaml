@@ -3,6 +3,8 @@ services:
   db:
     image: postgres:15.0
     container_name: maven_servlet_jdbc
+    ports:
+      - "5432:5432"
     volumes:
       - ./src/main/resources/V1_1__init maven_servlet_jdbc_user.sql:/docker-entrypoint-initdb.d/V1_1__init maven_servlet_jdbc_user.sql
       - ./src/main/resources/V2_1__init_maven_servlet_jdbc_coordinator.sql:/docker-entrypoint-initdb.d/V2_1__init_maven_servlet_jdbc_coordinator.sql
@@ -12,8 +14,6 @@ services:
     networks:
       - backend
     restart: always
-    ports:
-      - "5432:5432"
     environment:
         - POSTGRES_DB=maven_servlet_jdbc
         - POSTGRES_USER=postgres
@@ -37,3 +37,5 @@ services:
       - POSTGRES_DB=maven_servlet_jdbc
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+    networks:
+      - backend

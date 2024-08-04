@@ -44,7 +44,7 @@ public class DatabaseConnector {
             if (isDataBaseExists()) {
                 log.info("The database has already been created");
             } else {
-                try (Statement s = connection.createStatement();) {
+                try (Statement s = connection.createStatement()) {
                     s.executeUpdate(String.valueOf(CREATE_DATABASE));
                     s.executeUpdate(dbProperties.getProperty("username") + "=# \\c"
                                     + dbProperties.getProperty("database_name") + ";");
@@ -68,8 +68,7 @@ public class DatabaseConnector {
 
     private void setProperties() {
         try {
-            String path = Objects.requireNonNull(Thread.currentThread().getContextClassLoader()
-                    .getResource("db.properties")).getPath();
+            String path = "D:\\Java Trainee Intensive\\SecondTaskMavenServletJDBC\\src\\main\\resources\\db.properties";
             dbProperties.load(new FileInputStream(path));
         } catch (IOException e) {
             log.error("IOException with loading database properties [{}]", e.getMessage());

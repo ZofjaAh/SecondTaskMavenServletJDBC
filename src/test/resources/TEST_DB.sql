@@ -44,7 +44,7 @@ INSERT INTO course (course_id, name) VALUES
 (1, 'Play guitar'),
 (2, 'Play pianoforte');
 SELECT SETVAL('course_course_id_seq', 2);
-INSERT INTO student (student_id, name) VALUES
+INSERT INTO student (student_id, name, coordinator_id) VALUES
 (1, 'Ivan Goodhear', 2),
 (2, 'Nikol BadVoice', 1),
 (3, 'Ihor Nothear', 1);

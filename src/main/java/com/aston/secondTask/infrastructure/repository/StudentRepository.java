@@ -4,7 +4,6 @@ import com.aston.secondTask.entities.CoordinatorEntity;
 import com.aston.secondTask.entities.CourseEntity;
 import com.aston.secondTask.entities.StudentEntity;
 import com.aston.secondTask.infrastructure.configuration.DateBaseConnectionCreator;
-import com.aston.secondTask.infrastructure.repository.mapper.ResultSetMapper;
 import com.aston.secondTask.infrastructure.repository.queries.StudentSQLQuery;
 import com.aston.secondTask.service.DAO.StudentDAO;
 import com.aston.secondTask.service.exeptions.NotFoundException;
@@ -22,12 +21,13 @@ import java.util.stream.Collectors;
 @Setter
 public class StudentRepository  extends DateBaseConnectionCreator implements StudentDAO {
 
-
+    DateBaseConnectionCreator dateBaseConnectionCreator;
     @Override
     public int createStudentWithCoordinator(StudentEntity studentEntity, int coordinatorId)  {
         int student_Id;
 
-        try (PreparedStatement statement = getConnection().prepareStatement(
+        try (Connection connection = dateBaseConnectionCreator.getConnection();
+             PreparedStatement statement = connection.prepareStatement(
                      StudentSQLQuery.CREATE_STUDENT_WITH_COORDINATOR.getQUERY(),
                      Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, studentEntity.getName());
@@ -51,7 +51,8 @@ public class StudentRepository  extends DateBaseConnectionCreator implements Stu
     @Override
     public int deleteStudent(int studentId) throws SQLException {
         int updated_rows;
-        try (PreparedStatement statement = getConnection().prepareStatement(
+        try (Connection connection = dateBaseConnectionCreator.getConnection();
+             PreparedStatement statement = connection.prepareStatement(
                      StudentSQLQuery.DELETE_STUDENT_BY_ID.getQUERY())) {
             statement.setLong(1, studentId);
             statement.setLong(2, studentId);
@@ -71,8 +72,8 @@ public class StudentRepository  extends DateBaseConnectionCreator implements Stu
     @Override
     public int updateCoordinator(int studentId, int coordinatorId)  {
         int rowsUpdated = 0;
-
-        try (PreparedStatement statement = getConnection().prepareStatement(
+        try (Connection connection = dateBaseConnectionCreator.getConnection();
+             PreparedStatement statement = connection.prepareStatement(
                      StudentSQLQuery.UPDATE_COORDINATOR_BY_ID.getQUERY())) {
             statement.setInt(1, coordinatorId);
             statement.setInt(2, studentId);
@@ -91,7 +92,8 @@ public class StudentRepository  extends DateBaseConnectionCreator implements Stu
         int rowsUpdated = 0;
         List<StudentEntity> studentEntityList = new ArrayList<>();
         StudentEntity studentEntity = null;
-        try (PreparedStatement statement = getConnection().prepareStatement(
+        try (Connection connection = dateBaseConnectionCreator.getConnection();
+             PreparedStatement statement = connection.prepareStatement(
                      StudentSQLQuery.GET_STUDENT_WITH_COURSES_BY_ID.getQUERY())) {
             statement.setInt(1, studentId);
             try (ResultSet result = statement.executeQuery()) {
@@ -108,7 +110,8 @@ public class StudentRepository  extends DateBaseConnectionCreator implements Stu
         }
         if (Objects.nonNull(studentEntity)) {
             if (courseNotAdded(studentEntity, courseId)) {
-                try (PreparedStatement statement = getConnection().prepareStatement(
+                try (Connection connection = dateBaseConnectionCreator.getConnection();
+                     PreparedStatement statement = connection.prepareStatement(
                              StudentSQLQuery.ADD_COURSE.getQUERY())) {
                     statement.setInt(1, studentId);
                     statement.setInt(2, courseId);
@@ -128,7 +131,8 @@ public class StudentRepository  extends DateBaseConnectionCreator implements Stu
     public StudentEntity findById(int studentId)  {
         List<StudentEntity> studentEntityList = new ArrayList<>();
         StudentEntity studentEntity = null;
-        try (PreparedStatement statement = getConnection().prepareStatement(
+        try (Connection connection = dateBaseConnectionCreator.getConnection();
+             PreparedStatement statement = connection.prepareStatement(
                      StudentSQLQuery.GET_STUDENT_WITH_COURSES_BY_ID.getQUERY())) {
             statement.setInt(1, studentId);
             try (ResultSet result = statement.executeQuery()) {
