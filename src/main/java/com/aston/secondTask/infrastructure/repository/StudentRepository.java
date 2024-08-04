@@ -19,11 +19,12 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @Slf4j
 @Setter
-public class StudentRepository  extends DateBaseConnectionCreator implements StudentDAO {
+public class StudentRepository extends DateBaseConnectionCreator implements StudentDAO {
 
     DateBaseConnectionCreator dateBaseConnectionCreator;
+
     @Override
-    public int createStudentWithCoordinator(StudentEntity studentEntity, int coordinatorId)  {
+    public int createStudentWithCoordinator(StudentEntity studentEntity, int coordinatorId) {
         int student_Id;
 
         try (Connection connection = dateBaseConnectionCreator.getConnection();
@@ -50,13 +51,17 @@ public class StudentRepository  extends DateBaseConnectionCreator implements Stu
 
     @Override
     public int deleteStudent(int studentId) throws SQLException {
-        int updated_rows;
-        try (Connection connection = dateBaseConnectionCreator.getConnection();
-             PreparedStatement statement = connection.prepareStatement(
+        int updated_rows = 0;
+        Connection connection = dateBaseConnectionCreator.getConnection();
+        connection.setAutoCommit(false);
+        try (PreparedStatement delete_student_course_statement = connection.prepareStatement(
+                StudentSQLQuery.DELETE_STUDENT_COURSE_BY_ID.getQUERY());
+             PreparedStatement delete_student_statement = connection.prepareStatement(
                      StudentSQLQuery.DELETE_STUDENT_BY_ID.getQUERY())) {
-            statement.setLong(1, studentId);
-            statement.setLong(2, studentId);
-            updated_rows = statement.executeUpdate();
+            delete_student_course_statement.setLong(1, studentId);
+            delete_student_statement.setLong(1, studentId);
+            updated_rows += delete_student_course_statement.executeUpdate();
+            updated_rows += delete_student_statement.executeUpdate();
 
 
         } catch (SQLException e) {
@@ -65,12 +70,13 @@ public class StudentRepository  extends DateBaseConnectionCreator implements Stu
 
             throw e;
         }
+        connection.commit();
         return updated_rows;
     }
 
 
     @Override
-    public int updateCoordinator(int studentId, int coordinatorId)  {
+    public int updateCoordinator(int studentId, int coordinatorId) {
         int rowsUpdated = 0;
         try (Connection connection = dateBaseConnectionCreator.getConnection();
              PreparedStatement statement = connection.prepareStatement(
@@ -88,47 +94,28 @@ public class StudentRepository  extends DateBaseConnectionCreator implements Stu
     }
 
     @Override
-    public int addCourse(int studentId, int courseId)  {
+    public int addCourse(int studentId, int courseId) {
         int rowsUpdated = 0;
         List<StudentEntity> studentEntityList = new ArrayList<>();
         StudentEntity studentEntity = null;
         try (Connection connection = dateBaseConnectionCreator.getConnection();
              PreparedStatement statement = connection.prepareStatement(
-                     StudentSQLQuery.GET_STUDENT_WITH_COURSES_BY_ID.getQUERY())) {
+                     StudentSQLQuery.ADD_COURSE.getQUERY())) {
             statement.setInt(1, studentId);
-            try (ResultSet result = statement.executeQuery()) {
-                while (result.next()) {
-                    StudentEntity student = parseStudentFromResultSet(result);
-                    studentEntityList.add(student);
-                }
-            }
-            studentEntity = createStudentEntityFromListStudents(studentEntityList);
-        } catch (SQLException e) {
-            log.error("SQLException with loading student by Id: [{}] - [{}]", studentId, e.getMessage());
+            statement.setInt(2, courseId);
+            rowsUpdated = statement.executeUpdate();
 
+
+        } catch (SQLException e) {
+            log.error("SQLException with changing student's coordinator [{}]", e.getMessage());
             throw new ProcessingException(e.getMessage());
         }
-        if (Objects.nonNull(studentEntity)) {
-            if (courseNotAdded(studentEntity, courseId)) {
-                try (Connection connection = dateBaseConnectionCreator.getConnection();
-                     PreparedStatement statement = connection.prepareStatement(
-                             StudentSQLQuery.ADD_COURSE.getQUERY())) {
-                    statement.setInt(1, studentId);
-                    statement.setInt(2, courseId);
-                    rowsUpdated = statement.executeUpdate();
 
-
-                } catch (SQLException e) {
-                    log.error("SQLException with changing student's coordinator [{}]", e.getMessage());
-                    throw new ProcessingException(e.getMessage());
-                }
-            } else throw new ProcessingException("Sorry we couldn't add such course, please change it id");
-        } else throw new NotFoundException("Student with such id: [{}] doesn't exist");
         return rowsUpdated;
     }
 
     @Override
-    public StudentEntity findById(int studentId)  {
+    public StudentEntity findById(int studentId) {
         List<StudentEntity> studentEntityList = new ArrayList<>();
         StudentEntity studentEntity = null;
         try (Connection connection = dateBaseConnectionCreator.getConnection();
@@ -169,6 +156,7 @@ public class StudentRepository  extends DateBaseConnectionCreator implements Stu
                         .stream().noneMatch(course -> course.getId() != courseId);
 
     }
+
     public StudentEntity parseStudentFromResultSet(ResultSet result) throws SQLException {
         StudentEntity student = new StudentEntity();
         student.setId(Integer.parseInt(result.getString("id")));
