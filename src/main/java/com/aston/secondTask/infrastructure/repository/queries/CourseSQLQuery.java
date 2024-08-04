@@ -8,17 +8,19 @@ import lombok.Getter;
 public enum CourseSQLQuery {
     CREATE_COURSE("""
             INSERT INTO course (name) 
-            VALUES (?) RETURNING id;              
+            VALUES (?) RETURNING course_id;              
              """),
     DELETE_COURSE_BY_ID("""
-             DELETE from student_course where course_id =(?);
-             DELETE from course where id=(?)\\gexec;
+             DELETE from course where course_id=(?);
             """),
     GET_ALL_COURSES("""
-            SELECT id, name FROM course;
+            SELECT course_id, name FROM course;
             """),
     UPDATE_COURSE_NAME_BY_ID("""
-            UPDATE course set name=(?) where id=(?);
+            UPDATE course set name=(?) where course_id=(?);
+            """),
+    DELETE_STUDENT_COURSE_BY_ID("""
+            DELETE from student_course where course_id =(?);
             """);
 
     final String QUERY;

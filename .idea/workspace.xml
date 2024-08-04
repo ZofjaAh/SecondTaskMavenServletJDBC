@@ -4,24 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6c91a1b6-c8a7-4f7d-b529-f2905c000ee9" name="Changes" comment="4 commit">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/configuration/JDBCBasicDataSource.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/logback-test.xml" afterDir="false" />
+    <list default="true" id="6c91a1b6-c8a7-4f7d-b529-f2905c000ee9" name="Changes" comment="5 commit">
+      <change afterPath="$PROJECT_DIR$/src/test/java/DAOTests/CourseRepositoryTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/configuration/DatabaseConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/configuration/DatabaseConnector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/configuration/DateBaseConnectionCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/configuration/DateBaseConnectionCreator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/repository/CoordinatorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/repository/CoordinatorRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/repository/CourseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/repository/CourseRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/repository/StudentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/repository/StudentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/repository/mapper/ResultSetMapper.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/repository/queries/CoordinatorSQLQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/repository/queries/CoordinatorSQLQuery.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/ContextListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/ContextListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/db/V0_1__init_maven_servlet_jdbc_if_not_exist.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/V0_1__init_maven_servlet_jdbc_if_not_exist.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/repository/queries/CourseSQLQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/repository/queries/CourseSQLQuery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/repository/queries/SQLInitQuery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/repository/queries/SQLInitQuery.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/db/V2_3__init_maven_servlet_jdbc_student.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db/V2_3__init_maven_servlet_jdbc_student.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/DAOTests/CoordinatorRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/DAOTests/CoordinatorRepositoryTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/DAOTests/DataBaseSQLContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/DAOTests/DataBaseSQLContainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/util/EntityFixtures.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/util/EntityFixtures.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/resources/TEST_DB.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/TEST_DB.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/resources/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/db.properties" afterDir="false" />
     </list>
@@ -61,8 +55,17 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "JUnit.CoordinatorRepositoryTest.createCoordinatorSuccessful.executor": "Run",
+    "JUnit.CoordinatorRepositoryTest.deleteCoordinatorById.executor": "Run",
+    "JUnit.CoordinatorRepositoryTest.executor": "Run",
     "JUnit.CoordinatorRepositoryTest.getAllCoordinators (1).executor": "Run",
     "JUnit.CoordinatorRepositoryTest.getAllCoordinators.executor": "Run",
+    "JUnit.CoordinatorRepositoryTest.getCoordinatorWithStudentsById.executor": "Debug",
+    "JUnit.CoordinatorRepositoryTest.updateCoordinatorName.executor": "Run",
+    "JUnit.CourseRepositoryTest.deleteCoordinatorById.executor": "Run",
+    "JUnit.CourseRepositoryTest.deleteCourseById.executor": "Run",
+    "JUnit.CourseRepositoryTest.executor": "Run",
+    "JUnit.CourseRepositoryTest.getAllCourses.executor": "Run",
     "Maven.task-Rest-JDBCT [clean].executor": "Run",
     "Maven.task-Rest-JDBCT [install].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
@@ -96,16 +99,16 @@
       <recent name="D:\Java стажировка\SecondTaskMavenServletJDBC\src\main\resources\flyway\migrations" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="DAOTests" />
       <recent name="com.aston.secondTask.infrastructure.repository.queries" />
       <recent name="com.aston.secondTask.servlets" />
       <recent name="com.aston.secondTask.servlets.validation" />
       <recent name="com.aston.secondTask.service" />
-      <recent name="com.aston.secondTask.service.exeptions" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CoordinatorRepositoryTest.getAllCoordinators">
-    <configuration name="CoordinatorRepositoryTest.getAllCoordinators" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="SecondTaskMavenServletJDBC" />
+  <component name="RunManager" selected="JUnit.CourseRepositoryTest.getAllCourses">
+    <configuration name="CoordinatorRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="task-Rest-JDBCT" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="DAOTests.*" />
@@ -114,8 +117,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="DAOTests" />
       <option name="MAIN_CLASS_NAME" value="DAOTests.CoordinatorRepositoryTest" />
-      <option name="METHOD_NAME" value="getAllCoordinators" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -131,6 +133,53 @@
       <option name="PACKAGE_NAME" value="DAOTests" />
       <option name="MAIN_CLASS_NAME" value="DAOTests.CoordinatorRepositoryTest" />
       <option name="METHOD_NAME" value="getAllCoordinators" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CoordinatorRepositoryTest.getCoordinatorWithStudentsById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="task-Rest-JDBCT" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="DAOTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="DAOTests" />
+      <option name="MAIN_CLASS_NAME" value="DAOTests.CoordinatorRepositoryTest" />
+      <option name="METHOD_NAME" value="getCoordinatorWithStudentsById" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CourseRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="task-Rest-JDBCT" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="DAOTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="DAOTests" />
+      <option name="MAIN_CLASS_NAME" value="DAOTests.CourseRepositoryTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CourseRepositoryTest.getAllCourses" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="task-Rest-JDBCT" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="DAOTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="DAOTests" />
+      <option name="MAIN_CLASS_NAME" value="DAOTests.CourseRepositoryTest" />
+      <option name="METHOD_NAME" value="getAllCourses" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -163,13 +212,20 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="JUnit.CoordinatorRepositoryTest" />
+      <item itemvalue="JUnit.CoordinatorRepositoryTest.getCoordinatorWithStudentsById" />
+      <item itemvalue="JUnit.CourseRepositoryTest" />
+      <item itemvalue="JUnit.CourseRepositoryTest.getAllCourses" />
       <item itemvalue="JUnit.CoordinatorRepositoryTest.getAllCoordinators" />
       <item itemvalue="Smart Tomcat.Unnamed" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.CourseRepositoryTest.getAllCourses" />
+        <item itemvalue="JUnit.CourseRepositoryTest" />
+        <item itemvalue="JUnit.CoordinatorRepositoryTest" />
         <item itemvalue="JUnit.CoordinatorRepositoryTest.getAllCoordinators" />
-        <item itemvalue="JUnit.CoordinatorRepositoryTest.getAllCoordinators" />
+        <item itemvalue="JUnit.CoordinatorRepositoryTest.getCoordinatorWithStudentsById" />
       </list>
     </recent_temporary>
   </component>
@@ -230,7 +286,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722704750300</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="5 commit">
+      <option name="closed" value="true" />
+      <created>1722770431098</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1722770431098</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -261,7 +325,8 @@
     <MESSAGE value="2 commit" />
     <MESSAGE value="3 commit" />
     <MESSAGE value="4 commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="4 commit" />
+    <MESSAGE value="5 commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="5 commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -270,6 +335,11 @@
           <url>file://$PROJECT_DIR$/../../Закруженные/IdeaProjects/untitled3/src/Main.java</url>
           <line>13</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/DAOTests/CoordinatorRepositoryTest.java</url>
+          <line>50</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

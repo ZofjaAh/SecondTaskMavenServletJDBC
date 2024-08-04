@@ -79,27 +79,34 @@ public class CourseRepository extends DateBaseConnectionCreator implements Cours
 
     @Override
     public int deleteCourse(int courseId) throws SQLException {
-        int updated_rows;
+        int updated_rows = 0;
 
-        try  (Connection connection = dateBaseConnectionCreator.getConnection();
-             PreparedStatement statement = connection.prepareStatement(
-                CourseSQLQuery.DELETE_COURSE_BY_ID.getQUERY())) {
-            statement.setLong(1, courseId);
-            statement.setLong(2, courseId);
-            updated_rows = statement.executeUpdate();
+        Connection connection = dateBaseConnectionCreator.getConnection();
+        connection.setAutoCommit(false);
+        try  ( PreparedStatement delete_stud_course_statement = connection.prepareStatement(
+                CourseSQLQuery.DELETE_STUDENT_COURSE_BY_ID.getQUERY());
+              PreparedStatement delete_course_statement = connection.prepareStatement(
+              CourseSQLQuery.DELETE_COURSE_BY_ID.getQUERY())
+             ) {
+            delete_stud_course_statement.setLong(1, courseId);
+            delete_course_statement.setLong(1, courseId);
+            updated_rows += delete_stud_course_statement.executeUpdate();
+            updated_rows += delete_course_statement.executeUpdate();
 
         } catch (SQLException e) {
-            log.error("SQLException with deleting course with Id: [{}] - [{}]",
+            log.error("SQLException with deleting student_course with Id: [{}] - [{}]",
                     courseId, e.getMessage());
 
             throw e;
         }
+        connection.commit();
+
         return updated_rows;
     }
 
     public CourseEntity parseCourseFromResultSet(ResultSet result) throws SQLException {
         CourseEntity course = new CourseEntity();
-        course.setId(Integer.parseInt(result.getString("id")));
+        course.setId(Integer.parseInt(result.getString("course_id")));
         course.setName(result.getString("name"));
         return course;
     }

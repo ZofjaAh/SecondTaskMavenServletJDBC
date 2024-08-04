@@ -65,13 +65,18 @@ DateBaseConnectionCreator dateBaseConnectionCreator;
 
 
     @Override
-    public int deleteById(int coordinatorId) {
-        int updated_rows;
-        try (Connection connection = dateBaseConnectionCreator.getConnection();
-             PreparedStatement statement = connection.prepareStatement(
+    public int deleteById(int coordinatorId) throws SQLException {
+        int updated_rows = 0;
+        Connection connection = dateBaseConnectionCreator.getConnection();
+        connection.setAutoCommit(false);
+        try (PreparedStatement changeStudentsStatement = connection.prepareStatement(
+                     CoordinatorSQLQuery.CHANGE_STUDENT_COORDINATOR_ID_BY_ID.getQUERY());
+             PreparedStatement deleteCoordinatorStatement = connection.prepareStatement(
                      CoordinatorSQLQuery.DELETE_COORDINATOR_BY_ID.getQUERY())) {
-            statement.setLong(1, coordinatorId);
-            updated_rows = statement.executeUpdate();
+            changeStudentsStatement.setLong(1, coordinatorId);
+            deleteCoordinatorStatement.setLong(1, coordinatorId);
+            updated_rows += changeStudentsStatement.executeUpdate();
+            updated_rows += deleteCoordinatorStatement.executeUpdate();
 
         } catch (SQLException e) {
             log.error("SQLException with deleting coordinator with Id: [{}] - [{}]",
@@ -79,6 +84,7 @@ DateBaseConnectionCreator dateBaseConnectionCreator;
 
             throw new ProcessingException(e.getMessage());
         }
+        connection.commit();
         return updated_rows;
     }
 

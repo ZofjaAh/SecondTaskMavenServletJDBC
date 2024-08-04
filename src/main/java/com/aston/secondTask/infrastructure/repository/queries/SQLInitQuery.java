@@ -28,7 +28,7 @@ public enum SQLInitQuery {
             CREATE TABLE student (
             student_id SERIAL NOT NULL,
             name VARCHAR(32) NOT NULL,
-            coordinator_id INT NOT NULL,
+            coordinator_id INT,
             PRIMARY KEY (student_id),
             UNIQUE (name),
             CONSTRAINT fk_student_coordinator

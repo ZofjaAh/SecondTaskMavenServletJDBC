@@ -17,13 +17,16 @@ public enum CoordinatorSQLQuery {
             WHERE coordinator.coordinator_id = (?)
             """),
     DELETE_COORDINATOR_BY_ID("""
-             DELETE from coordinator where coordinator_id=(?);
+            DELETE from coordinator where coordinator_id=(?);
             """),
     GET_ALL_COORDINATORS("""
             SELECT coordinator_id, name FROM coordinator
             """),
     UPDATE_COORDINATOR_NAME_BY_ID("""
             UPDATE coordinator set name=(?) where coordinator_id=(?);
+            """),
+    CHANGE_STUDENT_COORDINATOR_ID_BY_ID("""
+            UPDATE student SET coordinator_id = NULL WHERE coordinator_id=(?);
             """);
 
     final String QUERY;

@@ -1,54 +1,53 @@
 package DAOTests;
 
-import com.aston.secondTask.entities.CoordinatorEntity;
+import com.aston.secondTask.entities.CourseEntity;
 import com.aston.secondTask.infrastructure.configuration.DateBaseConnectionCreator;
-import com.aston.secondTask.infrastructure.repository.CoordinatorRepository;
+import com.aston.secondTask.infrastructure.repository.CourseRepository;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.testcontainers.containers.PostgreSQLContainer;
-import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.lifecycle.Startables;
 import util.EntityFixtures;
 
-import java.sql.*;
-import java.util.List;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Set;
 
-
-import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-@Testcontainers
+
 @ExtendWith(MockitoExtension.class)
-public class CoordinatorRepositoryTest extends DataBaseSQLContainer {
 
-
+public class CourseRepositoryTest extends DataBaseSQLContainer {
     @InjectMocks
-    CoordinatorRepository coordinatorRepository;
+    CourseRepository courseRepository;
     @Mock
     DateBaseConnectionCreator dateBaseConnectionCreator;
+
+    @BeforeAll
+    static void beforeAll() {
+        Startables.deepStart(postgreSQLContainer);
+    }
+
 
     @AfterAll
     static void afterAll() {
         postgreSQLContainer.stop();
+
     }
 
-@BeforeAll
-static void beforeAll(){
-    Startables.deepStart(postgreSQLContainer);
-}
     @BeforeEach
     void setup() {
 
         dateBaseConnectionCreator = Mockito.mock(DateBaseConnectionCreator.class);
-        coordinatorRepository = new CoordinatorRepository(dateBaseConnectionCreator);
+        courseRepository = new CourseRepository(dateBaseConnectionCreator);
         super.overwriteURL(postgreSQLContainer);
         Assertions.assertTrue(postgreSQLContainer.isRunning());
         Assertions.assertTrue(postgreSQLContainer.isCreated());
         createTestTables();
+
     }
     @AfterEach
     void afterEach(){
@@ -56,58 +55,50 @@ static void beforeAll(){
     }
 
     @Test
-    void getAllCoordinators() throws SQLException {
+    void getAllCourses() throws SQLException {
         Mockito.when(dateBaseConnectionCreator.getConnection())
                 .thenReturn(DriverManager.getConnection(postgreSQLContainer.getJdbcUrl(),
                         postgreSQLContainer.getUsername(), postgreSQLContainer.getPassword()));
 
-        List<CoordinatorEntity> result = coordinatorRepository.findAll();
+        Set<CourseEntity> result = courseRepository.findAll();
         assertEquals(2, result.size());
 
     }
 
     @Test
-    void getCoordinatorWithStudentsById() throws SQLException {
-        int coordinatorId = 1;
-        CoordinatorEntity coordinator = EntityFixtures.coordinatorWithStudents_1();
+    void createCourseSuccessful() throws SQLException {
+        int courseId = 3;
+        CourseEntity courseEntity = EntityFixtures.course_1();
         Mockito.when(dateBaseConnectionCreator.getConnection())
                 .thenReturn(DriverManager.getConnection(postgreSQLContainer.getJdbcUrl(),
                         postgreSQLContainer.getUsername(), postgreSQLContainer.getPassword()));
-        CoordinatorEntity result = coordinatorRepository.findCoordinatorWithStudentsByID(coordinatorId);
-        assertEquals(coordinator.getId(), result.getId() );
-        assertEquals(coordinator.getName(), result.getName() );
-        assertEquals(coordinator.getStudents().size(), result.getStudents().size() );
+        int result = courseRepository.createCourse(courseEntity);
+        assertEquals(courseId, result);
 
     }
-    @Test
-    void createCoordinatorSuccessful() throws SQLException {
-        int coordinatorId = 3;
-        CoordinatorEntity coordinatorEntity = EntityFixtures.coordinator_2();
-        Mockito.when(dateBaseConnectionCreator.getConnection())
-                .thenReturn(DriverManager.getConnection(postgreSQLContainer.getJdbcUrl(),
-                        postgreSQLContainer.getUsername(), postgreSQLContainer.getPassword()));
-        int result = coordinatorRepository.createCoordinator(coordinatorEntity);
-        assertEquals(coordinatorId, result);
 
-    }
     @Test
-    void deleteCoordinatorById() throws SQLException {
-        int coordinatorId = 1;
+    void deleteCourseById() throws SQLException {
+        int courseId = 1;
         Mockito.when(dateBaseConnectionCreator.getConnection())
                 .thenReturn(DriverManager.getConnection(postgreSQLContainer.getJdbcUrl(),
                         postgreSQLContainer.getUsername(), postgreSQLContainer.getPassword()));
-        int result = coordinatorRepository.deleteById(coordinatorId);
+        Mockito.when(dateBaseConnectionCreator.getConnection())
+                .thenReturn(DriverManager.getConnection(postgreSQLContainer.getJdbcUrl(),
+                        postgreSQLContainer.getUsername(), postgreSQLContainer.getPassword()));
+        int result = courseRepository.deleteCourse(courseId);
         assertEquals(3, result);
 
     }
+
     @Test
-    void updateCoordinatorName() throws SQLException {
-        int coordinatorId = 1;
-        String coordinatorName = "Stefan";
+    void updateCourseName() throws SQLException {
+        int courseId = 1;
+        String courseName = "Dancing";
         Mockito.when(dateBaseConnectionCreator.getConnection())
                 .thenReturn(DriverManager.getConnection(postgreSQLContainer.getJdbcUrl(),
                         postgreSQLContainer.getUsername(), postgreSQLContainer.getPassword()));
-        int result = coordinatorRepository.updateCoordinatorName(coordinatorId, coordinatorName);
+        int result = courseRepository.updateCourseName(courseId, courseName);
         assertEquals(1, result);
     }
 
