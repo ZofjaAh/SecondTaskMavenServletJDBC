@@ -24,10 +24,10 @@ public class CoordinatorRepository  implements CoordinatorDAO {
 DateBaseConnectionCreator dateBaseConnectionCreator;
 
     @Override
-    public List<CoordinatorEntity> findAll() throws SQLException {
+    public List<CoordinatorEntity> findAll() {
         List<CoordinatorEntity> coordinatorEntityList = new ArrayList<>();
-        Connection connection = dateBaseConnectionCreator.getConnection();
-        try (PreparedStatement statement = connection.prepareStatement(
+        try (Connection connection = dateBaseConnectionCreator.getConnection();
+        PreparedStatement statement = connection.prepareStatement(
                      CoordinatorSQLQuery.GET_ALL_COORDINATORS.getQUERY())) {
             try (ResultSet result = statement.executeQuery()) {
                 while (result.next()) {
@@ -39,7 +39,6 @@ DateBaseConnectionCreator dateBaseConnectionCreator;
             log.error("SQLException with loading all coordinators [{}]", e.getMessage());
             throw new ProcessingException(e.getMessage());
         }
-        dateBaseConnectionCreator.closeConnection();
         return coordinatorEntityList;
     }
 
@@ -65,9 +64,9 @@ DateBaseConnectionCreator dateBaseConnectionCreator;
 
 
     @Override
-    public int deleteById(int coordinatorId) throws SQLException {
+    public int deleteById(int coordinatorId){
         int updated_rows = 0;
-        Connection connection = dateBaseConnectionCreator.getConnection();
+        try { Connection connection = dateBaseConnectionCreator.getConnection();
         connection.setAutoCommit(false);
         try (PreparedStatement changeStudentsStatement = connection.prepareStatement(
                      CoordinatorSQLQuery.CHANGE_STUDENT_COORDINATOR_ID_BY_ID.getQUERY());
@@ -84,7 +83,12 @@ DateBaseConnectionCreator dateBaseConnectionCreator;
 
             throw new ProcessingException(e.getMessage());
         }
-        connection.commit();
+
+            connection.commit();
+        } catch (SQLException e) {
+            log.error("SQLException with closing connection [{}]", e.getMessage());
+            throw new ProcessingException(e.getMessage());
+        }
         return updated_rows;
     }
 

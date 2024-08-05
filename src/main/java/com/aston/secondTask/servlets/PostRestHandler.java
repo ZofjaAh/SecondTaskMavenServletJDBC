@@ -27,7 +27,7 @@ public class PostRestHandler extends RestApiHandler {
     }
 
     @Override
-    public int handleRestRequest(String requestPath, HttpServletRequest req) throws SQLException, IOException {
+    public int handleRestRequest(String requestPath, HttpServletRequest req) throws IOException {
         int generated_id = 0;
         if (requestPath.matches("^/course/$")) {
             String bodyParams = req.getReader().lines().collect(Collectors.joining());

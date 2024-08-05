@@ -6,13 +6,13 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface CoordinatorDAO {
-    int deleteById(int coordinatorId) throws SQLException;
+    int deleteById(int coordinatorId) ;
 
-    List<CoordinatorEntity> findAll() throws SQLException;
+    List<CoordinatorEntity> findAll();
 
-    int createCoordinator(CoordinatorEntity coordinator) throws SQLException;
+    int createCoordinator(CoordinatorEntity coordinator);
 
-    int updateCoordinatorName(int coordinatorId, String name) throws SQLException;
+    int updateCoordinatorName(int coordinatorId, String name);
 
-    CoordinatorEntity findCoordinatorWithStudentsByID(int coordinatorId) throws SQLException;
+    CoordinatorEntity findCoordinatorWithStudentsByID(int coordinatorId);
 }

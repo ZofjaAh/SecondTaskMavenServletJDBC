@@ -4,10 +4,36 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6c91a1b6-c8a7-4f7d-b529-f2905c000ee9" name="Changes" comment="8 commit">
+    <list default="true" id="6c91a1b6-c8a7-4f7d-b529-f2905c000ee9" name="Changes" comment="all works correctly : build and tests 10 commit">
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/aston/secondTask/infrastructure/configuration/DateBaseConnectionCreatorTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/aston/secondTask/service/CoordinatorServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/aston/secondTask/service/CourseServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/aston/secondTask/service/StudentServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/aston/secondTask/servlets/ContextListenerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/aston/secondTask/servlets/DeleteRestHandlerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/aston/secondTask/servlets/GetRestHandlerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/aston/secondTask/servlets/PostRestHandlerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/aston/secondTask/servlets/PutRestHandlerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/DAOTests/CoordinatorRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/DAOTests/CoordinatorRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/repository/CoordinatorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/repository/CoordinatorRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/repository/CourseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/repository/CourseRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/repository/StudentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/repository/StudentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/CoordinatorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/CoordinatorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/CourseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/CourseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/DAO/CoordinatorDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/DAO/CoordinatorDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/DAO/CourseDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/DAO/CourseDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/DAO/StudentDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/DAO/StudentDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/StudentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/StudentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/DTO/CoordinatorDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/DTO/CoordinatorDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/DTO/StudentDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/DTO/StudentDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/DeleteRestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/DeleteRestHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/GetRestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/GetRestHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/PostRestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/PostRestHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/PutRestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/PutRestHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/util/DTOFixtures.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/util/DTOFixtures.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/util/EntityFixtures.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/util/EntityFixtures.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/db.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +49,7 @@
         <option value="Interface" />
         <option value="Enum" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -48,6 +75,9 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "JUnit.ContextListenerTest.testContextInitialized.executor": "Run",
+    "JUnit.CoordinatorDAOTest.executor": "Run",
+    "JUnit.CoordinatorDAOTest.testDeleteById.executor": "Run",
     "JUnit.CoordinatorRepositoryTest.createCoordinatorSuccessful.executor": "Run",
     "JUnit.CoordinatorRepositoryTest.deleteCoordinatorById.executor": "Run",
     "JUnit.CoordinatorRepositoryTest.executor": "Run",
@@ -55,16 +85,39 @@
     "JUnit.CoordinatorRepositoryTest.getAllCoordinators.executor": "Run",
     "JUnit.CoordinatorRepositoryTest.getCoordinatorWithStudentsById.executor": "Debug",
     "JUnit.CoordinatorRepositoryTest.updateCoordinatorName.executor": "Run",
+    "JUnit.CoordinatorServiceTest.executor": "Run",
+    "JUnit.CoordinatorServiceTest.shouldCreateCoordinatorCorrectly.executor": "Run",
+    "JUnit.CoordinatorServiceTest.shouldDeleteCoordinatorSuccessful.executor": "Run",
+    "JUnit.CoordinatorServiceTest.shouldSearchAllCoordinatorsSuccessful.executor": "Run",
+    "JUnit.CoordinatorServiceTest.shouldSearchCoordinatorByIdWithStudentsSuccessful.executor": "Run",
+    "JUnit.CoordinatorServiceTest.shouldUpdateCoordinatorNameSuccessful.executor": "Run",
     "JUnit.CourseRepositoryTest.createCourseSuccessful.executor": "Run",
     "JUnit.CourseRepositoryTest.deleteCoordinatorById.executor": "Run",
     "JUnit.CourseRepositoryTest.deleteCourseById.executor": "Run",
     "JUnit.CourseRepositoryTest.executor": "Run",
     "JUnit.CourseRepositoryTest.getAllCourses.executor": "Run",
+    "JUnit.CourseServiceTest.executor": "Run",
     "JUnit.DAOTests in task-Rest-JDBCT.executor": "Coverage",
+    "JUnit.DateBaseConnectionCreatorTest.testGetConnection.executor": "Run",
+    "JUnit.DeleteRestHandlerTest.executor": "Run",
+    "JUnit.DeleteRestHandlerTest.testHandleCoordinatorDeleteRequest.executor": "Run",
+    "JUnit.DeleteRestHandlerTest.testHandleStudentDeleteRequest.executor": "Run",
+    "JUnit.GetRestHandlerTest.executor": "Run",
+    "JUnit.GetRestHandlerTest.testHandleCoordinatorGetRequest.executor": "Run",
+    "JUnit.PostRestHandlerTest.testCreateCoordinator.executor": "Run",
+    "JUnit.PostRestHandlerTest.testCreateCourse.executor": "Run",
+    "JUnit.PostRestHandlerTest.testCreateStudent.executor": "Run",
+    "JUnit.PostRestHandlerTest.testCreateStudentCourse.executor": "Run",
+    "JUnit.PutRestHandlerTest.testUpdateCoordinatorName.executor": "Run",
+    "JUnit.PutRestHandlerTest.testUpdateCourseName.executor": "Run",
+    "JUnit.PutRestHandlerTest.testUpdateStudentCoordinator.executor": "Run",
     "JUnit.StudentRepositoryTest.createStudentWithCoordinatorSuccessful.executor": "Run",
     "JUnit.StudentRepositoryTest.executor": "Run",
     "JUnit.StudentRepositoryTest.getStudentWithCoursesById.executor": "Run",
     "JUnit.StudentRepositoryTest.updateCoordinatorName.executor": "Run",
+    "JUnit.StudentServiceTest.executor": "Run",
+    "JUnit.StudentServiceTest.shouldSearchStudentWithCoursesByIdSuccessful.executor": "Run",
+    "JUnit.java in task-Rest-JDBCT.executor": "Coverage",
     "Maven.task-Rest-JDBCT [clean].executor": "Run",
     "Maven.task-Rest-JDBCT [compile].executor": "Run",
     "Maven.task-Rest-JDBCT [install].executor": "Run",
@@ -74,9 +127,11 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Smart Tomcat.Unnamed.executor": "Run",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/Java Trainee Intensive/SecondTaskMavenServletJDBC/src/test/resources",
+    "last_opened_file_path": "D:/Java Trainee Intensive/SecondTaskMavenServletJDBC",
     "onboarding.tips.debug.path": "D:/Закруженные/IdeaProjects/untitled3/src/Main.java",
     "project.structure.last.edited": "Problems",
     "project.structure.proportion": "0.15",
@@ -100,81 +155,92 @@
       <recent name="D:\Java стажировка\SecondTaskMavenServletJDBC\src\main\resources\flyway" />
       <recent name="D:\Java стажировка\SecondTaskMavenServletJDBC\src\main\resources\flyway\migrations" />
     </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="DAOTests" />
-      <recent name="com.aston.secondTask.infrastructure.repository.queries" />
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
       <recent name="com.aston.secondTask.servlets" />
-      <recent name="com.aston.secondTask.servlets.validation" />
+      <recent name="com.aston.secondTask.infrastructure.configuration" />
+      <recent name="com.aston.secondTask.service.DAO" />
       <recent name="com.aston.secondTask.service" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.aston.secondTask.servlets" />
+      <recent name="com.aston.secondTask.service" />
+      <recent name="DAOTests" />
+      <recent name="com.aston.secondTask.infrastructure.repository.queries" />
+      <recent name="com.aston.secondTask.servlets.validation" />
+    </key>
   </component>
-  <component name="RunManager" selected="Maven.task-Rest-JDBCT [install] (1)">
-    <configuration name="CourseRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.java in task-Rest-JDBCT">
+    <configuration name="ContextListenerTest.testContextInitialized" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="task-Rest-JDBCT" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="DAOTests.*" />
+          <option name="PATTERN" value="com.aston.secondTask.servlets.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="DAOTests" />
-      <option name="MAIN_CLASS_NAME" value="DAOTests.CourseRepositoryTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="com.aston.secondTask.servlets" />
+      <option name="MAIN_CLASS_NAME" value="com.aston.secondTask.servlets.ContextListenerTest" />
+      <option name="METHOD_NAME" value="testContextInitialized" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DAOTests in task-Rest-JDBCT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PutRestHandlerTest.testUpdateCoordinatorName" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="task-Rest-JDBCT" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.aston.secondTask.servlets.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.aston.secondTask.servlets" />
+      <option name="MAIN_CLASS_NAME" value="com.aston.secondTask.servlets.PutRestHandlerTest" />
+      <option name="METHOD_NAME" value="testUpdateCoordinatorName" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PutRestHandlerTest.testUpdateCourseName" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="task-Rest-JDBCT" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.aston.secondTask.servlets.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.aston.secondTask.servlets" />
+      <option name="MAIN_CLASS_NAME" value="com.aston.secondTask.servlets.PutRestHandlerTest" />
+      <option name="METHOD_NAME" value="testUpdateCourseName" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PutRestHandlerTest.testUpdateStudentCoordinator" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="task-Rest-JDBCT" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.aston.secondTask.servlets.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.aston.secondTask.servlets" />
+      <option name="MAIN_CLASS_NAME" value="com.aston.secondTask.servlets.PutRestHandlerTest" />
+      <option name="METHOD_NAME" value="testUpdateStudentCoordinator" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="java in task-Rest-JDBCT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="task-Rest-JDBCT" />
       <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/src/test/java/DAOTests" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="StudentRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="task-Rest-JDBCT" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="DAOTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="DAOTests" />
-      <option name="MAIN_CLASS_NAME" value="DAOTests.StudentRepositoryTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="StudentRepositoryTest.createStudentWithCoordinatorSuccessful" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="task-Rest-JDBCT" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="DAOTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="DAOTests" />
-      <option name="MAIN_CLASS_NAME" value="DAOTests.StudentRepositoryTest" />
-      <option name="METHOD_NAME" value="createStudentWithCoordinatorSuccessful" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="StudentRepositoryTest.getStudentWithCoursesById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="task-Rest-JDBCT" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="DAOTests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="DAOTests" />
-      <option name="MAIN_CLASS_NAME" value="DAOTests.StudentRepositoryTest" />
-      <option name="METHOD_NAME" value="getStudentWithCoursesById" />
-      <option name="TEST_OBJECT" value="method" />
+      <dir value="$PROJECT_DIR$/src/test/java" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -267,22 +333,22 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.DAOTests in task-Rest-JDBCT" />
-      <item itemvalue="JUnit.StudentRepositoryTest.createStudentWithCoordinatorSuccessful" />
-      <item itemvalue="JUnit.CourseRepositoryTest" />
-      <item itemvalue="JUnit.StudentRepositoryTest" />
-      <item itemvalue="JUnit.StudentRepositoryTest.getStudentWithCoursesById" />
+      <item itemvalue="JUnit.ContextListenerTest.testContextInitialized" />
+      <item itemvalue="JUnit.PutRestHandlerTest.testUpdateCoordinatorName" />
+      <item itemvalue="JUnit.PutRestHandlerTest.testUpdateCourseName" />
+      <item itemvalue="JUnit.PutRestHandlerTest.testUpdateStudentCoordinator" />
+      <item itemvalue="JUnit.java in task-Rest-JDBCT" />
       <item itemvalue="Maven.task-Rest-JDBCT [install]" />
       <item itemvalue="Maven.task-Rest-JDBCT [install] (1)" />
       <item itemvalue="Smart Tomcat.Unnamed" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.DAOTests in task-Rest-JDBCT" />
-        <item itemvalue="JUnit.StudentRepositoryTest.getStudentWithCoursesById" />
-        <item itemvalue="JUnit.StudentRepositoryTest.createStudentWithCoordinatorSuccessful" />
-        <item itemvalue="JUnit.StudentRepositoryTest" />
-        <item itemvalue="JUnit.CourseRepositoryTest" />
+        <item itemvalue="JUnit.java in task-Rest-JDBCT" />
+        <item itemvalue="JUnit.ContextListenerTest.testContextInitialized" />
+        <item itemvalue="JUnit.PutRestHandlerTest.testUpdateCoordinatorName" />
+        <item itemvalue="JUnit.PutRestHandlerTest.testUpdateCourseName" />
+        <item itemvalue="JUnit.PutRestHandlerTest.testUpdateStudentCoordinator" />
       </list>
     </recent_temporary>
   </component>
@@ -375,7 +441,23 @@
       <option name="project" value="LOCAL" />
       <updated>1722802100582</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="change pom.xm- it works correctly 9 commit">
+      <option name="closed" value="true" />
+      <created>1722847488364</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1722847488364</updated>
+    </task>
+    <task id="LOCAL-00012" summary="all works correctly : build and tests 10 commit">
+      <option name="closed" value="true" />
+      <created>1722858958728</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1722858958728</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -410,7 +492,9 @@
     <MESSAGE value="6 commit" />
     <MESSAGE value="7 commit" />
     <MESSAGE value="8 commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="8 commit" />
+    <MESSAGE value="change pom.xm- it works correctly 9 commit" />
+    <MESSAGE value="all works correctly : build and tests 10 commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="all works correctly : build and tests 10 commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -424,6 +508,7 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/SecondTaskMavenServletJDBC$java_in_task_Rest_JDBCT.ic" NAME="java in task-Rest-JDBCT Coverage Results" MODIFIED="1722933753356" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/SecondTaskMavenServletJDBC$DAOTests_in_task_Rest_JDBCT.ic" NAME="DAOTests in task-Rest-JDBCT Coverage Results" MODIFIED="1722801929918" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

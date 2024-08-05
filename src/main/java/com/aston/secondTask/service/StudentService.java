@@ -14,11 +14,12 @@ import java.util.stream.Collectors;
 public class StudentService {
     private final StudentDAO studentDAO;
 
-    public StudentDTO findStudentWithCoursesByID(int studentId) throws SQLException {
+    public StudentDTO findStudentWithCoursesByID(int studentId) {
         StudentEntity studentEntity = studentDAO.findById(studentId);
         return StudentDTO.builder()
                 .id(studentEntity.getId())
                 .name(studentEntity.getName())
+                .coordinatorId(studentEntity.getCoordinator().getId())
                 .courses(studentEntity.getCourses().stream()
                         .map(this::getCourseDTO)
                         .collect(Collectors.toSet()))
@@ -27,22 +28,22 @@ public class StudentService {
 
     }
 
-    public int createStudentWithCoordinator(StudentDTO student, int coordinatorId) throws SQLException {
+    public int createStudentWithCoordinator(StudentDTO student, int coordinatorId)  {
         StudentEntity studentEntity = StudentEntity.builder()
                 .name(student.getName()).build();
         return studentDAO.createStudentWithCoordinator(studentEntity, coordinatorId);
 
     }
 
-    public int deleteStudent(int studentId) throws SQLException {
+    public int deleteStudent(int studentId)  {
         return studentDAO.deleteStudent(studentId);
     }
 
-    public int updateCoordinatorName(int studentId, int coordinatorId) throws SQLException {
+    public int updateCoordinator(int studentId, int coordinatorId)  {
         return studentDAO.updateCoordinator(studentId, coordinatorId);
     }
 
-    public int addStudentCourse(int studentId, int courseId) throws SQLException {
+    public int addStudentCourse(int studentId, int courseId)  {
         return studentDAO.addCourse(studentId, courseId);
     }
 

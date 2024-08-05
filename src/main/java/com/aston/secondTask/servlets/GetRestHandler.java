@@ -19,7 +19,7 @@ public class GetRestHandler extends RestApiHandler {
     }
 
     @Override
-    public Optional<String> handleRestRequest(String requestPath) throws SQLException, JsonProcessingException {
+    public Optional<String> handleRestRequest(String requestPath) throws JsonProcessingException {
         if (requestPath.matches("^/student/\\d+$")) {
             int studentId = getCurrentId(requestPath);
             StudentDTO student = studentService.findStudentWithCoursesByID(studentId);

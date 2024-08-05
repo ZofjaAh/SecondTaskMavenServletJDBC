@@ -42,7 +42,6 @@ public class StudentRepository extends DateBaseConnectionCreator implements Stud
         } catch (SQLException e) {
             log.error("SQLException with creation Student with Name:[{}] - [{}]",
                     studentEntity.getName(), e.getMessage());
-
             throw new ProcessingException(e.getMessage());
         }
 
@@ -50,10 +49,11 @@ public class StudentRepository extends DateBaseConnectionCreator implements Stud
     }
 
     @Override
-    public int deleteStudent(int studentId) throws SQLException {
+    public int deleteStudent(int studentId)  {
         int updated_rows = 0;
-        Connection connection = dateBaseConnectionCreator.getConnection();
-        connection.setAutoCommit(false);
+        try {  Connection connection = dateBaseConnectionCreator.getConnection();
+
+            connection.setAutoCommit(false);
         try (PreparedStatement delete_student_course_statement = connection.prepareStatement(
                 StudentSQLQuery.DELETE_STUDENT_COURSE_BY_ID.getQUERY());
              PreparedStatement delete_student_statement = connection.prepareStatement(
@@ -67,10 +67,13 @@ public class StudentRepository extends DateBaseConnectionCreator implements Stud
         } catch (SQLException e) {
             log.error("SQLException with deleting student with Id: [{}] - [{}]",
                     studentId, e.getMessage());
-
-            throw e;
+            throw new ProcessingException(e.getMessage());
         }
         connection.commit();
+    } catch (SQLException e) {
+            log.error("SQLException with closing connection [{}]", e.getMessage());
+            throw new ProcessingException(e.getMessage());
+    }
         return updated_rows;
     }
 

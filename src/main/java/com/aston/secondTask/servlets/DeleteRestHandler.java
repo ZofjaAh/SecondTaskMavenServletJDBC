@@ -20,7 +20,7 @@ public class DeleteRestHandler extends RestApiHandler {
     }
 
     @Override
-    public int handleRestRequest(String requestPath, HttpServletRequest req) throws SQLException {
+    public int handleRestRequest(String requestPath, HttpServletRequest req) {
         int updated_rows = 0;
         if (requestPath.matches("^/coordinator/\\d+$")) {
             int coordinatorId = getCurrentId(requestPath);

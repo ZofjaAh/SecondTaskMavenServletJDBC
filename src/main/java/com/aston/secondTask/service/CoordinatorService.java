@@ -16,27 +16,27 @@ public class CoordinatorService {
 
     private final CoordinatorDAO coordinatorDAO;
 
-    public int createCoordinator(CoordinatorDTO coordinator) throws SQLException {
+    public int createCoordinator(CoordinatorDTO coordinator) {
         CoordinatorEntity coordinatorEntity = CoordinatorEntity.builder().name(coordinator.getName()).build();
         return coordinatorDAO.createCoordinator(coordinatorEntity);
 
     }
 
-    public int deleteById(int coordinatorId) throws SQLException {
+    public int deleteById(int coordinatorId)  {
         return coordinatorDAO.deleteById(coordinatorId);
     }
 
-    public int updateCoordinatorName(int coordinatorId, String name) throws SQLException {
+    public int updateCoordinatorName(int coordinatorId, String name){
         return coordinatorDAO.updateCoordinatorName(coordinatorId, name);
     }
 
-    public CoordinatorDTO findById(int coordinatorId) throws SQLException {
+    public CoordinatorDTO findById(int coordinatorId) {
         CoordinatorEntity coordinatorEntity = coordinatorDAO.findCoordinatorWithStudentsByID(coordinatorId);
         return getCoordinatorDTOWithStudents(coordinatorEntity);
 
     }
 
-    public Set<CoordinatorDTO> findAll() throws SQLException {
+    public Set<CoordinatorDTO> findAll() {
         List<CoordinatorEntity> allCoordinatorEntities = coordinatorDAO.findAll();
         return allCoordinatorEntities.stream()
                 .map(this::getCoordinatorDTO)

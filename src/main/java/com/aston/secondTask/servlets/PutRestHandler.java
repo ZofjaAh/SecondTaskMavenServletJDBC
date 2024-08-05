@@ -19,12 +19,12 @@ public class PutRestHandler extends RestApiHandler {
     }
 
     @Override
-    public Optional<String> handleRestRequest(String requestPath) throws SQLException, JsonProcessingException {
+    public Optional<String> handleRestRequest(String requestPath) throws JsonProcessingException {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public int handleRestRequest(String requestPath, HttpServletRequest req) throws SQLException, IOException {
+    public int handleRestRequest(String requestPath, HttpServletRequest req) throws IOException {
         int update_rows = 0;
         if (requestPath.matches("^/course/\\d+$")) {
             int course_id = getCurrentId(requestPath);
@@ -43,7 +43,7 @@ public class PutRestHandler extends RestApiHandler {
             String bodyParams = req.getReader().lines().collect(Collectors.joining());
             Map<String, String> map = objectMapper.readValue(bodyParams, new TypeReference<Map<String, String>>() {
             });
-            return studentService.updateCoordinatorName(student_id, Integer.parseInt(map.get("coordinatorId")));
+            return studentService.updateCoordinator(student_id, Integer.parseInt(map.get("coordinatorId")));
         }
 
         return update_rows;

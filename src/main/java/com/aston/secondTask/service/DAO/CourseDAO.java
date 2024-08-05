@@ -6,11 +6,11 @@ import java.sql.SQLException;
 import java.util.Set;
 
 public interface CourseDAO {
-    int deleteCourse(int courseId) throws SQLException;
+    int deleteCourse(int courseId) ;
 
-    Set<CourseEntity> findAll() throws SQLException;
+    Set<CourseEntity> findAll() ;
 
-    int createCourse(CourseEntity course) throws SQLException;
+    int createCourse(CourseEntity course) ;
 
-    int updateCourseName(int courseId, String name) throws SQLException;
+    int updateCourseName(int courseId, String name) ;
 }
