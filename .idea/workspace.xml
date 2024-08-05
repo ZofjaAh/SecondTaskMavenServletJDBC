@@ -4,17 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6c91a1b6-c8a7-4f7d-b529-f2905c000ee9" name="Changes" comment="7 commit">
+    <list default="true" id="6c91a1b6-c8a7-4f7d-b529-f2905c000ee9" name="Changes" comment="8 commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/repository/StudentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/repository/StudentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/DAOTests/StudentRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/DAOTests/StudentRepositoryTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/util/EntityFixtures.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/util/EntityFixtures.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/db.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/DAOTests/CoordinatorRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/DAOTests/CoordinatorRepositoryTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExportToHTMLSettings">
+    <option name="OUTPUT_DIRECTORY" value="D:\Java Trainee Intensive\SecondTaskMavenServletJDBC\htmlReport" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -59,12 +60,16 @@
     "JUnit.CourseRepositoryTest.deleteCourseById.executor": "Run",
     "JUnit.CourseRepositoryTest.executor": "Run",
     "JUnit.CourseRepositoryTest.getAllCourses.executor": "Run",
+    "JUnit.DAOTests in task-Rest-JDBCT.executor": "Coverage",
     "JUnit.StudentRepositoryTest.createStudentWithCoordinatorSuccessful.executor": "Run",
     "JUnit.StudentRepositoryTest.executor": "Run",
     "JUnit.StudentRepositoryTest.getStudentWithCoursesById.executor": "Run",
     "JUnit.StudentRepositoryTest.updateCoordinatorName.executor": "Run",
     "Maven.task-Rest-JDBCT [clean].executor": "Run",
+    "Maven.task-Rest-JDBCT [compile].executor": "Run",
     "Maven.task-Rest-JDBCT [install].executor": "Run",
+    "Maven.task-Rest-JDBCT [org.apache.maven.plugins:maven-surefire-plugin:3.1.2:help].executor": "Run",
+    "Maven.task-Rest-JDBCT [org.apache.maven.plugins:maven-surefire-plugin:3.1.2:test].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -73,10 +78,10 @@
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/Java Trainee Intensive/SecondTaskMavenServletJDBC/src/test/resources",
     "onboarding.tips.debug.path": "D:/Закруженные/IdeaProjects/untitled3/src/Main.java",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Problems",
     "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+    "project.structure.side.proportion": "0.43563217",
+    "settings.editor.selected.configurable": "configurable.group.editor"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -103,7 +108,7 @@
       <recent name="com.aston.secondTask.service" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.DAOTests in task-Rest-JDBCT">
+  <component name="RunManager" selected="Maven.task-Rest-JDBCT [install] (1)">
     <configuration name="CourseRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="task-Rest-JDBCT" />
       <extension name="coverage">
@@ -174,6 +179,70 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="task-Rest-JDBCT [install] (1)" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="cmdOptions" />
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="install" />
+                <option value="-e" />
+                <option value="pom.xml" />
+              </list>
+            </option>
+            <option name="multimoduleDir" />
+            <option name="pomFileName" value="pom.xml" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="projectsCmdOptionValues">
+              <list />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="task-Rest-JDBCT [install]" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="cmdOptions" />
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="install" />
+                <option value="-e" />
+                <option value="pom.xml" />
+              </list>
+            </option>
+            <option name="multimoduleDir" />
+            <option name="pomFileName" value="pom.xml" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="projectsCmdOptionValues">
+              <list />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
     <configuration name="Unnamed" type="com.poratu.idea.plugins.tomcat" nameIsGenerated="true">
       <predefined_log_file enabled="true" id="Tomcat Localhost Log" />
       <predefined_log_file enabled="true" id="Tomcat Access Log" />
@@ -203,6 +272,8 @@
       <item itemvalue="JUnit.CourseRepositoryTest" />
       <item itemvalue="JUnit.StudentRepositoryTest" />
       <item itemvalue="JUnit.StudentRepositoryTest.getStudentWithCoursesById" />
+      <item itemvalue="Maven.task-Rest-JDBCT [install]" />
+      <item itemvalue="Maven.task-Rest-JDBCT [install] (1)" />
       <item itemvalue="Smart Tomcat.Unnamed" />
     </list>
     <recent_temporary>
@@ -296,7 +367,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722801023679</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="8 commit">
+      <option name="closed" value="true" />
+      <created>1722802100582</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1722802100582</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -330,7 +409,8 @@
     <MESSAGE value="5 commit" />
     <MESSAGE value="6 commit" />
     <MESSAGE value="7 commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="7 commit" />
+    <MESSAGE value="8 commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="8 commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -342,5 +422,8 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/SecondTaskMavenServletJDBC$DAOTests_in_task_Rest_JDBCT.ic" NAME="DAOTests in task-Rest-JDBCT Coverage Results" MODIFIED="1722801929918" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
