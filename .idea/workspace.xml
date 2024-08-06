@@ -4,35 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6c91a1b6-c8a7-4f7d-b529-f2905c000ee9" name="Changes" comment="all works correctly : build and tests 10 commit">
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/aston/secondTask/infrastructure/configuration/DateBaseConnectionCreatorTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/aston/secondTask/service/CoordinatorServiceTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/aston/secondTask/service/CourseServiceTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/aston/secondTask/service/StudentServiceTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/aston/secondTask/servlets/ContextListenerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/aston/secondTask/servlets/DeleteRestHandlerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/aston/secondTask/servlets/GetRestHandlerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/aston/secondTask/servlets/PostRestHandlerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/aston/secondTask/servlets/PutRestHandlerTest.java" afterDir="false" />
+    <list default="true" id="6c91a1b6-c8a7-4f7d-b529-f2905c000ee9" name="Changes" comment="testy 66 -11 commit">
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/aston/secondTask/servlets/RestApiServletTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/repository/CoordinatorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/repository/CoordinatorRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/repository/CourseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/repository/CourseRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/repository/StudentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/repository/StudentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/CoordinatorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/CoordinatorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/CourseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/CourseService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/DAO/CoordinatorDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/DAO/CoordinatorDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/DAO/CourseDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/DAO/CourseDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/DAO/StudentDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/DAO/StudentDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/StudentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/service/StudentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/DTO/CoordinatorDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/DTO/CoordinatorDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/DTO/StudentDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/DTO/StudentDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/DeleteRestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/DeleteRestHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/GetRestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/GetRestHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/PostRestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/PostRestHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/PutRestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/PutRestHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/util/DTOFixtures.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/util/DTOFixtures.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/util/EntityFixtures.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/util/EntityFixtures.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/RestApiServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/RestApiServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/resources/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/db.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -111,6 +86,26 @@
     "JUnit.PutRestHandlerTest.testUpdateCoordinatorName.executor": "Run",
     "JUnit.PutRestHandlerTest.testUpdateCourseName.executor": "Run",
     "JUnit.PutRestHandlerTest.testUpdateStudentCoordinator.executor": "Run",
+    "JUnit.RestApiHandlerTest.testHandleRestRequestWithValidPath.executor": "Run",
+    "JUnit.RestApiServletTest.testDoDelete_Course_SQLException.executor": "Run",
+    "JUnit.RestApiServletTest.testDoDelete_Not_Successful.executor": "Run",
+    "JUnit.RestApiServletTest.testDoDelete_Student_SQLException.executor": "Run",
+    "JUnit.RestApiServletTest.testDoGet_Coordinators_SQLException.executor": "Run",
+    "JUnit.RestApiServletTest.testDoGet_Courses_SQLException.executor": "Run",
+    "JUnit.RestApiServletTest.testDoGet_JsonProcessingException.executor": "Run",
+    "JUnit.RestApiServletTest.testDoGet_SQLException.executor": "Run",
+    "JUnit.RestApiServletTest.testDoGet_Student_SQLException.executor": "Run",
+    "JUnit.RestApiServletTest.testDoGet_Success.executor": "Run",
+    "JUnit.RestApiServletTest.testDoPost_Coordinator_SQLException.executor": "Run",
+    "JUnit.RestApiServletTest.testDoPost_Courses_SQLException.executor": "Run",
+    "JUnit.RestApiServletTest.testDoPost_Student_Course_SQLException.executor": "Run",
+    "JUnit.RestApiServletTest.testDoPost_Student_Course_Success.executor": "Run",
+    "JUnit.RestApiServletTest.testDoPost_Student_Success.executor": "Run",
+    "JUnit.RestApiServletTest.testDoPost_Success.executor": "Run",
+    "JUnit.RestApiServletTest.testDoPut_Course_SQLException.executor": "Run",
+    "JUnit.RestApiServletTest.testDoPut_Not_Successful.executor": "Run",
+    "JUnit.RestApiServletTest.testDoPut_Student_SQLException.executor": "Run",
+    "JUnit.RestApiServletTest.testDoPut_Successful.executor": "Run",
     "JUnit.StudentRepositoryTest.createStudentWithCoordinatorSuccessful.executor": "Run",
     "JUnit.StudentRepositoryTest.executor": "Run",
     "JUnit.StudentRepositoryTest.getStudentWithCoursesById.executor": "Run",
@@ -173,7 +168,7 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.java in task-Rest-JDBCT">
-    <configuration name="ContextListenerTest.testContextInitialized" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="RestApiServletTest.testDoPut_Course_SQLException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="task-Rest-JDBCT" />
       <extension name="coverage">
         <pattern>
@@ -182,14 +177,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.aston.secondTask.servlets" />
-      <option name="MAIN_CLASS_NAME" value="com.aston.secondTask.servlets.ContextListenerTest" />
-      <option name="METHOD_NAME" value="testContextInitialized" />
+      <option name="MAIN_CLASS_NAME" value="com.aston.secondTask.servlets.RestApiServletTest" />
+      <option name="METHOD_NAME" value="testDoPut_Course_SQLException" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PutRestHandlerTest.testUpdateCoordinatorName" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="RestApiServletTest.testDoPut_Not_Successful" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="task-Rest-JDBCT" />
       <extension name="coverage">
         <pattern>
@@ -198,14 +193,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.aston.secondTask.servlets" />
-      <option name="MAIN_CLASS_NAME" value="com.aston.secondTask.servlets.PutRestHandlerTest" />
-      <option name="METHOD_NAME" value="testUpdateCoordinatorName" />
+      <option name="MAIN_CLASS_NAME" value="com.aston.secondTask.servlets.RestApiServletTest" />
+      <option name="METHOD_NAME" value="testDoPut_Not_Successful" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PutRestHandlerTest.testUpdateCourseName" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="RestApiServletTest.testDoPut_Student_SQLException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="task-Rest-JDBCT" />
       <extension name="coverage">
         <pattern>
@@ -214,14 +209,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.aston.secondTask.servlets" />
-      <option name="MAIN_CLASS_NAME" value="com.aston.secondTask.servlets.PutRestHandlerTest" />
-      <option name="METHOD_NAME" value="testUpdateCourseName" />
+      <option name="MAIN_CLASS_NAME" value="com.aston.secondTask.servlets.RestApiServletTest" />
+      <option name="METHOD_NAME" value="testDoPut_Student_SQLException" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PutRestHandlerTest.testUpdateStudentCoordinator" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="RestApiServletTest.testDoPut_Successful" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="task-Rest-JDBCT" />
       <extension name="coverage">
         <pattern>
@@ -230,8 +225,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.aston.secondTask.servlets" />
-      <option name="MAIN_CLASS_NAME" value="com.aston.secondTask.servlets.PutRestHandlerTest" />
-      <option name="METHOD_NAME" value="testUpdateStudentCoordinator" />
+      <option name="MAIN_CLASS_NAME" value="com.aston.secondTask.servlets.RestApiServletTest" />
+      <option name="METHOD_NAME" value="testDoPut_Successful" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -333,10 +328,10 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.ContextListenerTest.testContextInitialized" />
-      <item itemvalue="JUnit.PutRestHandlerTest.testUpdateCoordinatorName" />
-      <item itemvalue="JUnit.PutRestHandlerTest.testUpdateCourseName" />
-      <item itemvalue="JUnit.PutRestHandlerTest.testUpdateStudentCoordinator" />
+      <item itemvalue="JUnit.RestApiServletTest.testDoPut_Course_SQLException" />
+      <item itemvalue="JUnit.RestApiServletTest.testDoPut_Not_Successful" />
+      <item itemvalue="JUnit.RestApiServletTest.testDoPut_Student_SQLException" />
+      <item itemvalue="JUnit.RestApiServletTest.testDoPut_Successful" />
       <item itemvalue="JUnit.java in task-Rest-JDBCT" />
       <item itemvalue="Maven.task-Rest-JDBCT [install]" />
       <item itemvalue="Maven.task-Rest-JDBCT [install] (1)" />
@@ -345,10 +340,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.java in task-Rest-JDBCT" />
-        <item itemvalue="JUnit.ContextListenerTest.testContextInitialized" />
-        <item itemvalue="JUnit.PutRestHandlerTest.testUpdateCoordinatorName" />
-        <item itemvalue="JUnit.PutRestHandlerTest.testUpdateCourseName" />
-        <item itemvalue="JUnit.PutRestHandlerTest.testUpdateStudentCoordinator" />
+        <item itemvalue="JUnit.RestApiServletTest.testDoPut_Student_SQLException" />
+        <item itemvalue="JUnit.RestApiServletTest.testDoPut_Course_SQLException" />
+        <item itemvalue="JUnit.RestApiServletTest.testDoPut_Not_Successful" />
+        <item itemvalue="JUnit.RestApiServletTest.testDoPut_Successful" />
       </list>
     </recent_temporary>
   </component>
@@ -457,7 +452,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722858958728</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="testy 66 -11 commit">
+      <option name="closed" value="true" />
+      <created>1722934267389</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1722934267389</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -493,8 +496,10 @@
     <MESSAGE value="7 commit" />
     <MESSAGE value="8 commit" />
     <MESSAGE value="change pom.xm- it works correctly 9 commit" />
+    <MESSAGE value="testy 66 commit" />
     <MESSAGE value="all works correctly : build and tests 10 commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="all works correctly : build and tests 10 commit" />
+    <MESSAGE value="testy 66 -11 commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="testy 66 -11 commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -508,7 +513,7 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/SecondTaskMavenServletJDBC$java_in_task_Rest_JDBCT.ic" NAME="java in task-Rest-JDBCT Coverage Results" MODIFIED="1722933753356" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/SecondTaskMavenServletJDBC$java_in_task_Rest_JDBCT.ic" NAME="java in task-Rest-JDBCT Coverage Results" MODIFIED="1722959669764" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/SecondTaskMavenServletJDBC$DAOTests_in_task_Rest_JDBCT.ic" NAME="DAOTests in task-Rest-JDBCT Coverage Results" MODIFIED="1722801929918" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
