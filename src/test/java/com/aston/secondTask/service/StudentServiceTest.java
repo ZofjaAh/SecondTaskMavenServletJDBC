@@ -54,7 +54,7 @@ class StudentServiceTest {
        StudentEntity studentEntity = EntityFixtures.student_1_1()
                 .withCourses(Set.of(EntityFixtures.course_1_0(), EntityFixtures.course_2_0()));
        StudentDTO studentDTO = DTOFixtures.student_1_0()
-               .withCourses(Set.of(DTOFixtures.course_1_0(), DTOFixtures.course_2_0()));
+               .withCourses(Set.of(DTOFixtures.course_1_3(), DTOFixtures.course_2_3()));
         int studentId = 1;
         when(studentDAO.findById( 1)).thenReturn(studentEntity);
        StudentDTO result = studentService.findStudentWithCoursesByID(studentId);

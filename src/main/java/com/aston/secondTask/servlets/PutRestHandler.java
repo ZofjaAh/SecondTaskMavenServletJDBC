@@ -25,19 +25,19 @@ public class PutRestHandler extends RestApiHandler {
     @Override
     public int handleRestRequest(String requestPath, HttpServletRequest req) throws IOException {
         int update_rows = 0;
-        if (requestPath.matches("^/course/\\d+$")) {
+        if (requestPath.matches("^/course/?\\d+$")) {
             int course_id = getCurrentId(requestPath);
             String bodyParams = req.getReader().lines().collect(Collectors.joining());
             Map<String, String> map = objectMapper.readValue(bodyParams, new TypeReference<Map<String, String>>() {
             });
             return courseService.updateCourseName(course_id, map.get("name"));
-        } else if (requestPath.matches("^/coordinator/\\d+$")) {
+        } else if (requestPath.matches("^/coordinator/?\\d+$")) {
             int coordinator_id = getCurrentId(requestPath);
             String bodyParams = req.getReader().lines().collect(Collectors.joining());
             Map<String, String> map = objectMapper.readValue(bodyParams, new TypeReference<Map<String, String>>() {
             });
             return coordinatorService.updateCoordinatorName(coordinator_id, map.get("name"));
-        } else if (requestPath.matches("^/student/\\d+$")) {
+        } else if (requestPath.matches("^/student/?\\d+$")) {
             int student_id = getCurrentId(requestPath);
             String bodyParams = req.getReader().lines().collect(Collectors.joining());
             Map<String, String> map = objectMapper.readValue(bodyParams, new TypeReference<Map<String, String>>() {

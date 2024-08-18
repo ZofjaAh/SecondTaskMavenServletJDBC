@@ -14,6 +14,14 @@ public class CoordinatorDTO  {
     private int id;
     private String name;
     private Set<StudentDTO> students;
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class StudentDTO {
+        private int id;
+        private String name;
+    }
 
 
 

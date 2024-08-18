@@ -13,8 +13,14 @@ import java.util.Set;
 public class StudentDTO {
     private int id;
     private String name;
-    private int coordinatorId;
-    private String coordinatorName;
+    private Integer coordinatorId;
     private Set<CourseDTO> courses;
-
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class CourseDTO {
+        private int id;
+        private String name;
+}
 }

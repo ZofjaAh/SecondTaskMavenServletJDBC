@@ -8,10 +8,13 @@ import java.sql.SQLException;
 @NoArgsConstructor
 public class DateBaseConnectionCreator {
     public  Connection getConnection() {
+        try {
+            return DatabaseConnector.getInstance().getConnection();
+        }catch (SQLException e){
+            throw new RuntimeException("Failed to get a new connection", e);
+        }
 
-        return DatabaseConnector.getInstance().getConnection();
+
     }
-    public void closeConnection() throws SQLException {
-        DatabaseConnector.getInstance().closeConnection();
-    }
+
 }

@@ -80,7 +80,7 @@ public class StudentRepositoryTest extends DataBaseSQLContainer {
         Mockito.when(dateBaseConnectionCreator.getConnection())
                 .thenReturn(DriverManager.getConnection(postgreSQLContainer.getJdbcUrl(),
                         postgreSQLContainer.getUsername(), postgreSQLContainer.getPassword()));
-        int result = studentRepository.createStudentWithCoordinator(studentEntity, 2);
+        int result = studentRepository.createStudentWithCoordinator(studentEntity, coordinatorId);
         assertEquals(studentId, result);
 
     }

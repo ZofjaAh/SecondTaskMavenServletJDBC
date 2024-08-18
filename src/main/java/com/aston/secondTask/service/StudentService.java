@@ -8,6 +8,7 @@ import com.aston.secondTask.servlets.DTO.StudentDTO;
 import lombok.AllArgsConstructor;
 
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
@@ -19,7 +20,8 @@ public class StudentService {
         return StudentDTO.builder()
                 .id(studentEntity.getId())
                 .name(studentEntity.getName())
-                .coordinatorId(studentEntity.getCoordinator().getId())
+                .coordinatorId(studentEntity.getCoordinator() != null?
+                        studentEntity.getCoordinator().getId(): null)
                 .courses(studentEntity.getCourses().stream()
                         .map(this::getCourseDTO)
                         .collect(Collectors.toSet()))
@@ -47,8 +49,8 @@ public class StudentService {
         return studentDAO.addCourse(studentId, courseId);
     }
 
-    private CourseDTO getCourseDTO(CourseEntity course) {
-        return CourseDTO.builder()
+    private StudentDTO.CourseDTO getCourseDTO(CourseEntity course) {
+        return StudentDTO.CourseDTO.builder()
                 .id(course.getId())
                 .name(course.getName())
                 .build();

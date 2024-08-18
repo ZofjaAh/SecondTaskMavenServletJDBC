@@ -17,11 +17,9 @@ import static com.aston.secondTask.infrastructure.repository.queries.SQLInitQuer
 public class DatabaseConnector {
 
     private static volatile DatabaseConnector instance;
-    private Connection connection;
     private final Properties dbProperties = new Properties();
     private static final String DB_PATH = Thread.currentThread().getContextClassLoader()
             .getResource("db.properties").getPath();
-
 
 
     public static DatabaseConnector getInstance() {
@@ -32,7 +30,6 @@ public class DatabaseConnector {
                 }
             }
         }
-
         return instance;
     }
 
@@ -40,84 +37,65 @@ public class DatabaseConnector {
         try {
             setProperties();
             loadDatabaseDriver();
-            getConnection(dbProperties.getProperty("url"),
-                    dbProperties.getProperty("username"),
-                    dbProperties.getProperty("password"));
-
             if (isDataBaseExists()) {
                 log.info("The database has already been created");
             } else {
-                try (Statement s = connection.createStatement()) {
-                    s.executeUpdate(String.valueOf(CREATE_DATABASE));
-                    s.executeUpdate(dbProperties.getProperty("username") + "=# \\c"
-                                    + dbProperties.getProperty("database_name") + ";");
-                    s.executeUpdate(String.valueOf(CREATE_COORDINATOR_TABLE));
-                    s.executeUpdate(String.valueOf(CREATE_COURSE_TABLE));
-                    s.executeUpdate(String.valueOf(CREATE_STUDENT_TABLE));
-                    s.executeUpdate(String.valueOf(CREATE_STUDENT_COURSE_TABLE));
-                    log.info("Database is created.");
-                } catch (SQLException e) {
-                    log.error("SQLException with creation database [{}]", e.getMessage());
-                    throw new DatabaseConnectorException(e);
-                }
+                createDatabase();
             }
 
-        } catch (SQLException e) {
-            log.error("SQLException with connection to database [{}]", e.getMessage());
+        } catch (IOException | ClassNotFoundException e) {
+            log.error("Exception with connection to database [{}]", e.getMessage());
             throw new DatabaseConnectorException(e);
         }
     }
 
 
-    private void setProperties() {
+    private void setProperties() throws IOException{
+            dbProperties.load(new FileInputStream(DB_PATH));
 
-            try{   dbProperties.load(new FileInputStream(DB_PATH));
-            }  catch (IOException e){
-            log.error("IOException with loading database properties [{}]", e.getMessage());
-            throw new DatabaseConnectorException(e);
-        }
     }
 
-    private void loadDatabaseDriver() {
-        try {
+
+    private void loadDatabaseDriver() throws ClassNotFoundException {
             Class.forName(dbProperties.getProperty("driver"));
             log.info("Loading driver success.");
-        } catch (ClassNotFoundException e) {
-            log.error("ClassNotFoundException with registration database driver [{}]", e.getMessage());
-            throw new DatabaseConnectorException(e);
-        }
+
     }
 
-
-    private Connection getConnection(String url, String userName, String password) throws SQLException {
-        connection = DriverManager.getConnection(url, userName, password);
-        return connection;
+    public Connection getConnection() throws SQLException {
+        return  DriverManager.getConnection(dbProperties.getProperty("url"),
+                dbProperties.getProperty("username"),
+                dbProperties.getProperty("password"));
     }
 
     private boolean isDataBaseExists() {
-        try (Statement s = connection.createStatement();) {
+        try (Connection connection = getConnection()) {
+            String databaseName = connection.getCatalog();
+            log.info("databaseName: [{}]", databaseName);
+            log.info("databaseName with DbProperties: [{}]", dbProperties.getProperty("database_name"));
 
-                String databaseName = connection.getCatalog();
-                log.info("databaseName: [{}]", databaseName);
-                log.info("databaseName with DbProperties: [{}]", dbProperties.getProperty("database_name"));
-
-                if (databaseName.equalsIgnoreCase(dbProperties.getProperty("database_name"))) {
-                     return true;
-
-            }
+            return databaseName.equalsIgnoreCase(dbProperties.getProperty("database_name"));
         } catch (Exception e) {
             log.error("Exception with database existence check : [{}]", e.getMessage());
             throw new DatabaseConnectorException(e);
         }
-
-        return false;
     }
 
-    public void closeConnection() throws SQLException {
-        if (connection != null && !connection.isClosed()) {
-            connection.close();
-            instance = null;
+    private void createDatabase() {
+        try (Connection connection = getConnection();
+             Statement s = connection.createStatement()) {
+            s.executeUpdate(String.valueOf(CREATE_DATABASE));
+            s.executeUpdate(String.valueOf(CREATE_COORDINATOR_TABLE));
+            s.executeUpdate(String.valueOf(CREATE_COURSE_TABLE));
+            s.executeUpdate(String.valueOf(CREATE_STUDENT_TABLE));
+            s.executeUpdate(String.valueOf(CREATE_STUDENT_COURSE_TABLE));
+            log.info("Database is created.");
+        } catch (SQLException e) {
+            log.error("SQLException with creation database [{}]", e.getMessage());
+            throw new DatabaseConnectorException(e);
         }
+
     }
+
 
 }

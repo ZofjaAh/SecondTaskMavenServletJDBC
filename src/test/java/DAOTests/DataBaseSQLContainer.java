@@ -21,17 +21,15 @@ import java.util.regex.Pattern;
 @Slf4j
 @Testcontainers
 public class DataBaseSQLContainer {
-    static final String DB_PROPERTIES_PATH = "src/main/resources/db.properties";
+    static final String DB_PROPERTIES_PATH = "src/test/resources/db.properties";
 
 
     static final Properties dbProperties = new Properties();
-//    static final String TEST_DB_SCRIPT = "TEST_DB.sql";
     @Container
     static PostgreSQLContainer<?> postgreSQLContainer = new PostgreSQLContainer<>("postgres:15.2")
             .withDatabaseName(getPropertySource("database_name"))
             .withUsername(getPropertySource("username"))
             .withPassword(getPropertySource("password"));
-//            .withInitScript(TEST_DB_SCRIPT);
 
     static String getPropertySource(String source) {
         try {

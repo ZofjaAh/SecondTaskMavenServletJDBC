@@ -56,7 +56,7 @@ public class CoordinatorService {
                 .id(coordinatorEntity.getId())
                 .name(coordinatorEntity.getName())
                 .students(coordinatorEntity.getStudents().stream()
-                        .map(entity -> StudentDTO.builder().id(entity.getId())
+                        .map(entity -> CoordinatorDTO.StudentDTO.builder().id(entity.getId())
                                 .name(entity.getName())
                                 .build())
                         .collect(Collectors.toSet()))

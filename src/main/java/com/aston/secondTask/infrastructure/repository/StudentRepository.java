@@ -132,7 +132,7 @@ public class StudentRepository extends DateBaseConnectionCreator implements Stud
                 }
             }
             studentEntity = createStudentEntityFromListStudents(studentEntityList);
-        } catch (SQLException e) {
+        } catch (SQLException | IndexOutOfBoundsException e) {
             log.error("SQLException with loading student by Id: [{}] - [{}]", studentId, e.getMessage());
 
             throw new ProcessingException(e.getMessage());
@@ -147,9 +147,11 @@ public class StudentRepository extends DateBaseConnectionCreator implements Stud
 
     private StudentEntity createStudentEntityFromListStudents(List<StudentEntity> students) {
         Set<CourseEntity> courseEntitySet = students.stream()
-                .flatMap(student -> student.getCourses().stream())
+                .filter(student -> Objects.nonNull(student.getCourses()))
+                .flatMap( student-> student.getCourses().stream())
                 .collect(Collectors.toSet());
         return students.get(0).withCourses(courseEntitySet);
+
     }
 
 

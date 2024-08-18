@@ -32,8 +32,8 @@ public class DTOFixtures {
                 .build();
     }
 
-    public static StudentDTO student_2_0() {
-        return StudentDTO.builder()
+    public static CoordinatorDTO.StudentDTO student_2_0() {
+        return CoordinatorDTO.StudentDTO.builder()
                 .id(2)
                 .name("Nikol BadVoice")
                 .build();
@@ -50,8 +50,26 @@ public class DTOFixtures {
                 .name("Voicing")
                 .build();
     }
+    public static StudentDTO.CourseDTO course_1_3() {
+        return StudentDTO.CourseDTO.builder()
+                .id(1)
+                .name("Voicing")
+                .build();
+    }
+    public static StudentDTO.CourseDTO course_1_2() {
+        return StudentDTO.CourseDTO.builder()
+                .id(1)
+                .name("Voicing")
+                .build();
+    }
     public static CourseDTO course_2_0() {
         return CourseDTO.builder()
+                .id(2)
+                .name("Play Chess")
+                .build();
+    }
+    public static StudentDTO.CourseDTO course_2_3() {
+        return StudentDTO.CourseDTO.builder()
                 .id(2)
                 .name("Play Chess")
                 .build();
@@ -75,7 +93,7 @@ public class DTOFixtures {
                 .id(1)
                 .name("Ivan Goodhear")
                 .coordinatorId(1)
-                .courses(Set.of(course_1_0()))
+                .courses(Set.of(course_1_2()))
                 .build();
     }
 }

@@ -127,7 +127,7 @@ DateBaseConnectionCreator dateBaseConnectionCreator;
                 }
             }
             coordinatorEntity = createCoordinatorEntityFromListCoordinators(coordinatorEntityList);
-        } catch (SQLException e) {
+        } catch (SQLException | IndexOutOfBoundsException e) {
             log.error("SQLException with loading coordinator by Id: [{}] - [{}]", coordinatorId, e.getMessage());
             throw new ProcessingException(e.getMessage());
         }
@@ -141,6 +141,7 @@ DateBaseConnectionCreator dateBaseConnectionCreator;
 
     private CoordinatorEntity createCoordinatorEntityFromListCoordinators(List<CoordinatorEntity> coordinators) {
         Set<StudentEntity> studentEntitySet = coordinators.stream()
+                .filter(coordinator-> Objects.nonNull(coordinator.getStudents()))
                 .flatMap((CoordinatorEntity coordinator) -> coordinator.getStudents().stream())
                 .collect(Collectors.toSet());
         return coordinators.get(0).withStudents(studentEntitySet);
