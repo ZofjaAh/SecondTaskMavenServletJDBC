@@ -15,14 +15,22 @@ import lombok.extern.slf4j.Slf4j;
 import java.sql.*;
 import java.util.*;
 import java.util.stream.Collectors;
-
+/**
+ * Repository for handling student-related database operations.
+ */
 @AllArgsConstructor
 @Slf4j
 @Setter
 public class StudentRepository extends DateBaseConnectionCreator implements StudentDAO {
 
     DateBaseConnectionCreator dateBaseConnectionCreator;
-
+    /**
+     * Creates a new student with a specified coordinator.
+     *
+     * @param studentEntity the student entity
+     * @param coordinatorId the ID of the coordinator
+     * @return the generated ID of the new student
+     */
     @Override
     public int createStudentWithCoordinator(StudentEntity studentEntity, int coordinatorId) {
         int student_Id;
@@ -47,6 +55,12 @@ public class StudentRepository extends DateBaseConnectionCreator implements Stud
 
         return student_Id;
     }
+    /**
+     * Deletes a student by ID.
+     *
+     * @param studentId the ID of the student
+     * @return the number of rows affected
+     */
 
     @Override
     public int deleteStudent(int studentId)  {
@@ -76,7 +90,13 @@ public class StudentRepository extends DateBaseConnectionCreator implements Stud
     }
         return updated_rows;
     }
-
+    /**
+     * Updates the coordinator for a student.
+     *
+     * @param studentId the ID of the student
+     * @param coordinatorId the ID of the coordinator
+     * @return the number of rows affected
+     */
 
     @Override
     public int updateCoordinator(int studentId, int coordinatorId) {
@@ -95,7 +115,14 @@ public class StudentRepository extends DateBaseConnectionCreator implements Stud
         }
         return rowsUpdated;
     }
-
+    /**
+     * Adds a course to a student.
+     *
+     * @param studentId the ID of the student
+     * @param courseId the ID of the course
+     * @return the number of rows affected
+     * @throws ProcessingException if an error occurs during processing
+     */
     @Override
     public int addCourse(int studentId, int courseId) {
         int rowsUpdated = 0;
@@ -116,7 +143,14 @@ public class StudentRepository extends DateBaseConnectionCreator implements Stud
 
         return rowsUpdated;
     }
-
+    /**
+     * Finds a student by ID along with their courses.
+     *
+     * @param studentId the ID of the student
+     * @return the StudentEntity containing student and course information
+     * @throws ProcessingException if an error occurs during processing
+     * @throws NotFoundException if the student with the specified ID does not exist
+     */
     @Override
     public StudentEntity findById(int studentId) {
         List<StudentEntity> studentEntityList = new ArrayList<>();
@@ -144,6 +178,12 @@ public class StudentRepository extends DateBaseConnectionCreator implements Stud
             throw new NotFoundException("Sorry, coordinator with such Id: [{}] doesn't exist");
         }
     }
+    /**
+     * Creates a StudentEntity from a list of students.
+     *
+     * @param students the list of StudentEntity
+     * @return the StudentEntity with courses
+     */
 
     private StudentEntity createStudentEntityFromListStudents(List<StudentEntity> students) {
         Set<CourseEntity> courseEntitySet = students.stream()
@@ -154,14 +194,13 @@ public class StudentRepository extends DateBaseConnectionCreator implements Stud
 
     }
 
-
-    private boolean courseNotAdded(StudentEntity studentEntity, int courseId) {
-        return
-                Objects.isNull(studentEntity.getCourses()) | studentEntity.getCourses()
-                        .stream().noneMatch(course -> course.getId() != courseId);
-
-    }
-
+    /**
+     * Parses a StudentEntity from a ResultSet.
+     *
+     * @param result the ResultSet containing student data
+     * @return the StudentEntity
+     * @throws SQLException if an error occurs while accessing the ResultSet
+     */
     public StudentEntity parseStudentFromResultSet(ResultSet result) throws SQLException {
         StudentEntity student = new StudentEntity();
         student.setId(Integer.parseInt(result.getString("student_id")));

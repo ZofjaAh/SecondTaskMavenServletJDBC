@@ -11,7 +11,9 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
+/**
+ * Handles PUT REST API requests for updating various entities such as courses, coordinators, and students.
+ */
 public class PutRestHandler extends RestApiHandler {
     public PutRestHandler(CoordinatorService coordinatorService, StudentService studentService, CourseService courseService) {
         super(coordinatorService, studentService, courseService);
@@ -21,6 +23,14 @@ public class PutRestHandler extends RestApiHandler {
     public Optional<String> handleRestRequest(String requestPath) throws JsonProcessingException {
         throw new UnsupportedOperationException();
     }
+    /**
+     * Handles a REST request and returns the number of updated rows.
+     *
+     * @param requestPath the path of the request
+     * @param req the HttpServletRequest object that contains the request the client made to the servlet
+     * @return the number of updated rows
+     * @throws IOException if an input or output error is detected when the servlet handles the request
+     */
 
     @Override
     public int handleRestRequest(String requestPath, HttpServletRequest req) throws IOException {
@@ -47,6 +57,12 @@ public class PutRestHandler extends RestApiHandler {
 
         return update_rows;
     }
+    /**
+     * Extracts the current ID from the request path.
+     *
+     * @param requestPath the path of the request
+     * @return the extracted ID
+     */
 
     private static int getCurrentId(String requestPath) {
         String[] parts = requestPath.split("/");

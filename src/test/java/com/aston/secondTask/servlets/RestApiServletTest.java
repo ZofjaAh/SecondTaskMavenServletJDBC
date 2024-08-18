@@ -68,7 +68,7 @@ class RestApiServletTest {
         restApiServlet.doGet(request, response);
 
         verify(response).setContentType("application/json; charset=UTF-8");
-        verify(response).setStatus(200);
+        verify(response).setStatus(HttpServletResponse.SC_OK);
         verify(writer).write("Success");
     }
 
@@ -80,7 +80,7 @@ class RestApiServletTest {
 
         restApiServlet.doGet(request, response);
 
-        verify(response).setStatus(404);
+        verify(response).setStatus(HttpServletResponse.SC_NOT_FOUND);
         verify(writer).write("Coordinator not found: Database error");
     }
 
@@ -92,7 +92,7 @@ class RestApiServletTest {
 
         restApiServlet.doGet(request, response);
 
-        verify(response).setStatus(404);
+        verify(response).setStatus(HttpServletResponse.SC_NOT_FOUND);
         verify(writer).write("Student not found: Database error");
     }
 
@@ -104,7 +104,7 @@ class RestApiServletTest {
 
         restApiServlet.doGet(request, response);
 
-        verify(response).setStatus(404);
+        verify(response).setStatus(HttpServletResponse.SC_NOT_FOUND);
         verify(writer).write("Courses not found: Database error");
     }
 
@@ -116,7 +116,7 @@ class RestApiServletTest {
 
         restApiServlet.doGet(request, response);
 
-        verify(response).setStatus(404);
+        verify(response).setStatus(HttpServletResponse.SC_NOT_FOUND);
         verify(writer).write("Coordinators not found: Database error");
     }
 
@@ -129,7 +129,7 @@ class RestApiServletTest {
 
         restApiServlet.doGet(request, response);
 
-        verify(response).setStatus(500);
+        verify(response).setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         verify(writer, never()).write(anyString());
     }
 
@@ -143,7 +143,7 @@ class RestApiServletTest {
         restApiServlet.doPost(request, response);
 
         verify(response).setContentType("application/json; charset=UTF-8");
-        verify(response).setStatus(201);
+        verify(response).setStatus(HttpServletResponse.SC_CREATED);
         verify(writer).write("{ \"coordinator_id\" : \"1\" }");
     }
 
@@ -157,7 +157,7 @@ class RestApiServletTest {
         restApiServlet.doPost(request, response);
 
         verify(response).setContentType("application/json; charset=UTF-8");
-        verify(response).setStatus(201);
+        verify(response).setStatus(HttpServletResponse.SC_CREATED);
         verify(writer).write("{ \"course_id\" : \"2\" }");
     }
 
@@ -171,7 +171,7 @@ class RestApiServletTest {
         restApiServlet.doPost(request, response);
 
         verify(response).setContentType("application/json; charset=UTF-8");
-        verify(response).setStatus(201);
+        verify(response).setStatus(HttpServletResponse.SC_CREATED);
         verify(writer).write("{ \"student_id\" : \"1\" }");
     }
 
@@ -185,7 +185,7 @@ class RestApiServletTest {
         restApiServlet.doPost(request, response);
 
         verify(response).setContentType("application/json; charset=UTF-8");
-        verify(response).setStatus(201);
+        verify(response).setStatus(HttpServletResponse.SC_CREATED);
         verify(writer).write("{ \"student_course_id\" : \"2\" }");
     }
 
@@ -197,7 +197,7 @@ class RestApiServletTest {
 
         restApiServlet.doPost(request, response);
 
-        verify(response).setStatus(400);
+        verify(response).setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         verify(writer).write("Course not created: Database error");
     }
 
@@ -209,7 +209,7 @@ class RestApiServletTest {
 
         restApiServlet.doPost(request, response);
 
-        verify(response).setStatus(400);
+        verify(response).setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         verify(writer).write("Student not created: Database error");
     }
 
@@ -221,7 +221,7 @@ class RestApiServletTest {
 
         restApiServlet.doPost(request, response);
 
-        verify(response).setStatus(400);
+        verify(response).setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         verify(writer).write("Coordinator not created: Database error");
     }
 
@@ -233,7 +233,7 @@ class RestApiServletTest {
 
         restApiServlet.doPost(request, response);
 
-        verify(response).setStatus(400);
+        verify(response).setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         verify(writer).write("Student course not created: Database error");
     }
 
@@ -246,7 +246,7 @@ class RestApiServletTest {
 
         restApiServlet.doDelete(request, response);
 
-        verify(response).setStatus(200);
+        verify(response).setStatus(HttpServletResponse.SC_OK);
     }
 
     @Test
@@ -258,7 +258,7 @@ class RestApiServletTest {
 
         restApiServlet.doDelete(request, response);
 
-        verify(response).setStatus(400);
+        verify(response).setStatus(HttpServletResponse.SC_BAD_REQUEST);
         verify(writer).write("Coordinator not deleted: Something wrong");
     }
 
@@ -270,7 +270,7 @@ class RestApiServletTest {
 
         restApiServlet.doDelete(request, response);
 
-        verify(response).setStatus(400);
+        verify(response).setStatus(HttpServletResponse.SC_BAD_REQUEST);
         verify(writer).write("Course not deleted: Database error");
     }
 
@@ -284,7 +284,7 @@ class RestApiServletTest {
         restApiServlet.doPut(request, response);
 
         verify(response).setContentType("application/json; charset=UTF-8");
-        verify(response).setStatus(200);
+        verify(response).setStatus(HttpServletResponse.SC_OK);
     }
     @Test
     public void testDoPut_Not_Successful() throws Exception {
@@ -295,7 +295,7 @@ class RestApiServletTest {
 
         restApiServlet.doPut(request, response);
 
-        verify(response).setStatus(400);
+        verify(response).setStatus(HttpServletResponse.SC_BAD_REQUEST);
         verify(writer).write("Coordinator not updated: Something wrong");
     }
     @Test
@@ -306,7 +306,7 @@ class RestApiServletTest {
 
         restApiServlet.doPut(request, response);
 
-        verify(response).setStatus(400);
+        verify(response).setStatus(HttpServletResponse.SC_BAD_REQUEST);
         verify(writer).write("Course not updated: Database error");
     }
     @Test
@@ -317,7 +317,7 @@ class RestApiServletTest {
 
         restApiServlet.doPut(request, response);
 
-        verify(response).setStatus(400);
+        verify(response).setStatus(HttpServletResponse.SC_BAD_REQUEST);
         verify(writer).write("Student not updated: Database error");
     }
 

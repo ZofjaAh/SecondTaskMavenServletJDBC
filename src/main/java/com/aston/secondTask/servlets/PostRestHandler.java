@@ -13,18 +13,41 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
+/**
+ * Handles REST API POST requests for various entities such as courses, coordinators, and students.
+ */
 public class PostRestHandler extends RestApiHandler {
-
+    /**
+     * Constructs a new PostRestHandler with the specified services.
+     *
+     * @param coordinatorService the service for handling coordinator-related operations
+     * @param studentService the service for handling student-related operations
+     * @param courseService the service for handling course-related operations
+     */
     public PostRestHandler(CoordinatorService coordinatorService, StudentService studentService, CourseService courseService) {
         super(coordinatorService, studentService, courseService);
     }
+    /**
+     * Handles a REST request and returns an optional string response.
+     *
+     * @param requestPath the path of the request
+     * @return an optional string response
+     * @throws UnsupportedOperationException always thrown as this method is not supported
+     */
 
     @Override
     public Optional<String> handleRestRequest(String requestPath) {
         throw new UnsupportedOperationException();
     }
 
+    /**
+     * Handles a REST request and returns the generated ID.
+     *
+     * @param requestPath the path of the request
+     * @param req the HTTP servlet request
+     * @return the generated ID
+     * @throws IOException if an I/O error occurs while reading the request
+     */
     @Override
     public int handleRestRequest(String requestPath, HttpServletRequest req) throws IOException {
         int generated_id = 0;
@@ -50,7 +73,12 @@ public class PostRestHandler extends RestApiHandler {
 
         return generated_id;
     }
-
+    /**
+     * Extracts the current ID from the request path.
+     *
+     * @param requestPath the path of the request
+     * @return the extracted ID
+     */
     private int getCurrentId(String requestPath) {
         String[] parts = requestPath.split("/");
         return Integer.parseInt(parts[2]);

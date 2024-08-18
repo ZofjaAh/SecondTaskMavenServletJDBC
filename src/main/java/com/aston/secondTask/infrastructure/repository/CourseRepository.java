@@ -12,6 +12,9 @@ import lombok.extern.slf4j.Slf4j;
 import java.sql.*;
 import java.util.HashSet;
 import java.util.Set;
+/**
+ * Repository for handling course-related database operations.
+ */
 
 @AllArgsConstructor
 @Slf4j
@@ -20,6 +23,12 @@ public class CourseRepository extends DateBaseConnectionCreator implements Cours
 
     DateBaseConnectionCreator dateBaseConnectionCreator;
 
+    /**
+     * Find all courses.
+     *
+     * @return a set of CourseEntity objects
+     * @throws ProcessingException if an error occurs while executing the SQL query
+     */
     @Override
     public Set<CourseEntity> findAll() {
         Set<CourseEntity> courseEntitySet = new HashSet<>();
@@ -40,6 +49,13 @@ public class CourseRepository extends DateBaseConnectionCreator implements Cours
         return courseEntitySet;
     }
 
+    /**
+     * Creates a new course.
+     *
+     * @param course the course entity
+     * @return the generated ID of the new course
+     * @throws ProcessingException if an error occurs while executing the SQL query
+     */
     @Override
     public int createCourse(CourseEntity course) {
         try (Connection connection = dateBaseConnectionCreator.getConnection();
@@ -59,6 +75,14 @@ public class CourseRepository extends DateBaseConnectionCreator implements Cours
             throw new ProcessingException(e.getMessage());
         }
     }
+    /**
+     * Updates the name of a course.
+     *
+     * @param courseId the ID of the course to be updated
+     * @param courseName the new name of the course
+     * @return the number of rows updated
+     * @throws ProcessingException if an error occurs while executing the SQL query
+     */
 
     @Override
     public int updateCourseName(int courseId, String courseName) {
@@ -78,6 +102,13 @@ public class CourseRepository extends DateBaseConnectionCreator implements Cours
         return rowsUpdated;
     }
 
+    /**
+     * Deletes a course by ID.
+     *
+     * @param courseId the ID of the course
+     * @return the number of rows updated
+     * @throws ProcessingException if an error occurs while executing the SQL query
+     */
     @Override
     public int deleteCourse(int courseId) {
         int updated_rows = 0;
@@ -109,7 +140,13 @@ public class CourseRepository extends DateBaseConnectionCreator implements Cours
 
         return updated_rows;
     }
-
+    /**
+     * Parses a CourseEntity from a ResultSet.
+     *
+     * @param result the ResultSet containing course data
+     * @return a CourseEntity
+     * @throws SQLException if an error occurs while accessing the ResultSet
+     */
     public CourseEntity parseCourseFromResultSet(ResultSet result) throws SQLException {
         CourseEntity course = new CourseEntity();
         course.setId(Integer.parseInt(result.getString("course_id")));

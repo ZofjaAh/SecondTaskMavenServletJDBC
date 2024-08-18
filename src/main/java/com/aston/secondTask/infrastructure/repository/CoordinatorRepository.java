@@ -14,7 +14,9 @@ import lombok.extern.slf4j.Slf4j;
 import java.sql.*;
 import java.util.*;
 import java.util.stream.Collectors;
-
+/**
+ * Repository for handling coordinator-related database operations.
+ */
 @AllArgsConstructor
 @Slf4j
 @Setter
@@ -23,6 +25,11 @@ public class CoordinatorRepository  implements CoordinatorDAO {
 
 DateBaseConnectionCreator dateBaseConnectionCreator;
 
+    /**
+     * Finds all coordinators.
+     *
+     * @return a list of CoordinatorEntity containing all coordinators
+     */
     @Override
     public List<CoordinatorEntity> findAll() {
         List<CoordinatorEntity> coordinatorEntityList = new ArrayList<>();
@@ -41,7 +48,12 @@ DateBaseConnectionCreator dateBaseConnectionCreator;
         }
         return coordinatorEntityList;
     }
-
+    /**
+     * Creates a new coordinator.
+     *
+     * @param coordinator the coordinator entity
+     * @return the generated ID of the new coordinator
+     */
     @Override
     public int createCoordinator(CoordinatorEntity coordinator)  {
         try (Connection connection = dateBaseConnectionCreator.getConnection();
@@ -62,7 +74,12 @@ DateBaseConnectionCreator dateBaseConnectionCreator;
         }
     }
 
-
+    /**
+     * Deletes a coordinator by ID.
+     *
+     * @param coordinatorId the ID of the coordinator
+     * @return the number of rows affected
+     */
     @Override
     public int deleteById(int coordinatorId){
         int updated_rows = 0;
@@ -92,6 +109,13 @@ DateBaseConnectionCreator dateBaseConnectionCreator;
         return updated_rows;
     }
 
+    /**
+     * Updates the name of a coordinator.
+     *
+     * @param coordinatorId the ID of the coordinator
+     * @param coordinatorName the new name of the coordinator
+     * @return the number of rows affected
+     */
 
     @Override
     public int updateCoordinatorName(int coordinatorId, String coordinatorName)  {
@@ -111,6 +135,14 @@ DateBaseConnectionCreator dateBaseConnectionCreator;
         return rowsUpdated;
     }
 
+    /**
+     * Finds a coordinator by ID along with their students.
+     *
+     * @param coordinatorId the ID of the coordinator
+     * @return the CoordinatorEntity containing coordinator and student information
+     * @throws ProcessingException if an error occurs during processing
+     * @throws NotFoundException if the coordinator with the specified ID does not exist
+     */
     @Override
     public CoordinatorEntity findCoordinatorWithStudentsByID(int coordinatorId) {
         List<CoordinatorEntity> coordinatorEntityList = new ArrayList<>();
@@ -139,6 +171,12 @@ DateBaseConnectionCreator dateBaseConnectionCreator;
         }
     }
 
+    /**
+     * Creates a CoordinatorEntity from a list of coordinators.
+     *
+     * @param coordinators the list of CoordinatorEntity
+     * @return the CoordinatorEntity with students
+     */
     private CoordinatorEntity createCoordinatorEntityFromListCoordinators(List<CoordinatorEntity> coordinators) {
         Set<StudentEntity> studentEntitySet = coordinators.stream()
                 .filter(coordinator-> Objects.nonNull(coordinator.getStudents()))
@@ -146,6 +184,14 @@ DateBaseConnectionCreator dateBaseConnectionCreator;
                 .collect(Collectors.toSet());
         return coordinators.get(0).withStudents(studentEntitySet);
     }
+
+    /**
+     * Parses a CoordinatorEntity from a ResultSet.
+     *
+     * @param result the ResultSet containing coordinator data
+     * @return the CoordinatorEntity
+     * @throws SQLException if an error occurs while accessing the ResultSet
+     */
     public CoordinatorEntity parseCoordinatorFromResultSet(ResultSet result) throws SQLException {
 
         CoordinatorEntity coordinator = new CoordinatorEntity();
@@ -162,6 +208,14 @@ DateBaseConnectionCreator dateBaseConnectionCreator;
         }
         return coordinator;
     }
+
+    /**
+     * Parses a CoordinatorEntity without students from a ResultSet.
+     *
+     * @param result the ResultSet containing coordinator data
+     * @return the CoordinatorEntity
+     * @throws SQLException if an error occurs while accessing the ResultSet
+     */
     public CoordinatorEntity parseCoordinatorWithoutStudentsFromResultSet(ResultSet result)
             throws SQLException {
         CoordinatorEntity coordinator = new CoordinatorEntity();
