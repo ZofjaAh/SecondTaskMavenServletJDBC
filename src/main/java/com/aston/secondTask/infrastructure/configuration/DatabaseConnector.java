@@ -96,14 +96,14 @@ public class DatabaseConnector {
 
     private boolean isDataBaseExists() {
         try (Statement s = connection.createStatement();) {
-            ResultSet rs = connection.getMetaData().getCatalogs();
 
-            while (rs.next()) {
-                String databaseName = rs.getString("TABLE_CAT");
+                String databaseName = connection.getCatalog();
+                log.info("databaseName: [{}]", databaseName);
+                log.info("databaseName with DbProperties: [{}]", dbProperties.getProperty("database_name"));
+
                 if (databaseName.equalsIgnoreCase(dbProperties.getProperty("database_name"))) {
-                    s.executeUpdate(dbProperties.getProperty("username") + "=# \\c" + dbProperties.getProperty("database_name") + ";");
-                    return true;
-                }
+                     return true;
+
             }
         } catch (Exception e) {
             log.error("Exception with database existence check : [{}]", e.getMessage());

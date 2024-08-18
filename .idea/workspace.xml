@@ -4,33 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6c91a1b6-c8a7-4f7d-b529-f2905c000ee9" name="Changes" comment="testy 80 -12 commit">
-      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/logging.properties" afterDir="false" />
+    <list default="true" id="6c91a1b6-c8a7-4f7d-b529-f2905c000ee9" name="Changes" comment="run db but with SQL mistakes 13 commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/configuration/DatabaseConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/infrastructure/configuration/DatabaseConnector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/ContextListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/ContextListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/DeleteRestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/DeleteRestHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/GetRestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/GetRestHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/PostRestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/PostRestHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/PutRestHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/PutRestHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/RestApiHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/RestApiHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/RestApiServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/aston/secondTask/servlets/RestApiServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/db.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/db.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/logback.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/logback.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/css/conf.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/images/courses.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/courses.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/registration.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/DAOTests/DataBaseSQLContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/DAOTests/DataBaseSQLContainer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/aston/secondTask/servlets/ContextListenerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/aston/secondTask/servlets/ContextListenerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/aston/secondTask/servlets/PostRestHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/aston/secondTask/servlets/PostRestHandlerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/aston/secondTask/servlets/PutRestHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/aston/secondTask/servlets/PutRestHandlerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/aston/secondTask/servlets/RestApiServletTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/aston/secondTask/servlets/RestApiServletTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,6 +121,7 @@
     "JUnit.StudentServiceTest.shouldSearchStudentWithCoursesByIdSuccessful.executor": "Run",
     "JUnit.java in task-Rest-JDBCT.executor": "Coverage",
     "Maven.task-Rest-JDBC [clean].executor": "Run",
+    "Maven.task-Rest-JDBC [compile].executor": "Run",
     "Maven.task-Rest-JDBC [install].executor": "Run",
     "Maven.task-Rest-JDBC [package].executor": "Run",
     "Maven.task-Rest-JDBCT [clean].executor": "Run",
@@ -330,9 +308,6 @@
       <option name="catalinaBase" value="C:\Users\USER\.SmartTomcat\SecondTaskMavenServletJDBC\task-Rest-JDBCT" />
       <option name="contextPath" value="/task-Rest-JDBCT" />
       <option name="docBase" value="D:\Java Trainee Intensive\SecondTaskMavenServletJDBC\src\main\webapp" />
-      <option name="envOptions">
-        <map />
-      </option>
       <option name="extraClassPath" value="" />
       <option name="port" value="8082" />
       <option name="tomcatInfo">
@@ -503,7 +478,15 @@
       <option name="project" value="LOCAL" />
       <updated>1722959918565</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="run db but with SQL mistakes 13 commit">
+      <option name="closed" value="true" />
+      <created>1723939364038</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1723939364038</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -543,7 +526,8 @@
     <MESSAGE value="all works correctly : build and tests 10 commit" />
     <MESSAGE value="testy 66 -11 commit" />
     <MESSAGE value="testy 80 -12 commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="testy 80 -12 commit" />
+    <MESSAGE value="run db but with SQL mistakes 13 commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="run db but with SQL mistakes 13 commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
