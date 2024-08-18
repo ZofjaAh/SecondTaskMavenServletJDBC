@@ -6,8 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.*;
-import java.util.Objects;
 import java.util.Properties;
 
 import static com.aston.secondTask.infrastructure.repository.queries.SQLInitQuery.*;
@@ -19,6 +19,9 @@ public class DatabaseConnector {
     private static volatile DatabaseConnector instance;
     private Connection connection;
     private final Properties dbProperties = new Properties();
+    private static final String DB_PATH = Thread.currentThread().getContextClassLoader()
+            .getResource("db.properties").getPath();
+
 
 
     public static DatabaseConnector getInstance() {
@@ -67,14 +70,12 @@ public class DatabaseConnector {
 
 
     private void setProperties() {
-        try {
-            String path = "D:\\Java Trainee Intensive\\SecondTaskMavenServletJDBC\\src\\main\\resources\\db.properties";
-            dbProperties.load(new FileInputStream(path));
-        } catch (IOException e) {
+
+            try{   dbProperties.load(new FileInputStream(DB_PATH));
+            }  catch (IOException e){
             log.error("IOException with loading database properties [{}]", e.getMessage());
             throw new DatabaseConnectorException(e);
         }
-
     }
 
     private void loadDatabaseDriver() {

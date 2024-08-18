@@ -5,10 +5,9 @@ import com.aston.secondTask.service.CourseService;
 import com.aston.secondTask.service.StudentService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import jakarta.servlet.http.HttpServletRequest;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;

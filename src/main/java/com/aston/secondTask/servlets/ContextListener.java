@@ -10,11 +10,11 @@ import com.aston.secondTask.service.DAO.CoordinatorDAO;
 import com.aston.secondTask.service.DAO.CourseDAO;
 import com.aston.secondTask.service.DAO.StudentDAO;
 import com.aston.secondTask.service.StudentService;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletContextEvent;
+import jakarta.servlet.ServletContextListener;
+import jakarta.servlet.annotation.WebListener;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
-import javax.servlet.annotation.WebListener;
 
 @WebListener
 public class ContextListener implements ServletContextListener {

@@ -7,9 +7,8 @@ import com.aston.secondTask.servlets.DTO.CoordinatorDTO;
 import com.aston.secondTask.servlets.DTO.CourseDTO;
 import com.aston.secondTask.servlets.DTO.StudentDTO;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import jakarta.servlet.http.HttpServletRequest;
 
-import javax.servlet.http.HttpServletRequest;
-import java.sql.SQLException;
 import java.util.Optional;
 import java.util.Set;
 
@@ -20,23 +19,23 @@ public class GetRestHandler extends RestApiHandler {
 
     @Override
     public Optional<String> handleRestRequest(String requestPath) throws JsonProcessingException {
-        if (requestPath.matches("^/student/\\d+$")) {
+        if (requestPath.matches("^/student/?\\d+$")) {
             int studentId = getCurrentId(requestPath);
             StudentDTO student = studentService.findStudentWithCoursesByID(studentId);
             final String jsonStudent = objectMapper.writeValueAsString(student);
             return Optional.ofNullable(jsonStudent);
 
-        } else if (requestPath.matches("^/coordinator/\\d+$")) {
+        } else if (requestPath.matches("^/coordinator/?\\d+$")) {
             int coordinatorId = getCurrentId(requestPath);
             CoordinatorDTO coordinator = coordinatorService.findById(coordinatorId);
             final String jsonCoordinator = objectMapper.writeValueAsString(coordinator);
             return Optional.ofNullable(jsonCoordinator);
 
-        } else if (requestPath.matches("^/courses/$")) {
+        } else if (requestPath.matches("^/courses/?$")) {
             final Set<CourseDTO> allCourses = courseService.findAll();
             return Optional.ofNullable(objectMapper.writeValueAsString(allCourses));
 
-        } else if (requestPath.matches("^/coordinators/$")) {
+        } else if (requestPath.matches("^/coordinators/?$")) {
             final Set<CoordinatorDTO> allCoordinators = coordinatorService.findAll();
             return Optional.ofNullable(objectMapper.writeValueAsString(allCoordinators));
 

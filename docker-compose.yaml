@@ -2,40 +2,50 @@ version: "3.8"
 services:
   db:
     image: postgres:15.0
+    hostname: db
     container_name: maven_servlet_jdbc
     ports:
       - "5432:5432"
     volumes:
-      - ./src/main/resources/V1_1__init maven_servlet_jdbc_user.sql:/docker-entrypoint-initdb.d/V1_1__init maven_servlet_jdbc_user.sql
-      - ./src/main/resources/V2_1__init_maven_servlet_jdbc_coordinator.sql:/docker-entrypoint-initdb.d/V2_1__init_maven_servlet_jdbc_coordinator.sql
-      - ./src/main/resources/V2_2__init_maven_servlet_jdbc_course.sql:/docker-entrypoint-initdb.d/V2_2__init_maven_servlet_jdbc_course.sql
-      - ./src/main/resources/V2_3__init_maven_servlet_jdbc_student.sql:/docker-entrypoint-initdb.d/V2_3__init_maven_servlet_jdbc_student.sql
-      - ./src/main/resources/V2_4__init_maven_servlet_jdbc_student_course.sql:/docker-entrypoint-initdb.d/V2_4__init_maven_servlet_jdbc_student_course.sql
+      - ./src/main/resources/db/V2_1__init_maven_servlet_jdbc_coordinator.sql:/docker-entrypoint-initdb.d/V2_1__init_maven_servlet_jdbc_coordinator.sql
+      - ./src/main/resources/db/V2_2__init_maven_servlet_jdbc_course.sql:/docker-entrypoint-initdb.d/V2_2__init_maven_servlet_jdbc_course.sql
+      - ./src/main/resources/db/V2_3__init_maven_servlet_jdbc_student.sql:/docker-entrypoint-initdb.d/V2_3__init_maven_servlet_jdbc_student.sql
+      - ./src/main/resources/db/V2_4__init_maven_servlet_jdbc_student_course.sql:/docker-entrypoint-initdb.d/V2_4__init_maven_servlet_jdbc_student_course.sql
     networks:
       - backend
     restart: always
     environment:
-        - POSTGRES_DB=maven_servlet_jdbc
-        - POSTGRES_USER=postgres
-        - POSTGRES_PASSWORD=postgres
+      POSTGRES_DB: maven_servlet_jdbc
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U postgres" ]
       interval: 10s
       timeout: 5s
       retries: 5
-
-
   tomcat:
     depends_on:
       - db
-    image: tomcat:9.0.91-jdk8-corretto
+    links:
+      - db
+    build:
+      context: .
+      dockerfile: Dockerfile
     volumes:
-      - ./target/taskRestJDBC.war:/usr/local/tomcat/webapps/taskRestJDBC.war
+      - ./logs:/usr/local/tomcat/logs
     ports:
-      - '8082:8082'
+      - '8082:8080'
     environment:
-      - POSTGRES_DB=maven_servlet_jdbc
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      POSTGRES_URL: jdbc:postgresql://db/maven_servlet_jdbc
+      POSTGRES_DB: maven_servlet_jdbc
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
     networks:
       - backend
+volumes:
+  logs:
+    driver: local
+networks:
+  backend:
+
+

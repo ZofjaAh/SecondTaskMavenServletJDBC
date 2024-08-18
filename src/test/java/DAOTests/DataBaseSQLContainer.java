@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
 @Slf4j
 @Testcontainers
 public class DataBaseSQLContainer {
-    static final String DB_PROPERTIES_PATH = "D:\\Java Trainee Intensive\\SecondTaskMavenServletJDBC\\src\\test\\resources\\db.properties";
+    static final String DB_PROPERTIES_PATH = "src/main/resources/db.properties";
 
 
     static final Properties dbProperties = new Properties();

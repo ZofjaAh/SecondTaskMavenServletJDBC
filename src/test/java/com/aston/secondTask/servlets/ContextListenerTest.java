@@ -6,10 +6,9 @@ import com.aston.secondTask.infrastructure.repository.StudentRepository;
 import com.aston.secondTask.service.CoordinatorService;
 import com.aston.secondTask.service.CourseService;
 import com.aston.secondTask.service.StudentService;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.ServletContextEvent;
 import org.junit.jupiter.api.Test;
-
-import javax.servlet.ServletContext;
-import javax.servlet.ServletContextEvent;
 
 import static org.mockito.Mockito.*;
 

@@ -3,9 +3,8 @@ package com.aston.secondTask.servlets;
 import com.aston.secondTask.service.CoordinatorService;
 import com.aston.secondTask.service.CourseService;
 import com.aston.secondTask.service.StudentService;
+import jakarta.servlet.http.HttpServletRequest;
 
-import javax.servlet.http.HttpServletRequest;
-import java.sql.SQLException;
 import java.util.Optional;
 
 public class DeleteRestHandler extends RestApiHandler {
