@@ -3,23 +3,20 @@ package com.aston.secondTask.servlets;
 import com.aston.secondTask.service.CoordinatorService;
 import com.aston.secondTask.service.CourseService;
 import com.aston.secondTask.service.StudentService;
-import com.aston.secondTask.servlets.DTO.CoordinatorDTO;
-import com.aston.secondTask.servlets.DTO.CourseDTO;
-import com.aston.secondTask.servlets.DTO.StudentDTO;
+import jakarta.servlet.http.HttpServletRequest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import util.DTOFixtures;
 
-import jakarta.servlet.http.HttpServletRequest;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class PutRestHandlerTest {

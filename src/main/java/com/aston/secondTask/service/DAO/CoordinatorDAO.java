@@ -2,11 +2,10 @@ package com.aston.secondTask.service.DAO;
 
 import com.aston.secondTask.entities.CoordinatorEntity;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public interface CoordinatorDAO {
-    int deleteById(int coordinatorId) ;
+    int deleteById(int coordinatorId);
 
     List<CoordinatorEntity> findAll();
 

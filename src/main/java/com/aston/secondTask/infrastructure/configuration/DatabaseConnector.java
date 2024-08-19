@@ -6,7 +6,10 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Properties;
 
 import static com.aston.secondTask.infrastructure.repository.queries.SQLInitQuery.*;
@@ -50,16 +53,18 @@ public class DatabaseConnector {
             throw new DatabaseConnectorException(e);
         }
     }
+
     /**
      * Sets the database properties from the properties file.
      *
      * @throws IOException if an error occurs while loading properties
      */
 
-    private void setProperties() throws IOException{
-            dbProperties.load(new FileInputStream(DB_PATH));
+    private void setProperties() throws IOException {
+        dbProperties.load(new FileInputStream(DB_PATH));
 
     }
+
     /**
      * Loads the database driver.
      *
@@ -67,10 +72,11 @@ public class DatabaseConnector {
      */
 
     private void loadDatabaseDriver() throws ClassNotFoundException {
-            Class.forName(dbProperties.getProperty("driver"));
-            log.info("Loading driver success.");
+        Class.forName(dbProperties.getProperty("driver"));
+        log.info("Loading driver success.");
 
     }
+
     /**
      * Gets a connection to the database.
      *
@@ -79,10 +85,11 @@ public class DatabaseConnector {
      */
 
     public Connection getConnection() throws SQLException {
-        return  DriverManager.getConnection(dbProperties.getProperty("url"),
+        return DriverManager.getConnection(dbProperties.getProperty("url"),
                 dbProperties.getProperty("username"),
                 dbProperties.getProperty("password"));
     }
+
     /**
      * Checks if the database already exists.
      *

@@ -1,15 +1,14 @@
 package com.aston.secondTask.servlets;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import jakarta.servlet.ServletContext;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
-import jakarta.servlet.ServletContext;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -41,7 +40,8 @@ class RestApiServletTest {
 
     @BeforeEach
     public void setUp() throws Exception {
-        MockitoAnnotations.openMocks(this);
+         MockitoAnnotations.openMocks(this);
+
         when(response.getWriter()).thenReturn(writer);
 
         ServletContext servletContext = mock(ServletContext.class);
@@ -279,13 +279,14 @@ class RestApiServletTest {
         String pathInfo = "/somePath";
         int updatedRows = 1;
         when(request.getPathInfo()).thenReturn(pathInfo);
-        when(putRestHandler.handleRestRequest(pathInfo, request)).thenReturn(1);
+        when(putRestHandler.handleRestRequest(pathInfo, request)).thenReturn(updatedRows);
 
         restApiServlet.doPut(request, response);
 
         verify(response).setContentType("application/json; charset=UTF-8");
         verify(response).setStatus(HttpServletResponse.SC_OK);
     }
+
     @Test
     public void testDoPut_Not_Successful() throws Exception {
         String pathInfo = "/coordinator";
@@ -298,6 +299,7 @@ class RestApiServletTest {
         verify(response).setStatus(HttpServletResponse.SC_BAD_REQUEST);
         verify(writer).write("Coordinator not updated: Something wrong");
     }
+
     @Test
     public void testDoPut_Course_SQLException() throws Exception {
         String pathInfo = "/course";
@@ -309,6 +311,7 @@ class RestApiServletTest {
         verify(response).setStatus(HttpServletResponse.SC_BAD_REQUEST);
         verify(writer).write("Course not updated: Database error");
     }
+
     @Test
     public void testDoPut_Student_SQLException() throws Exception {
         String pathInfo = "/student";

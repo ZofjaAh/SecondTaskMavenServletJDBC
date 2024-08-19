@@ -9,15 +9,13 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.lifecycle.Startables;
 import util.EntityFixtures;
 
-import java.sql.*;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.List;
 
-
-import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(MockitoExtension.class)
@@ -34,10 +32,11 @@ public class CoordinatorRepositoryTest extends DataBaseSQLContainer {
         postgreSQLContainer.stop();
     }
 
-@BeforeAll
-static void beforeAll(){
-    Startables.deepStart(postgreSQLContainer);
-}
+    @BeforeAll
+    static void beforeAll() {
+        Startables.deepStart(postgreSQLContainer);
+    }
+
     @BeforeEach
     void setup() {
 
@@ -48,8 +47,9 @@ static void beforeAll(){
         Assertions.assertTrue(postgreSQLContainer.isCreated());
         createTestTables();
     }
+
     @AfterEach
-    void afterEach(){
+    void afterEach() {
         dropAllTestTables();
     }
 
@@ -72,11 +72,12 @@ static void beforeAll(){
                 .thenReturn(DriverManager.getConnection(postgreSQLContainer.getJdbcUrl(),
                         postgreSQLContainer.getUsername(), postgreSQLContainer.getPassword()));
         CoordinatorEntity result = coordinatorRepository.findCoordinatorWithStudentsByID(coordinatorId);
-        assertEquals(coordinator.getId(), result.getId() );
-        assertEquals(coordinator.getName(), result.getName() );
-        assertEquals(coordinator.getStudents().size(), result.getStudents().size() );
+        assertEquals(coordinator.getId(), result.getId());
+        assertEquals(coordinator.getName(), result.getName());
+        assertEquals(coordinator.getStudents().size(), result.getStudents().size());
 
     }
+
     @Test
     void createCoordinatorSuccessful() throws SQLException {
         int coordinatorId = 3;
@@ -88,6 +89,7 @@ static void beforeAll(){
         assertEquals(coordinatorId, result);
 
     }
+
     @Test
     void deleteCoordinatorById() throws SQLException {
         int coordinatorId = 1;
@@ -98,6 +100,7 @@ static void beforeAll(){
         assertEquals(3, result);
 
     }
+
     @Test
     void updateCoordinatorName() throws SQLException {
         int coordinatorId = 1;

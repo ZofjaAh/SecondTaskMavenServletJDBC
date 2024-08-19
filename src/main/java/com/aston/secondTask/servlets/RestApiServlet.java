@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+
 /**
  * RestApiServlet handles REST API requests for various entities such as courses, coordinators, and students.
  */
@@ -56,10 +57,11 @@ public class RestApiServlet extends HttpServlet {
         this.putRestHandler = (RestApiHandler) getServletContext().getAttribute("putRestHandler");
         this.deleteRestHandler = (RestApiHandler) getServletContext().getAttribute("deleteRestHandler");
     }
+
     /**
      * Handles GET requests and returns the appropriate response.
      *
-     * @param req the HttpServletRequest object that contains the request the client made to the servlet
+     * @param req  the HttpServletRequest object that contains the request the client made to the servlet
      * @param resp the HttpServletResponse object that contains the response the servlet returns to the client
      * @throws IOException if an input or output error is detected when the servlet handles the GET request
      */
@@ -91,7 +93,7 @@ public class RestApiServlet extends HttpServlet {
     /**
      * Handles POST requests and returns the appropriate response.
      *
-     * @param req the HttpServletRequest object that contains the request the client made to the servlet
+     * @param req  the HttpServletRequest object that contains the request the client made to the servlet
      * @param resp the HttpServletResponse object that contains the response the servlet returns to the client
      * @throws IOException if an input or output error is detected when the servlet handles the POST request
      */
@@ -117,7 +119,7 @@ public class RestApiServlet extends HttpServlet {
     /**
      * Handles DELETE requests and returns the appropriate response.
      *
-     * @param req the HttpServletRequest object that contains the request the client made to the servlet
+     * @param req  the HttpServletRequest object that contains the request the client made to the servlet
      * @param resp the HttpServletResponse object that contains the response the servlet returns to the client
      * @throws IOException if an input or output error is detected when the servlet handles the DELETE request
      */
@@ -146,7 +148,7 @@ public class RestApiServlet extends HttpServlet {
     /**
      * Handles PUT requests and returns the appropriate response.
      *
-     * @param req the HttpServletRequest object that contains the request the client made to the servlet
+     * @param req  the HttpServletRequest object that contains the request the client made to the servlet
      * @param resp the HttpServletResponse object that contains the response the servlet returns to the client
      * @throws IOException if an input or output error is detected when the servlet handles the PUT request
      */
@@ -159,7 +161,7 @@ public class RestApiServlet extends HttpServlet {
         resp.setContentType("application/json; charset=UTF-8");
 
         try {
-           int updated_rows = putRestHandler.handleRestRequest(pathInfo, req);
+            int updated_rows = putRestHandler.handleRestRequest(pathInfo, req);
             if (updated_rows != 0) {
                 resp.setStatus(HttpServletResponse.SC_OK);
             } else {
@@ -172,11 +174,12 @@ public class RestApiServlet extends HttpServlet {
             handlePutError(resp, e, pathInfo);
         }
     }
+
     /**
      * Handles errors when a requested resource is not found.
      *
-     * @param resp the HttpServletResponse object that contains the response the servlet returns to the client
-     * @param e the SQLException that occurred
+     * @param resp     the HttpServletResponse object that contains the response the servlet returns to the client
+     * @param e        the SQLException that occurred
      * @param pathInfo the path of the request
      * @throws IOException if an input or output error is detected when the servlet handles the error
      */
@@ -184,21 +187,22 @@ public class RestApiServlet extends HttpServlet {
     private static void handleNotFoundError(HttpServletResponse resp, SQLException e, String pathInfo) throws IOException {
         PrintWriter out = resp.getWriter();
         if (pathInfo.contains("coordinators")) {
-           out.write(COORDINATORS_NOT_FOUND + e.getMessage());
+            out.write(COORDINATORS_NOT_FOUND + e.getMessage());
         } else if (pathInfo.contains("courses")) {
-           out.write(COURSES_NOT_FOUND + e.getMessage());
-        }else  if (pathInfo.contains("coordinator")) {
-           out.write(COORDINATOR_NOT_FOUND + e.getMessage());
+            out.write(COURSES_NOT_FOUND + e.getMessage());
+        } else if (pathInfo.contains("coordinator")) {
+            out.write(COORDINATOR_NOT_FOUND + e.getMessage());
         } else if (pathInfo.contains("student")) {
-           out.write(STUDENT_NOT_FOUND + e.getMessage());
+            out.write(STUDENT_NOT_FOUND + e.getMessage());
         }
         resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
     }
+
     /**
      * Handles successful POST requests by writing the appropriate success message to the response.
      *
-     * @param resp the HttpServletResponse object that contains the response the servlet returns to the client
-     * @param pathInfo the path of the request
+     * @param resp        the HttpServletResponse object that contains the response the servlet returns to the client
+     * @param pathInfo    the path of the request
      * @param generatedId the ID generated for the newly created resource
      * @throws IOException if an input or output error is detected when the servlet handles the response
      */
@@ -208,18 +212,19 @@ public class RestApiServlet extends HttpServlet {
             out.write(String.format(COORDINATOR_CREATED_SUCCESS_JSON, generated_id));
         } else if (pathInfo.contains("student_course")) {
             out.write(String.format(STUDENT_COURSE_CREATED_SUCCESS_JSON, generated_id));
-        }else if (pathInfo.contains("course")) {
+        } else if (pathInfo.contains("course")) {
             out.write(String.format(COURSE_CREATED_SUCCESS_JSON, generated_id));
-        }  else if (pathInfo.contains("student")) {
+        } else if (pathInfo.contains("student")) {
             out.write(String.format(STUDENT_CREATED_SUCCESS_JSON, generated_id));
         }
         resp.setStatus(HttpServletResponse.SC_CREATED);
     }
+
     /**
      * Handles errors that occur during POST requests by writing the appropriate error message to the response.
      *
-     * @param resp the HttpServletResponse object that contains the response the servlet returns to the client
-     * @param e the SQLException that occurred
+     * @param resp     the HttpServletResponse object that contains the response the servlet returns to the client
+     * @param e        the SQLException that occurred
      * @param pathInfo the path of the request
      * @throws IOException if an input or output error is detected when the servlet handles the error
      */
@@ -229,19 +234,20 @@ public class RestApiServlet extends HttpServlet {
             out.write(COORDINATOR_NOT_CREATED + e.getMessage());
         } else if (pathInfo.contains("student_course")) {
             out.write(STUDENT_COURSE_NOT_CREATED + e.getMessage());
-        }else if (pathInfo.contains("course")) {
+        } else if (pathInfo.contains("course")) {
             out.write(COURSE_NOT_CREATED + e.getMessage());
         } else if (pathInfo.contains("student")) {
             out.write(STUDENT_NOT_CREATED + e.getMessage());
         }
         resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
     }
+
     /**
      * Handles errors that occur during PUT requests.
      *
-     * @param resp the HttpServletResponse object that contains the response the servlet returns to the client
+     * @param resp     the HttpServletResponse object that contains the response the servlet returns to the client
      * @param pathInfo the path of the request
-     * @param e the SQLException that occurred
+     * @param e        the SQLException that occurred
      * @throws IOException if an input or output error is detected when the servlet handles the error
      */
 
@@ -255,12 +261,13 @@ public class RestApiServlet extends HttpServlet {
             out.write(STUDENT_NOT_UPDATED + e.getMessage());
         }
     }
+
     /**
      * Handles errors that occur during DELETE requests.
      *
-     * @param resp the HttpServletResponse object that contains the response the servlet returns to the client
+     * @param resp     the HttpServletResponse object that contains the response the servlet returns to the client
      * @param pathInfo the path of the request
-     * @param e the SQLException that occurred
+     * @param e        the SQLException that occurred
      * @throws IOException if an input or output error is detected when the servlet handles the error
      */
     private static void handleDeleteError(HttpServletResponse resp, SQLException e, String pathInfo) throws IOException {

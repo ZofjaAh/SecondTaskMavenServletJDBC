@@ -15,6 +15,7 @@ public class StudentDTO {
     private String name;
     private Integer coordinatorId;
     private Set<CourseDTO> courses;
+
     @Data
     @Builder
     @NoArgsConstructor
@@ -22,5 +23,5 @@ public class StudentDTO {
     public static class CourseDTO {
         private int id;
         private String name;
-}
+    }
 }

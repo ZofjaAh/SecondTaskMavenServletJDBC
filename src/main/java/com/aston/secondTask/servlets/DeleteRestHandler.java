@@ -6,6 +6,7 @@ import com.aston.secondTask.service.StudentService;
 import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.Optional;
+
 /**
  * Handles DELETE REST API requests for updating various entities such as courses, coordinators, and students.
  */
@@ -24,7 +25,7 @@ public class DeleteRestHandler extends RestApiHandler {
      * Handles a REST delete request with the specified request path and HTTP request.
      *
      * @param requestPath the path of the REST request
-     * @param req the HTTP request
+     * @param req         the HTTP request
      * @return the number of rows updated (deleted)
      */
     @Override
@@ -45,6 +46,7 @@ public class DeleteRestHandler extends RestApiHandler {
 
         return updated_rows;
     }
+
     /**
      * Extracts the ID from the request path.
      *

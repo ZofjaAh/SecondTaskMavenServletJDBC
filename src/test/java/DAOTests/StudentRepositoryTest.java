@@ -1,9 +1,7 @@
 package DAOTests;
 
-import com.aston.secondTask.entities.CoordinatorEntity;
 import com.aston.secondTask.entities.StudentEntity;
 import com.aston.secondTask.infrastructure.configuration.DateBaseConnectionCreator;
-import com.aston.secondTask.infrastructure.repository.CoordinatorRepository;
 import com.aston.secondTask.infrastructure.repository.StudentRepository;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -11,13 +9,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.lifecycle.Startables;
 import util.EntityFixtures;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -103,9 +99,10 @@ public class StudentRepositoryTest extends DataBaseSQLContainer {
         Mockito.when(dateBaseConnectionCreator.getConnection())
                 .thenReturn(DriverManager.getConnection(postgreSQLContainer.getJdbcUrl(),
                         postgreSQLContainer.getUsername(), postgreSQLContainer.getPassword()));
-        int result = studentRepository.updateCoordinator(studentId,coordinatorId);
+        int result = studentRepository.updateCoordinator(studentId, coordinatorId);
         assertEquals(1, result);
     }
+
     @Test
     void addCourseForStudentSuccessful() throws SQLException {
         int studentId = 3;
@@ -113,7 +110,7 @@ public class StudentRepositoryTest extends DataBaseSQLContainer {
         Mockito.when(dateBaseConnectionCreator.getConnection())
                 .thenReturn(DriverManager.getConnection(postgreSQLContainer.getJdbcUrl(),
                         postgreSQLContainer.getUsername(), postgreSQLContainer.getPassword()));
-        int result = studentRepository.addCourse(studentId,courseId);
+        int result = studentRepository.addCourse(studentId, courseId);
         assertEquals(1, result);
     }
 

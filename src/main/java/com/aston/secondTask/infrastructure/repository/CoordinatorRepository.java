@@ -14,16 +14,17 @@ import lombok.extern.slf4j.Slf4j;
 import java.sql.*;
 import java.util.*;
 import java.util.stream.Collectors;
+
 /**
  * Repository for handling coordinator-related database operations.
  */
 @AllArgsConstructor
 @Slf4j
 @Setter
-public class CoordinatorRepository  implements CoordinatorDAO {
+public class CoordinatorRepository implements CoordinatorDAO {
 
 
-DateBaseConnectionCreator dateBaseConnectionCreator;
+    DateBaseConnectionCreator dateBaseConnectionCreator;
 
     /**
      * Finds all coordinators.
@@ -34,7 +35,7 @@ DateBaseConnectionCreator dateBaseConnectionCreator;
     public List<CoordinatorEntity> findAll() {
         List<CoordinatorEntity> coordinatorEntityList = new ArrayList<>();
         try (Connection connection = dateBaseConnectionCreator.getConnection();
-        PreparedStatement statement = connection.prepareStatement(
+             PreparedStatement statement = connection.prepareStatement(
                      CoordinatorSQLQuery.GET_ALL_COORDINATORS.getQUERY())) {
             try (ResultSet result = statement.executeQuery()) {
                 while (result.next()) {
@@ -48,6 +49,7 @@ DateBaseConnectionCreator dateBaseConnectionCreator;
         }
         return coordinatorEntityList;
     }
+
     /**
      * Creates a new coordinator.
      *
@@ -55,7 +57,7 @@ DateBaseConnectionCreator dateBaseConnectionCreator;
      * @return the generated ID of the new coordinator
      */
     @Override
-    public int createCoordinator(CoordinatorEntity coordinator)  {
+    public int createCoordinator(CoordinatorEntity coordinator) {
         try (Connection connection = dateBaseConnectionCreator.getConnection();
              PreparedStatement statement = connection.prepareStatement(
                      CoordinatorSQLQuery.CREATE_COORDINATOR.getQUERY(),
@@ -64,8 +66,8 @@ DateBaseConnectionCreator dateBaseConnectionCreator;
             statement.executeUpdate();
             try (ResultSet result = statement.getGeneratedKeys()) {
                 result.next();
-                int id = result.getInt(1);
-                return id;
+                return result.getInt(1);
+
             }
         } catch (SQLException e) {
             log.error("SQLException with creation coordinator with name: [{}] - [{}]",
@@ -81,25 +83,26 @@ DateBaseConnectionCreator dateBaseConnectionCreator;
      * @return the number of rows affected
      */
     @Override
-    public int deleteById(int coordinatorId){
+    public int deleteById(int coordinatorId) {
         int updated_rows = 0;
-        try { Connection connection = dateBaseConnectionCreator.getConnection();
-        connection.setAutoCommit(false);
-        try (PreparedStatement changeStudentsStatement = connection.prepareStatement(
-                     CoordinatorSQLQuery.CHANGE_STUDENT_COORDINATOR_ID_BY_ID.getQUERY());
-             PreparedStatement deleteCoordinatorStatement = connection.prepareStatement(
-                     CoordinatorSQLQuery.DELETE_COORDINATOR_BY_ID.getQUERY())) {
-            changeStudentsStatement.setLong(1, coordinatorId);
-            deleteCoordinatorStatement.setLong(1, coordinatorId);
-            updated_rows += changeStudentsStatement.executeUpdate();
-            updated_rows += deleteCoordinatorStatement.executeUpdate();
+        try {
+            Connection connection = dateBaseConnectionCreator.getConnection();
+            connection.setAutoCommit(false);
+            try (PreparedStatement changeStudentsStatement = connection.prepareStatement(
+                    CoordinatorSQLQuery.CHANGE_STUDENT_COORDINATOR_ID_BY_ID.getQUERY());
+                 PreparedStatement deleteCoordinatorStatement = connection.prepareStatement(
+                         CoordinatorSQLQuery.DELETE_COORDINATOR_BY_ID.getQUERY())) {
+                changeStudentsStatement.setLong(1, coordinatorId);
+                deleteCoordinatorStatement.setLong(1, coordinatorId);
+                updated_rows += changeStudentsStatement.executeUpdate();
+                updated_rows += deleteCoordinatorStatement.executeUpdate();
 
-        } catch (SQLException e) {
-            log.error("SQLException with deleting coordinator with Id: [{}] - [{}]",
-                    coordinatorId, e.getMessage());
+            } catch (SQLException e) {
+                log.error("SQLException with deleting coordinator with Id: [{}] - [{}]",
+                        coordinatorId, e.getMessage());
 
-            throw new ProcessingException(e.getMessage());
-        }
+                throw new ProcessingException(e.getMessage());
+            }
 
             connection.commit();
         } catch (SQLException e) {
@@ -112,14 +115,14 @@ DateBaseConnectionCreator dateBaseConnectionCreator;
     /**
      * Updates the name of a coordinator.
      *
-     * @param coordinatorId the ID of the coordinator
+     * @param coordinatorId   the ID of the coordinator
      * @param coordinatorName the new name of the coordinator
      * @return the number of rows affected
      */
 
     @Override
-    public int updateCoordinatorName(int coordinatorId, String coordinatorName)  {
-        int rowsUpdated = 0;
+    public int updateCoordinatorName(int coordinatorId, String coordinatorName) {
+        int rowsUpdated;
         try (Connection connection = dateBaseConnectionCreator.getConnection();
              PreparedStatement statement = connection.prepareStatement(
                      CoordinatorSQLQuery.UPDATE_COORDINATOR_NAME_BY_ID.getQUERY())) {
@@ -141,7 +144,7 @@ DateBaseConnectionCreator dateBaseConnectionCreator;
      * @param coordinatorId the ID of the coordinator
      * @return the CoordinatorEntity containing coordinator and student information
      * @throws ProcessingException if an error occurs during processing
-     * @throws NotFoundException if the coordinator with the specified ID does not exist
+     * @throws NotFoundException   if the coordinator with the specified ID does not exist
      */
     @Override
     public CoordinatorEntity findCoordinatorWithStudentsByID(int coordinatorId) {
@@ -179,7 +182,7 @@ DateBaseConnectionCreator dateBaseConnectionCreator;
      */
     private CoordinatorEntity createCoordinatorEntityFromListCoordinators(List<CoordinatorEntity> coordinators) {
         Set<StudentEntity> studentEntitySet = coordinators.stream()
-                .filter(coordinator-> Objects.nonNull(coordinator.getStudents()))
+                .filter(coordinator -> Objects.nonNull(coordinator.getStudents()))
                 .flatMap((CoordinatorEntity coordinator) -> coordinator.getStudents().stream())
                 .collect(Collectors.toSet());
         return coordinators.get(0).withStudents(studentEntitySet);
@@ -198,7 +201,7 @@ DateBaseConnectionCreator dateBaseConnectionCreator;
         coordinator.setId(Integer.parseInt(result.getString("coordinator_id")));
         coordinator.setName(result.getString("name"));
         String studentId = result.getString("student_id");
-        if(studentId != null) {
+        if (studentId != null) {
             StudentEntity student = new StudentEntity();
             student.setId(Integer.parseInt(studentId));
             student.setName(result.getString("student_name"));

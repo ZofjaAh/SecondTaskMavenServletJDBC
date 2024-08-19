@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
 /**
  * Handles REST API POST requests for various entities such as courses, coordinators, and students.
  */
@@ -21,12 +22,13 @@ public class PostRestHandler extends RestApiHandler {
      * Constructs a new PostRestHandler with the specified services.
      *
      * @param coordinatorService the service for handling coordinator-related operations
-     * @param studentService the service for handling student-related operations
-     * @param courseService the service for handling course-related operations
+     * @param studentService     the service for handling student-related operations
+     * @param courseService      the service for handling course-related operations
      */
     public PostRestHandler(CoordinatorService coordinatorService, StudentService studentService, CourseService courseService) {
         super(coordinatorService, studentService, courseService);
     }
+
     /**
      * Handles a REST request and returns an optional string response.
      *
@@ -44,7 +46,7 @@ public class PostRestHandler extends RestApiHandler {
      * Handles a REST request and returns the generated ID.
      *
      * @param requestPath the path of the request
-     * @param req the HTTP servlet request
+     * @param req         the HTTP servlet request
      * @return the generated ID
      * @throws IOException if an I/O error occurs while reading the request
      */
@@ -66,13 +68,14 @@ public class PostRestHandler extends RestApiHandler {
         } else if (requestPath.matches("^/student_course/?\\d+$")) {
             int studentId = getCurrentId(requestPath);
             String bodyParams = req.getReader().lines().collect(Collectors.joining());
-            Map<String, String> map = objectMapper.readValue(bodyParams, new TypeReference<Map<String, String>>() {
+            Map<String, String> map = objectMapper.readValue(bodyParams, new TypeReference<>() {
             });
             generated_id = studentService.addStudentCourse(studentId, Integer.parseInt(map.get("courseId")));
         }
 
         return generated_id;
     }
+
     /**
      * Extracts the current ID from the request path.
      *

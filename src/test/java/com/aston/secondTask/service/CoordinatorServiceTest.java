@@ -23,34 +23,38 @@ class CoordinatorServiceTest {
     private CoordinatorService coordinatorService;
     @Mock
     private CoordinatorDAO coordinatorDAO;
+
     @Test
-    void shouldCreateCoordinatorCorrectly(){
-       CoordinatorDTO coordinatorDTO =  DTOFixtures.coordinator_1();
+    void shouldCreateCoordinatorCorrectly() {
+        CoordinatorDTO coordinatorDTO = DTOFixtures.coordinator_1();
         CoordinatorEntity coordinatorEntity = EntityFixtures.getCoordinator_1();
         int coordinatorId = 1;
         when(coordinatorDAO.createCoordinator(coordinatorEntity)).thenReturn(coordinatorId);
         int result = coordinatorService.createCoordinator(coordinatorDTO);
         Assertions.assertEquals(coordinatorId, result);
     }
+
     @Test
-    void shouldDeleteCoordinatorSuccessful(){
+    void shouldDeleteCoordinatorSuccessful() {
         int coordinatorId = 1;
         int numberChangedRows = 2;
         when(coordinatorDAO.deleteById(coordinatorId)).thenReturn(numberChangedRows);
         int result = coordinatorService.deleteById(coordinatorId);
         Assertions.assertEquals(numberChangedRows, result);
     }
+
     @Test
-    void shouldUpdateCoordinatorNameSuccessful(){
+    void shouldUpdateCoordinatorNameSuccessful() {
         int coordinatorId = 1;
         int numberChangedRows = 1;
-       String coordinatorName = "Stefan BadDancer";
+        String coordinatorName = "Stefan BadDancer";
         when(coordinatorDAO.updateCoordinatorName(coordinatorId, coordinatorName)).thenReturn(numberChangedRows);
         int result = coordinatorService.updateCoordinatorName(coordinatorId, coordinatorName);
         Assertions.assertEquals(numberChangedRows, result);
     }
+
     @Test
-    void shouldSearchAllCoordinatorsSuccessful(){
+    void shouldSearchAllCoordinatorsSuccessful() {
         List<CoordinatorEntity> coordinatorEntityList = List.of(EntityFixtures.coordinator_1_0(), EntityFixtures.coordinator_2_0());
         Set<CoordinatorDTO> coordinatorDTOSet = Set.of(DTOFixtures.coordinator_1_0(), DTOFixtures.coordinator_2_0());
         when(coordinatorDAO.findAll()).thenReturn(coordinatorEntityList);
@@ -58,17 +62,18 @@ class CoordinatorServiceTest {
         List<String> coordinatorNames = coordinatorDTOSet.stream().map(CoordinatorDTO::getName).sorted().toList();
         List<String> resultNames = result.stream().map(CoordinatorDTO::getName).sorted().toList();
         Assertions.assertEquals(coordinatorDTOSet.size(), result.size());
-        Assertions.assertEquals(coordinatorNames,resultNames);
+        Assertions.assertEquals(coordinatorNames, resultNames);
     }
+
     @Test
-    void shouldSearchCoordinatorByIdWithStudentsSuccessful(){
-        CoordinatorEntity coordinatorEntity =EntityFixtures.coordinator_1_0()
+    void shouldSearchCoordinatorByIdWithStudentsSuccessful() {
+        CoordinatorEntity coordinatorEntity = EntityFixtures.coordinator_1_0()
                 .withStudents(Set.of(EntityFixtures.student_2_0()));
         CoordinatorDTO coordinatorDTO = DTOFixtures.coordinator_1_0().withStudents(Set.of(DTOFixtures.student_2_0()));
-       int coordinatorId = 1;
+        int coordinatorId = 1;
         when(coordinatorDAO.findCoordinatorWithStudentsByID(1)).thenReturn(coordinatorEntity);
-       CoordinatorDTO result = coordinatorService.findById(coordinatorId);
-        Assertions.assertEquals(coordinatorDTO.getName(),result.getName());
+        CoordinatorDTO result = coordinatorService.findById(coordinatorId);
+        Assertions.assertEquals(coordinatorDTO.getName(), result.getName());
         Assertions.assertEquals(coordinatorDTO.getStudents().size(), result.getStudents().size());
     }
 

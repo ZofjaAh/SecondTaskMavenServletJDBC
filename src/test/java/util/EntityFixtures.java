@@ -16,13 +16,7 @@ public class EntityFixtures {
 
     }
 
-    public static StudentEntity student_1_0() {
-        return StudentEntity.builder()
-                .id(1)
-                .name("Ivan Goodhear")
-                .build();
 
-    }
     public static StudentEntity student_1_1() {
         return StudentEntity.builder()
                 .id(1)
@@ -59,6 +53,7 @@ public class EntityFixtures {
         return CourseEntity.builder()
                 .name("Voicing").build();
     }
+
     public static CourseEntity course_1_0() {
         return CourseEntity.builder()
                 .id(1)
@@ -71,6 +66,7 @@ public class EntityFixtures {
                 .name("Play pianoforte")
                 .build();
     }
+
     public static CourseEntity course_2_0() {
         return CourseEntity.builder()
                 .id(2)
@@ -103,9 +99,10 @@ public class EntityFixtures {
     }
 
     public static CoordinatorEntity getCoordinator_1() {
-        return  CoordinatorEntity.builder().
+        return CoordinatorEntity.builder().
                 name("Stefan Dancer").build();
     }
+
     public static CoordinatorEntity coordinator_1_0() {
         return CoordinatorEntity.builder()
                 .id(1)
@@ -113,6 +110,7 @@ public class EntityFixtures {
                 .build();
 
     }
+
     public static CoordinatorEntity coordinator_2_0() {
         return CoordinatorEntity.builder()
                 .id(2)
@@ -122,7 +120,7 @@ public class EntityFixtures {
     }
 
     public static StudentEntity student_1() {
-       return StudentEntity.builder()
+        return StudentEntity.builder()
                 .name("Aga GoodPlayer")
                 .build();
     }

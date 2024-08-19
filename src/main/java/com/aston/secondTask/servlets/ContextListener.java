@@ -14,6 +14,7 @@ import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.annotation.WebListener;
+
 /**
  * ContextListener initializes and sets up various services and handlers when the web application starts.
  * This ensures that all necessary components are available in the servlet context for handling REST requests.

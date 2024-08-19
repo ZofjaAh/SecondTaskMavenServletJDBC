@@ -19,12 +19,14 @@ public class DTOFixtures {
                 .name("Stefan Dancer")
                 .build();
     }
-     public static CoordinatorDTO coordinator_1_0() {
+
+    public static CoordinatorDTO coordinator_1_0() {
         return CoordinatorDTO.builder()
                 .id(1)
                 .name("Betchowen")
                 .build();
     }
+
     public static CoordinatorDTO coordinator_2_0() {
         return CoordinatorDTO.builder()
                 .id(2)
@@ -44,30 +46,35 @@ public class DTOFixtures {
                 .name("Voicing")
                 .build();
     }
+
     public static CourseDTO course_1_0() {
         return CourseDTO.builder()
                 .id(1)
                 .name("Voicing")
                 .build();
     }
+
     public static StudentDTO.CourseDTO course_1_3() {
         return StudentDTO.CourseDTO.builder()
                 .id(1)
                 .name("Voicing")
                 .build();
     }
+
     public static StudentDTO.CourseDTO course_1_2() {
         return StudentDTO.CourseDTO.builder()
                 .id(1)
                 .name("Voicing")
                 .build();
     }
+
     public static CourseDTO course_2_0() {
         return CourseDTO.builder()
                 .id(2)
                 .name("Play Chess")
                 .build();
     }
+
     public static StudentDTO.CourseDTO course_2_3() {
         return StudentDTO.CourseDTO.builder()
                 .id(2)
@@ -76,10 +83,10 @@ public class DTOFixtures {
     }
 
     public static StudentDTO student_1() {
-            return StudentDTO.builder()
-                    .name("Aga GoodPlayer")
-                    .build();
-        }
+        return StudentDTO.builder()
+                .name("Aga GoodPlayer")
+                .build();
+    }
 
     public static StudentDTO student_1_0() {
         return StudentDTO.builder()
@@ -88,6 +95,7 @@ public class DTOFixtures {
                 .coordinatorId(1)
                 .build();
     }
+
     public static StudentDTO student_1_1() {
         return StudentDTO.builder()
                 .id(1)

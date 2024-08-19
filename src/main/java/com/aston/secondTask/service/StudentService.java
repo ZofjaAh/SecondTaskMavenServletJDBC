@@ -3,19 +3,18 @@ package com.aston.secondTask.service;
 import com.aston.secondTask.entities.CourseEntity;
 import com.aston.secondTask.entities.StudentEntity;
 import com.aston.secondTask.service.DAO.StudentDAO;
-import com.aston.secondTask.servlets.DTO.CourseDTO;
 import com.aston.secondTask.servlets.DTO.StudentDTO;
 import lombok.AllArgsConstructor;
 
-import java.sql.SQLException;
-import java.util.Objects;
 import java.util.stream.Collectors;
+
 /**
  * Service for handling student-related operations.
  */
 @AllArgsConstructor
 public class StudentService {
     private final StudentDAO studentDAO;
+
     /**
      * Finds a student by ID along with their courses.
      *
@@ -28,8 +27,8 @@ public class StudentService {
         return StudentDTO.builder()
                 .id(studentEntity.getId())
                 .name(studentEntity.getName())
-                .coordinatorId(studentEntity.getCoordinator() != null?
-                        studentEntity.getCoordinator().getId(): null)
+                .coordinatorId(studentEntity.getCoordinator() != null ?
+                        studentEntity.getCoordinator().getId() : null)
                 .courses(studentEntity.getCourses().stream()
                         .map(this::getCourseDTO)
                         .collect(Collectors.toSet()))
@@ -37,38 +36,40 @@ public class StudentService {
 
 
     }
+
     /**
      * Creates a student with a specified coordinator.
      *
-     * @param student the student data
+     * @param student       the student data
      * @param coordinatorId the ID of the coordinator
      * @return the generated ID of the new student
      */
 
-    public int createStudentWithCoordinator(StudentDTO student, int coordinatorId)  {
+    public int createStudentWithCoordinator(StudentDTO student, int coordinatorId) {
         StudentEntity studentEntity = StudentEntity.builder()
                 .name(student.getName()).build();
         return studentDAO.createStudentWithCoordinator(studentEntity, coordinatorId);
 
     }
+
     /**
      * Deletes a student by ID.
      *
      * @param studentId the ID of the student
      * @return the number of rows affected
      */
-    public int deleteStudent(int studentId)  {
+    public int deleteStudent(int studentId) {
         return studentDAO.deleteStudent(studentId);
     }
 
     /**
      * Updates the coordinator for a student.
      *
-     * @param studentId the ID of the student
+     * @param studentId     the ID of the student
      * @param coordinatorId the ID of the coordinator
      * @return the number of rows affected
      */
-    public int updateCoordinator(int studentId, int coordinatorId)  {
+    public int updateCoordinator(int studentId, int coordinatorId) {
         return studentDAO.updateCoordinator(studentId, coordinatorId);
     }
 
@@ -76,10 +77,10 @@ public class StudentService {
      * Adds a course to a student.
      *
      * @param studentId the ID of the student
-     * @param courseId the ID of the course
+     * @param courseId  the ID of the course
      * @return the number of rows affected
      */
-    public int addStudentCourse(int studentId, int courseId)  {
+    public int addStudentCourse(int studentId, int courseId) {
         return studentDAO.addCourse(studentId, courseId);
     }
 

@@ -49,8 +49,9 @@ public class CourseRepositoryTest extends DataBaseSQLContainer {
         createTestTables();
 
     }
+
     @AfterEach
-    void afterEach(){
+    void afterEach() {
         dropAllTestTables();
     }
 

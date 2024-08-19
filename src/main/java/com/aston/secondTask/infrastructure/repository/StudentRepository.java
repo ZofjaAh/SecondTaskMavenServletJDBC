@@ -15,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.sql.*;
 import java.util.*;
 import java.util.stream.Collectors;
+
 /**
  * Repository for handling student-related database operations.
  */
@@ -24,6 +25,7 @@ import java.util.stream.Collectors;
 public class StudentRepository extends DateBaseConnectionCreator implements StudentDAO {
 
     DateBaseConnectionCreator dateBaseConnectionCreator;
+
     /**
      * Creates a new student with a specified coordinator.
      *
@@ -55,6 +57,7 @@ public class StudentRepository extends DateBaseConnectionCreator implements Stud
 
         return student_Id;
     }
+
     /**
      * Deletes a student by ID.
      *
@@ -63,44 +66,46 @@ public class StudentRepository extends DateBaseConnectionCreator implements Stud
      */
 
     @Override
-    public int deleteStudent(int studentId)  {
+    public int deleteStudent(int studentId) {
         int updated_rows = 0;
-        try {  Connection connection = dateBaseConnectionCreator.getConnection();
+        try {
+            Connection connection = dateBaseConnectionCreator.getConnection();
 
             connection.setAutoCommit(false);
-        try (PreparedStatement delete_student_course_statement = connection.prepareStatement(
-                StudentSQLQuery.DELETE_STUDENT_COURSE_BY_ID.getQUERY());
-             PreparedStatement delete_student_statement = connection.prepareStatement(
-                     StudentSQLQuery.DELETE_STUDENT_BY_ID.getQUERY())) {
-            delete_student_course_statement.setLong(1, studentId);
-            delete_student_statement.setLong(1, studentId);
-            updated_rows += delete_student_course_statement.executeUpdate();
-            updated_rows += delete_student_statement.executeUpdate();
+            try (PreparedStatement delete_student_course_statement = connection.prepareStatement(
+                    StudentSQLQuery.DELETE_STUDENT_COURSE_BY_ID.getQUERY());
+                 PreparedStatement delete_student_statement = connection.prepareStatement(
+                         StudentSQLQuery.DELETE_STUDENT_BY_ID.getQUERY())) {
+                delete_student_course_statement.setLong(1, studentId);
+                delete_student_statement.setLong(1, studentId);
+                updated_rows += delete_student_course_statement.executeUpdate();
+                updated_rows += delete_student_statement.executeUpdate();
 
 
+            } catch (SQLException e) {
+                log.error("SQLException with deleting student with Id: [{}] - [{}]",
+                        studentId, e.getMessage());
+                throw new ProcessingException(e.getMessage());
+            }
+            connection.commit();
         } catch (SQLException e) {
-            log.error("SQLException with deleting student with Id: [{}] - [{}]",
-                    studentId, e.getMessage());
-            throw new ProcessingException(e.getMessage());
-        }
-        connection.commit();
-    } catch (SQLException e) {
             log.error("SQLException with closing connection [{}]", e.getMessage());
             throw new ProcessingException(e.getMessage());
-    }
+        }
         return updated_rows;
     }
+
     /**
      * Updates the coordinator for a student.
      *
-     * @param studentId the ID of the student
+     * @param studentId     the ID of the student
      * @param coordinatorId the ID of the coordinator
      * @return the number of rows affected
      */
 
     @Override
     public int updateCoordinator(int studentId, int coordinatorId) {
-        int rowsUpdated = 0;
+        int rowsUpdated;
         try (Connection connection = dateBaseConnectionCreator.getConnection();
              PreparedStatement statement = connection.prepareStatement(
                      StudentSQLQuery.UPDATE_COORDINATOR_BY_ID.getQUERY())) {
@@ -115,27 +120,24 @@ public class StudentRepository extends DateBaseConnectionCreator implements Stud
         }
         return rowsUpdated;
     }
+
     /**
      * Adds a course to a student.
      *
      * @param studentId the ID of the student
-     * @param courseId the ID of the course
+     * @param courseId  the ID of the course
      * @return the number of rows affected
      * @throws ProcessingException if an error occurs during processing
      */
     @Override
     public int addCourse(int studentId, int courseId) {
-        int rowsUpdated = 0;
-        List<StudentEntity> studentEntityList = new ArrayList<>();
-        StudentEntity studentEntity = null;
+        int rowsUpdated;
         try (Connection connection = dateBaseConnectionCreator.getConnection();
              PreparedStatement statement = connection.prepareStatement(
                      StudentSQLQuery.ADD_COURSE.getQUERY())) {
             statement.setInt(1, studentId);
             statement.setInt(2, courseId);
             rowsUpdated = statement.executeUpdate();
-
-
         } catch (SQLException e) {
             log.error("SQLException with changing student's coordinator [{}]", e.getMessage());
             throw new ProcessingException(e.getMessage());
@@ -143,18 +145,19 @@ public class StudentRepository extends DateBaseConnectionCreator implements Stud
 
         return rowsUpdated;
     }
+
     /**
      * Finds a student by ID along with their courses.
      *
      * @param studentId the ID of the student
      * @return the StudentEntity containing student and course information
      * @throws ProcessingException if an error occurs during processing
-     * @throws NotFoundException if the student with the specified ID does not exist
+     * @throws NotFoundException   if the student with the specified ID does not exist
      */
     @Override
     public StudentEntity findById(int studentId) {
         List<StudentEntity> studentEntityList = new ArrayList<>();
-        StudentEntity studentEntity = null;
+        StudentEntity studentEntity;
         try (Connection connection = dateBaseConnectionCreator.getConnection();
              PreparedStatement statement = connection.prepareStatement(
                      StudentSQLQuery.GET_STUDENT_WITH_COURSES_BY_ID.getQUERY())) {
@@ -178,6 +181,7 @@ public class StudentRepository extends DateBaseConnectionCreator implements Stud
             throw new NotFoundException("Sorry, coordinator with such Id: [{}] doesn't exist");
         }
     }
+
     /**
      * Creates a StudentEntity from a list of students.
      *
@@ -188,7 +192,7 @@ public class StudentRepository extends DateBaseConnectionCreator implements Stud
     private StudentEntity createStudentEntityFromListStudents(List<StudentEntity> students) {
         Set<CourseEntity> courseEntitySet = students.stream()
                 .filter(student -> Objects.nonNull(student.getCourses()))
-                .flatMap( student-> student.getCourses().stream())
+                .flatMap(student -> student.getCourses().stream())
                 .collect(Collectors.toSet());
         return students.get(0).withCourses(courseEntitySet);
 

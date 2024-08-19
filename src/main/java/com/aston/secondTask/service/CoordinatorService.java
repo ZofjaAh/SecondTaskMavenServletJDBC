@@ -3,13 +3,12 @@ package com.aston.secondTask.service;
 import com.aston.secondTask.entities.CoordinatorEntity;
 import com.aston.secondTask.service.DAO.CoordinatorDAO;
 import com.aston.secondTask.servlets.DTO.CoordinatorDTO;
-import com.aston.secondTask.servlets.DTO.StudentDTO;
 import lombok.AllArgsConstructor;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+
 /**
  * Service for handling coordinator-related operations.
  */
@@ -18,6 +17,7 @@ import java.util.stream.Collectors;
 public class CoordinatorService {
 
     private final CoordinatorDAO coordinatorDAO;
+
     /**
      * Creates a new coordinator.
      *
@@ -31,6 +31,7 @@ public class CoordinatorService {
         return coordinatorDAO.createCoordinator(coordinatorEntity);
 
     }
+
     /**
      * Deletes a coordinator by ID.
      *
@@ -38,7 +39,7 @@ public class CoordinatorService {
      * @return the number of rows affected
      */
 
-    public int deleteById(int coordinatorId)  {
+    public int deleteById(int coordinatorId) {
         return coordinatorDAO.deleteById(coordinatorId);
     }
 
@@ -46,12 +47,13 @@ public class CoordinatorService {
      * Updates the name of a coordinator.
      *
      * @param coordinatorId the ID of the coordinator
-     * @param name the new name of the coordinator
+     * @param name          the new name of the coordinator
      * @return the number of rows affected
      */
-    public int updateCoordinatorName(int coordinatorId, String name){
+    public int updateCoordinatorName(int coordinatorId, String name) {
         return coordinatorDAO.updateCoordinatorName(coordinatorId, name);
     }
+
     /**
      * Finds a coordinator by ID along with their students.
      *
@@ -63,6 +65,7 @@ public class CoordinatorService {
         return getCoordinatorDTOWithStudents(coordinatorEntity);
 
     }
+
     /**
      * Finds all coordinators.
      *
@@ -76,6 +79,7 @@ public class CoordinatorService {
                 .collect(Collectors.toSet());
 
     }
+
     /**
      * Converts a CoordinatorEntity to a CoordinatorDTO.
      *
@@ -89,6 +93,7 @@ public class CoordinatorService {
                 .name(coordinatorEntity.getName())
                 .build();
     }
+
     /**
      * Converts a CoordinatorEntity to a CoordinatorDTO with students.
      *

@@ -18,7 +18,7 @@ import util.DTOFixtures;
 import java.util.Optional;
 import java.util.Set;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class GetRestHandlerTest {
@@ -40,6 +40,7 @@ class GetRestHandlerTest {
         Assertions.assertTrue(result.isPresent());
 
     }
+
     @Test
     void testHandleStudentGetRequest() throws JsonProcessingException {
         StudentDTO studentDTO = DTOFixtures.student_1_1();
@@ -48,15 +49,17 @@ class GetRestHandlerTest {
         Assertions.assertTrue(result.isPresent());
 
     }
+
     @Test
     void testHandleCoursesGetRequest() throws JsonProcessingException {
-        Set<CourseDTO> courses = Set.of(DTOFixtures.course_1_0(),DTOFixtures.course_2_0());
+        Set<CourseDTO> courses = Set.of(DTOFixtures.course_1_0(), DTOFixtures.course_2_0());
         when(courseService.findAll()).thenReturn(courses);
         Optional<String> result = getRestHandler.handleRestRequest("/courses/");
 
         Assertions.assertTrue(result.isPresent());
 
     }
+
     @Test
     void testHandleCoordinatorsGetRequest() throws JsonProcessingException {
         Set<CoordinatorDTO> coordinators = Set.of(DTOFixtures.coordinator_1_0(), DTOFixtures.coordinator_2_0());

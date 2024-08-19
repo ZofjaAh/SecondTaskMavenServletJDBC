@@ -37,7 +37,6 @@ public class DataBaseSQLContainer {
             return dbProperties.getProperty(source);
         } catch (IOException e) {
             log.error("Cannot load db.properties [{}}", e.getMessage());
-            e.printStackTrace();
             throw new ProcessingException(e.getMessage());
         }
     }
@@ -78,13 +77,13 @@ public class DataBaseSQLContainer {
             statement.execute("""
                     CREATE TABLE student (student_id SERIAL NOT NULL, name VARCHAR(32) NOT NULL, coordinator_id INT,
                     PRIMARY KEY (student_id), UNIQUE(name), CONSTRAINT fk_student_coordinator
-                    FOREIGN KEY (coordinator_id) REFERENCES coordinator (coordinator_id)); 
+                    FOREIGN KEY (coordinator_id) REFERENCES coordinator (coordinator_id));
                     """);
             statement.execute("""
                     CREATE TABLE student_course (id SERIAL NOT NULL, student_id INT NOT NULL, course_id INT NOT NULL,
-                    PRIMARY KEY (id), CONSTRAINT fk_student_course_student FOREIGN KEY (student_id) 
+                    PRIMARY KEY (id), CONSTRAINT fk_student_course_student FOREIGN KEY (student_id)
                     REFERENCES student(student_id), CONSTRAINT fk_student_course_course FOREIGN KEY (course_id)
-                     REFERENCES course(course_id)); 
+                     REFERENCES course(course_id));
                     """);
             statement.execute("""
                     INSERT INTO coordinator (coordinator_id, name) VALUES (1, 'Shopen'), (2, 'Mocart');
@@ -99,7 +98,7 @@ public class DataBaseSQLContainer {
                     SELECT SETVAL('course_course_id_seq', 2);
                     """);
             statement.execute("""
-                    INSERT INTO student (student_id, name, coordinator_id) VALUES (1, 'Ivan Goodhear', 2), 
+                    INSERT INTO student (student_id, name, coordinator_id) VALUES (1, 'Ivan Goodhear', 2),
                     (2, 'Nikol BadVoice', 1), (3, 'Ihor Nothear', 1);
                     """);
             statement.execute("""
@@ -112,10 +111,11 @@ public class DataBaseSQLContainer {
                     SELECT SETVAL('student_course_id_seq', 3);
                     """);
         } catch (SQLException e) {
-            log.error("Something wrong with loading test tables [{}] - [{}] [{}]", e.getMessage(), e.getSQLState());
+            log.error("Something wrong with loading test tables [{}] [{}]", e.getMessage(), e.getSQLState());
 
         }
     }
+
     public static void dropAllTestTables() {
         try (Connection connection = DriverManager.getConnection(postgreSQLContainer.getJdbcUrl(),
                 postgreSQLContainer.getUsername(), postgreSQLContainer.getPassword());
@@ -125,9 +125,11 @@ public class DataBaseSQLContainer {
             statement.execute("DROP TABLE IF EXISTS student CASCADE;");
             statement.execute("DROP TABLE IF EXISTS coordinator CASCADE;");
         } catch (SQLException e) {
-            e.printStackTrace();
+           log.error("SQLException with drop all tables [{}]", e.getMessage());
+           throw new ProcessingException(e.getMessage());
         }
 
 
-}}
+    }
+}
 

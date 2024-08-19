@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.sql.*;
 import java.util.HashSet;
 import java.util.Set;
+
 /**
  * Repository for handling course-related database operations.
  */
@@ -66,8 +67,8 @@ public class CourseRepository extends DateBaseConnectionCreator implements Cours
             statement.executeUpdate();
             try (ResultSet result = statement.getGeneratedKeys()) {
                 result.next();
-                int id = result.getInt(1);
-                return id;
+                return result.getInt(1);
+
             }
         } catch (SQLException e) {
             log.error("SQLException with creation course with name: [{}] - [{}]",
@@ -75,10 +76,11 @@ public class CourseRepository extends DateBaseConnectionCreator implements Cours
             throw new ProcessingException(e.getMessage());
         }
     }
+
     /**
      * Updates the name of a course.
      *
-     * @param courseId the ID of the course to be updated
+     * @param courseId   the ID of the course to be updated
      * @param courseName the new name of the course
      * @return the number of rows updated
      * @throws ProcessingException if an error occurs while executing the SQL query
@@ -86,7 +88,7 @@ public class CourseRepository extends DateBaseConnectionCreator implements Cours
 
     @Override
     public int updateCourseName(int courseId, String courseName) {
-        int rowsUpdated = 0;
+        int rowsUpdated;
         try (Connection connection = dateBaseConnectionCreator.getConnection();
              PreparedStatement statement = connection.prepareStatement(
                      CourseSQLQuery.UPDATE_COURSE_NAME_BY_ID.getQUERY())) {
@@ -140,6 +142,7 @@ public class CourseRepository extends DateBaseConnectionCreator implements Cours
 
         return updated_rows;
     }
+
     /**
      * Parses a CourseEntity from a ResultSet.
      *

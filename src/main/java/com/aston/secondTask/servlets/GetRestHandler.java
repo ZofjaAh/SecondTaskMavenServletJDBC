@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.Optional;
 import java.util.Set;
+
 /**
  * Handles GET REST API requests for students, coordinators, and courses.
  */

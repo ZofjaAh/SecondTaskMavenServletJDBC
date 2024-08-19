@@ -26,21 +26,21 @@ class ContextListenerTest {
                 any(CourseRepository.class));
         verify(servletContext, times(1)).setAttribute(eq("coordinatorRepository"),
                 any(CoordinatorRepository.class));
-verify(servletContext, times(1)).setAttribute(eq("studentRepository"),
+        verify(servletContext, times(1)).setAttribute(eq("studentRepository"),
                 any(StudentRepository.class));
-verify(servletContext, times(1)).setAttribute(eq("courseService"),
+        verify(servletContext, times(1)).setAttribute(eq("courseService"),
                 any(CourseService.class));
-verify(servletContext, times(1)).setAttribute(eq("coordinatorService"),
+        verify(servletContext, times(1)).setAttribute(eq("coordinatorService"),
                 any(CoordinatorService.class));
-verify(servletContext, times(1)).setAttribute(eq("studentService"),
+        verify(servletContext, times(1)).setAttribute(eq("studentService"),
                 any(StudentService.class));
-verify(servletContext, times(1)).setAttribute(eq("getRestHandler"),
+        verify(servletContext, times(1)).setAttribute(eq("getRestHandler"),
                 any(GetRestHandler.class));
-verify(servletContext, times(1)).setAttribute(eq("postRestHandler"),
+        verify(servletContext, times(1)).setAttribute(eq("postRestHandler"),
                 any(PostRestHandler.class));
-verify(servletContext, times(1)).setAttribute(eq("putRestHandler"),
+        verify(servletContext, times(1)).setAttribute(eq("putRestHandler"),
                 any(PutRestHandler.class));
-verify(servletContext, times(1)).setAttribute(eq("deleteRestHandler"),
+        verify(servletContext, times(1)).setAttribute(eq("deleteRestHandler"),
                 any(DeleteRestHandler.class));
 
 

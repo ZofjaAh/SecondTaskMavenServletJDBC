@@ -4,6 +4,7 @@ import lombok.NoArgsConstructor;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+
 /**
  * Class for creating database connections.
  */
@@ -15,10 +16,10 @@ public class DateBaseConnectionCreator {
      * @return the database connection
      * @throws RuntimeException if a database access error occurs
      */
-    public  Connection getConnection() {
+    public Connection getConnection() {
         try {
             return DatabaseConnector.getInstance().getConnection();
-        }catch (SQLException e){
+        } catch (SQLException e) {
             throw new RuntimeException("Failed to get a new connection", e);
         }
 
